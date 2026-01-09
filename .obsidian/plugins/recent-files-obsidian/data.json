@@ -1,6 +1,18 @@
 {
   "recentFiles": [
     {
+      "basename": "README",
+      "path": "README.md"
+    },
+    {
+      "basename": "Robert",
+      "path": "Robert.md"
+    },
+    {
+      "basename": "Sam",
+      "path": "Sam.md"
+    },
+    {
       "basename": "Home",
       "path": "Home.md"
     },
@@ -31,10 +43,6 @@
     {
       "basename": "Example - Customer Meeting Acme Corp",
       "path": "Example - Customer Meeting Acme Corp.md"
-    },
-    {
-      "basename": "README",
-      "path": "README.md"
     },
     {
       "basename": "People",
@@ -91,14 +99,6 @@
     {
       "basename": "2026-01-09 1025",
       "path": "Notes/2026-01-09 1025.md"
-    },
-    {
-      "basename": "Sam",
-      "path": "Sam.md"
-    },
-    {
-      "basename": "Robert",
-      "path": "Robert.md"
     },
     {
       "basename": "Event Template",

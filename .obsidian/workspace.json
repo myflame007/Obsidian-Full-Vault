@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Home"
+              "title": "README"
             }
           }
         ]
@@ -131,12 +131,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Home.md",
+                "file": "README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Home"
+              "title": "Outgoing links from README"
             }
           },
           {
@@ -208,10 +208,12 @@
   },
   "active": "43ac6e0bbb4ecab3",
   "lastOpenFiles": [
+    "Robert.md",
+    "Sam.md",
+    "Home.md",
     "Public",
     "Embrace Chaos.md",
     "Templates/Bases/Categories.base",
-    "Home.md",
     "Obsidian Plugin Development Guide.md",
     "Notes/2026-01-09 1527.md",
     "Categories/Urlaub.md",
@@ -237,12 +239,10 @@
     "Categories/Albums.md",
     "Notes/2026-01-09 1025.md",
     "Notes/Obsidian Plugin Development Guide.md",
-    "Testing Guide.md",
     "Templates/Bases/Customers.base",
     "Templates/Scripts/create-category-base.js",
     "Templates/Scripts/sync-categories.js",
     "Templates/Scripts/sync-public.js",
-    "Templates/Scripts/publish-note.js",
-    "Templates/Scripts"
+    "Templates/Scripts/publish-note.js"
   ]
 }

@@ -1,17 +1,20 @@
 # ===========================================
 # Obsidian Vault - Selective Sync Configuration
 # ===========================================
-# Only the Public/ folder will be synced to GitHub
-# Everything else stays local (personal notes)
+# Root-Dateien werden gesynct
+# Unterordner werden ignoriert (ausser Public/)
 # ===========================================
 
-# Ignore everything by default
-/*
+# Ignoriere alle Unterordner
+/*/
 
-# But NOT these folders/files (they get synced):
+# Aber NICHT diese Ordner:
 !Public/
-!.gitignore
-!README.md
+!.obsidian/
+
+# .obsidian Unterordner ignorieren, ausser snippets
+.obsidian/*
+!.obsidian/snippets/
 
 # Exclude macOS Finder (System Explorer) View States
 .DS_Store

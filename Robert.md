@@ -1,0 +1,1 @@
+Robert ist ein Freund von [[Sam]]

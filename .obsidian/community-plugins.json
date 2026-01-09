@@ -1,19 +1,19 @@
 [
+  "table-editor-obsidian",
+  "better-word-count",
   "calendar",
   "code-styler",
   "colored-tags",
   "cmdr",
-  "better-word-count",
-  "omnisearch",
-  "obsidian-icon-folder",
-  "homepage",
   "obsidian-excalidraw-plugin",
-  "recent-files-obsidian",
+  "file-explorer-note-count",
   "file-explorer-plus",
   "obsidian-git",
-  "auto-categories",
-  "file-explorer-note-count"
+  "homepage",
+  "obsidian-icon-folder",
+  "omnisearch",
   "url-into-selection",
+  "obsidian-plugin-update-tracker",
   "obsidian-reading-time",
-  "table-editor-obsidian"
+  "recent-files-obsidian"
 ]

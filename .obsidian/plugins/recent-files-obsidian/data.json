@@ -21,6 +21,22 @@
       "path": "Embrace Chaos.md"
     },
     {
+      "basename": "Robert",
+      "path": "Robert.md"
+    },
+    {
+      "basename": "Sam",
+      "path": "Sam.md"
+    },
+    {
+      "basename": "2026-01-08 0944 Adults",
+      "path": "Notes/2026-01-08 0944 Adults.md"
+    },
+    {
+      "basename": "Home",
+      "path": "Home.md"
+    },
+    {
       "basename": "Categories",
       "path": "Templates/Bases/Categories.base"
     },
@@ -103,10 +119,6 @@
     {
       "basename": "Event Template",
       "path": "Templates/Event Template.md"
-    },
-    {
-      "basename": "2026-01-08 0944 Adults",
-      "path": "Notes/2026-01-08 0944 Adults.md"
     },
     {
       "basename": "2026-01-08 1242",

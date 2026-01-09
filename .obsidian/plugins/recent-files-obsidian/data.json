@@ -1,14 +1,6 @@
 {
   "recentFiles": [
     {
-      "basename": "Sam",
-      "path": "Sam.md"
-    },
-    {
-      "basename": "Robert",
-      "path": "Robert.md"
-    },
-    {
       "basename": "Home",
       "path": "Home.md"
     },
@@ -17,16 +9,104 @@
       "path": "Embrace Chaos.md"
     },
     {
+      "basename": "Categories",
+      "path": "Templates/Bases/Categories.base"
+    },
+    {
+      "basename": "Obsidian Plugin Development Guide",
+      "path": "Obsidian Plugin Development Guide.md"
+    },
+    {
+      "basename": "2026-01-09 1527",
+      "path": "Notes/2026-01-09 1527.md"
+    },
+    {
+      "basename": "Urlaub",
+      "path": "Categories/Urlaub.md"
+    },
+    {
+      "basename": "SuperCycle",
+      "path": "Categories/SuperCycle.md"
+    },
+    {
+      "basename": "Example - Customer Meeting Acme Corp",
+      "path": "Example - Customer Meeting Acme Corp.md"
+    },
+    {
+      "basename": "README",
+      "path": "README.md"
+    },
+    {
+      "basename": "People",
+      "path": "Categories/People.md"
+    },
+    {
+      "basename": "Movies",
+      "path": "Categories/Movies.md"
+    },
+    {
+      "basename": "Meetings",
+      "path": "Categories/Meetings.md"
+    },
+    {
+      "basename": "Journal",
+      "path": "Categories/Journal.md"
+    },
+    {
+      "basename": "Games",
+      "path": "Categories/Games.md"
+    },
+    {
+      "basename": "Evergreen",
+      "path": "Categories/Evergreen.md"
+    },
+    {
+      "basename": "Events",
+      "path": "Categories/Events.md"
+    },
+    {
+      "basename": "Customers",
+      "path": "Categories/Customers.md"
+    },
+    {
+      "basename": "Companies",
+      "path": "Categories/Companies.md"
+    },
+    {
+      "basename": "Clippings",
+      "path": "Categories/Clippings.md"
+    },
+    {
+      "basename": "Books",
+      "path": "Categories/Books.md"
+    },
+    {
+      "basename": "Board games",
+      "path": "Categories/Board games.md"
+    },
+    {
+      "basename": "Albums",
+      "path": "Categories/Albums.md"
+    },
+    {
+      "basename": "2026-01-09 1025",
+      "path": "Notes/2026-01-09 1025.md"
+    },
+    {
+      "basename": "Sam",
+      "path": "Sam.md"
+    },
+    {
+      "basename": "Robert",
+      "path": "Robert.md"
+    },
+    {
       "basename": "Event Template",
       "path": "Templates/Event Template.md"
     },
     {
       "basename": "2026-01-08 0944 Adults",
       "path": "Notes/2026-01-08 0944 Adults.md"
-    },
-    {
-      "basename": "Meetings",
-      "path": "Categories/Meetings.md"
     },
     {
       "basename": "2026-01-08 1242",
@@ -119,38 +199,6 @@
     {
       "basename": "Kyoto",
       "path": "References/Kyoto.md"
-    },
-    {
-      "basename": "Futurama",
-      "path": "References/Futurama.md"
-    },
-    {
-      "basename": "Fushimi Inari",
-      "path": "References/Fushimi Inari.md"
-    },
-    {
-      "basename": "Obsidian",
-      "path": "References/Obsidian.md"
-    },
-    {
-      "basename": "Steph Ango",
-      "path": "References/Steph Ango.md"
-    },
-    {
-      "basename": "Brown butter nectarine tart",
-      "path": "References/Brown butter nectarine tart.md"
-    },
-    {
-      "basename": "Blade Runner",
-      "path": "References/Blade Runner.md"
-    },
-    {
-      "basename": "People",
-      "path": "Categories/People.md"
-    },
-    {
-      "basename": "Albums",
-      "path": "Categories/Albums.md"
     }
   ],
   "omittedPaths": [],

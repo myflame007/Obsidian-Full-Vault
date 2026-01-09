@@ -216,6 +216,8 @@
   },
   "active": "43ac6e0bbb4ecab3",
   "lastOpenFiles": [
+    "Test.md",
+    "Custom-CSS-Notes.md",
     "Robert.md",
     "Embrace Chaos.md",
     "Sam.md",
@@ -245,8 +247,6 @@
     "Categories/Clippings.md",
     "Categories/Books.md",
     "Categories/Board games.md",
-    "Categories/Albums.md",
-    "Notes/2026-01-09 1025.md",
     "Templates/Bases/Customers.base",
     "Templates/Scripts/create-category-base.js",
     "Templates/Scripts/sync-categories.js",

@@ -80,3 +80,11 @@ a.external-link,
 a.internal-link > svg {
 	display: none !important;
 }
+
+/* -----------------------------------------------------
+   4. FILE EXPLORER - Gleicher Hintergrund wie Backlinks
+   ----------------------------------------------------- */
+
+.workspace-leaf-content[data-type="file-explorer"] {
+	background-color: var(--card-color) !important;
+}

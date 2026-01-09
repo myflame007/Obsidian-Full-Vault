@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "7fe3a8efe2c6e62f",
+        "id": "3d02bd6e81611ef3",
         "type": "tabs",
         "children": [
           {
-            "id": "2732bf119166e73c",
+            "id": "43ac6e0bbb4ecab3",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notes/2026-01-09 1025.md",
+                "file": "Home.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-01-09 1025"
+              "title": "Home"
             }
           }
         ]
@@ -33,6 +33,7 @@
       {
         "id": "98fd87fdffb9b915",
         "type": "tabs",
+        "dimension": 67.43119266055045,
         "children": [
           {
             "id": "0f8bf0492f08e2fd",
@@ -75,6 +76,23 @@
             }
           }
         ]
+      },
+      {
+        "id": "47cddd99ea01c52e",
+        "type": "tabs",
+        "dimension": 32.56880733944954,
+        "children": [
+          {
+            "id": "ef9fc4cc933a6688",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
       }
     ],
     "direction": "horizontal",
@@ -94,7 +112,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Untitled 1.md",
+                "file": "Embrace Chaos.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +122,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Untitled 1"
+              "title": "Backlinks for Embrace Chaos"
             }
           },
           {
@@ -113,12 +131,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Untitled 1.md",
+                "file": "Home.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Untitled 1"
+              "title": "Outgoing links from Home"
             }
           },
           {
@@ -161,16 +179,16 @@
               "title": "Calendar"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
-      "templater-obsidian:Templater": false,
+      "auto-categories:Sync All Categories": false,
       "omnisearch:Omnisearch": false,
       "homepage:Open homepage": false,
       "obsidian-excalidraw-plugin:New drawing": false,
@@ -188,31 +206,42 @@
       "bases:Create new base": false
     }
   },
-  "active": "2732bf119166e73c",
+  "active": "43ac6e0bbb4ecab3",
   "lastOpenFiles": [
+    "Embrace Chaos.md",
+    "Templates/Bases/Categories.base",
+    "Home.md",
     "Obsidian Plugin Development Guide.md",
+    "Notes/2026-01-09 1527.md",
+    "Categories/Urlaub.md",
+    "Categories/SuperCycle.md",
+    "Templates/Bases/SuperCycle.base",
+    "Templates/Bases/Apps.base",
+    "Categories/Apps.md",
+    "Templates/Bases/Urlaub.base",
+    "Example - Customer Meeting Acme Corp.md",
+    "README.md",
+    "Categories/People.md",
+    "Categories/Movies.md",
+    "Categories/Meetings.md",
+    "Categories/Journal.md",
+    "Categories/Games.md",
+    "Categories/Evergreen.md",
+    "Categories/Events.md",
+    "Categories/Customers.md",
+    "Categories/Companies.md",
+    "Categories/Clippings.md",
+    "Categories/Books.md",
+    "Categories/Board games.md",
+    "Categories/Albums.md",
+    "Notes/2026-01-09 1025.md",
     "Notes/Obsidian Plugin Development Guide.md",
     "Testing Guide.md",
-    "Home.md",
-    "Notes/2026-01-09 1025.md",
-    "Vault Automation Setup.md",
-    "Example - Customer Meeting Acme Corp.md",
     "Templates/Bases/Customers.base",
-    "Categories/Customers.md",
-    "Templates/Bases/Categories.base",
-    "Notes/Example - Customer Meeting Acme Corp.md",
-    "Templates/Sync Categories.md",
-    "Templates/Sync Public.md",
-    "Templates/Publish Note.md",
-    "Notes/Vault Automation Setup.md",
     "Templates/Scripts/create-category-base.js",
-    "Templates/Category Template.md",
     "Templates/Scripts/sync-categories.js",
     "Templates/Scripts/sync-public.js",
     "Templates/Scripts/publish-note.js",
-    "Templates/Scripts",
-    "Public",
-    "Untitled.md",
-    "Untitled 1.md"
+    "Templates/Scripts"
   ]
 }

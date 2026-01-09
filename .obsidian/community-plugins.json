@@ -1,6 +1,5 @@
 [
   "calendar",
-  "templater-obsidian",
   "code-styler",
   "colored-tags",
   "cmdr",
@@ -10,7 +9,8 @@
   "homepage",
   "obsidian-excalidraw-plugin",
   "recent-files-obsidian",
-  "obsidian-file-color",
   "file-explorer-plus",
-  "obsidian-git"
+  "obsidian-git",
+  "auto-categories",
+  "file-explorer-note-count"
 ]

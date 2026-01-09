@@ -1,24 +1,24 @@
 {
   "main": {
-    "id": "61470fc6704311db",
+    "id": "0bedf36313892d72",
     "type": "split",
     "children": [
       {
-        "id": "31afb858b724f313",
+        "id": "7fe3a8efe2c6e62f",
         "type": "tabs",
         "children": [
           {
-            "id": "ba9493744db5dc3b",
+            "id": "2732bf119166e73c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Sam.md",
+                "file": "Notes/2026-01-09 1025.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Sam"
+              "title": "2026-01-09 1025"
             }
           }
         ]
@@ -27,16 +27,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "8fc32e071c8b70f2",
+    "id": "72f11d0b42c1f05b",
     "type": "split",
     "children": [
       {
-        "id": "5fb2747e68dd9770",
+        "id": "98fd87fdffb9b915",
         "type": "tabs",
-        "dimension": 65.35353535353535,
         "children": [
           {
-            "id": "9ccfe5555d20f838",
+            "id": "0f8bf0492f08e2fd",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -49,12 +48,12 @@
             }
           },
           {
-            "id": "214a6ac5a6c2df43",
+            "id": "69099933537c3a6d",
             "type": "leaf",
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#music",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -66,7 +65,7 @@
             }
           },
           {
-            "id": "3c8f3c08e50ecd6d",
+            "id": "9b5c9fdf8651e20f",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -74,57 +73,28 @@
               "icon": "lucide-bookmark",
               "title": "Bookmarks"
             }
-          },
-          {
-            "id": "9ac7e7a147b78c82",
-            "type": "leaf",
-            "state": {
-              "type": "recent-files",
-              "state": {},
-              "icon": "clock",
-              "title": "Recent Files"
-            }
-          }
-        ],
-        "currentTab": 1
-      },
-      {
-        "id": "d87297e3f75a1d77",
-        "type": "tabs",
-        "dimension": 34.64646464646465,
-        "children": [
-          {
-            "id": "79a867e7b87988f7",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
-            }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 257
+    "width": 300
   },
   "right": {
-    "id": "f13d52d624446323",
+    "id": "c5510294461255ec",
     "type": "split",
     "children": [
       {
-        "id": "8813f8a743d31aec",
+        "id": "798f3f073ae1f27c",
         "type": "tabs",
-        "dimension": 62.8,
         "children": [
           {
-            "id": "04b2667126e2163e",
+            "id": "bf0386e48616fc00",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Embrace Chaos.md",
+                "file": "Untitled 1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -134,31 +104,31 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Embrace Chaos"
+              "title": "Backlinks for Untitled 1"
             }
           },
           {
-            "id": "ced746c2ccdb5f0f",
+            "id": "318952dd8f3a7b07",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Embrace Chaos.md",
+                "file": "Untitled 1.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Embrace Chaos"
+              "title": "Outgoing links from Untitled 1"
             }
           },
           {
-            "id": "2ac86a6831379d0a",
+            "id": "aa593530096cfe07",
             "type": "leaf",
             "state": {
               "type": "tag",
               "state": {
                 "sortOrder": "frequency",
-                "useHierarchy": false,
+                "useHierarchy": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
@@ -167,30 +137,22 @@
             }
           },
           {
-            "id": "3504a86004cf01ed",
+            "id": "3eff2a7e1ac9627a",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Embrace Chaos.md",
-                "followCursor": true,
+                "file": "Untitled 1.md",
+                "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Embrace Chaos"
+              "title": "Outline of Untitled 1"
             }
-          }
-        ],
-        "currentTab": 2
-      },
-      {
-        "id": "1ca16606c2e9536e",
-        "type": "tabs",
-        "dimension": 37.2,
-        "children": [
+          },
           {
-            "id": "055378cd9c2628c1",
+            "id": "42148a3f1b99d6a0",
             "type": "leaf",
             "state": {
               "type": "calendar",
@@ -203,10 +165,16 @@
       }
     ],
     "direction": "horizontal",
-    "width": 315
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
+      "templater-obsidian:Templater": false,
+      "omnisearch:Omnisearch": false,
+      "homepage:Open homepage": false,
+      "obsidian-excalidraw-plugin:New drawing": false,
+      "obsidian-git:Open Git source control": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -217,41 +185,34 @@
       "zk-prefixer:Create new unique note": false,
       "random-note:Open random note": false,
       "workspaces:Manage workspace layouts": false,
-      "bases:Create new base": false,
-      "templater-obsidian:Templater": false,
-      "omnisearch:Omnisearch": false,
-      "homepage:Open homepage": false,
-      "obsidian-excalidraw-plugin:New drawing": false,
-      "obsidian-git:Open Git source control": false
+      "bases:Create new base": false
     }
   },
-  "active": "2ac86a6831379d0a",
+  "active": "2732bf119166e73c",
   "lastOpenFiles": [
-    "Robert.md",
+    "Obsidian Plugin Development Guide.md",
+    "Notes/Obsidian Plugin Development Guide.md",
+    "Testing Guide.md",
     "Home.md",
-    "Embrace Chaos.md",
-    "Templates/Event Template.md",
-    "Sam.md",
-    "Notes/2026-01-08 0944 Adults.md",
-    "Categories/Meetings.md",
-    "Notes/2026-01-08 1242.md",
-    "Notes/2026-01-08 1050 Create Conditional Autonumber.md",
-    "References/Bass on Top.md",
-    "Notes/Ernest Becker.md",
-    "Notes/2026-01-08 1005 Robert Stickler.md",
-    "Notes/2026-01-08 1003.md",
-    "Notes/Product usage analysis.md",
-    "Notes/Minimal Theme.md",
-    "Notes/Evergreen notes turn ideas into objects that you can manipulate.md",
-    "Notes/2023-09-12 Meeting with Steph.md",
-    "Notes/2023 Japan Trip.md",
-    "Daily/2023-09-12.md",
-    "Daily/2023-09-30.md",
-    "Clippings/Buy wisely.md",
-    "Clippings/In good hands.md",
-    "Clippings/68 Bits of Unsolicited Advice.md",
-    "References/The Machine Stops.md",
-    "References/The Legend of Zelda Breath of the Wild.md",
-    "References/Paul Chambers.md"
+    "Notes/2026-01-09 1025.md",
+    "Vault Automation Setup.md",
+    "Example - Customer Meeting Acme Corp.md",
+    "Templates/Bases/Customers.base",
+    "Categories/Customers.md",
+    "Templates/Bases/Categories.base",
+    "Notes/Example - Customer Meeting Acme Corp.md",
+    "Templates/Sync Categories.md",
+    "Templates/Sync Public.md",
+    "Templates/Publish Note.md",
+    "Notes/Vault Automation Setup.md",
+    "Templates/Scripts/create-category-base.js",
+    "Templates/Category Template.md",
+    "Templates/Scripts/sync-categories.js",
+    "Templates/Scripts/sync-public.js",
+    "Templates/Scripts/publish-note.js",
+    "Templates/Scripts",
+    "Public",
+    "Untitled.md",
+    "Untitled 1.md"
   ]
 }

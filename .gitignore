@@ -11,7 +11,9 @@
 # But NOT these folders/files (they get synced):
 !Public/
 !.gitignore
+.obsidian
 !README.md
+!Home.md
 
 # Exclude macOS Finder (System Explorer) View States
 .DS_Store

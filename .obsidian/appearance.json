@@ -1,7 +1,8 @@
 {
   "cssTheme": "Vicious",
   "enabledCssSnippets": [
-    "custom-tweaks"
+    "custom-tweaks",
+    "vicious-custom"
   ],
   "translucency": true
 }

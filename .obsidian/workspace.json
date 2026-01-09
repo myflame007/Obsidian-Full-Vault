@@ -13,12 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
+                "file": "Embrace Chaos.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Home"
+              "title": "Embrace Chaos"
+            }
+          },
+          {
+            "id": "55f7c8c580b0a755",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Robert.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Robert"
             }
           }
         ]
@@ -73,16 +87,6 @@
               "state": {},
               "icon": "lucide-bookmark",
               "title": "Bookmarks"
-            }
-          },
-          {
-            "id": "9ac7e7a147b78c82",
-            "type": "leaf",
-            "state": {
-              "type": "recent-files",
-              "state": {},
-              "icon": "lucide-ghost",
-              "title": "recent-files"
             }
           }
         ]
@@ -141,12 +145,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Home.md",
+                "file": "Embrace Chaos.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Home"
+              "title": "Outgoing links from Embrace Chaos"
             }
           },
           {
@@ -185,12 +189,11 @@
             "state": {
               "type": "calendar",
               "state": {},
-              "icon": "calendar-with-checkmark",
-              "title": "Calendar"
+              "icon": "lucide-ghost",
+              "title": "calendar"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -198,11 +201,6 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "auto-categories:Sync All Categories": false,
-      "omnisearch:Omnisearch": false,
-      "homepage:Open homepage": false,
-      "obsidian-excalidraw-plugin:New drawing": false,
-      "obsidian-git:Open Git source control": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -216,11 +214,16 @@
       "bases:Create new base": false
     }
   },
-  "active": "9ccfe5555d20f838",
+  "active": "43ac6e0bbb4ecab3",
   "lastOpenFiles": [
+    "Robert.md",
     "Embrace Chaos.md",
-    "Templates/Bases/Categories.base",
+    "Sam.md",
+    "Notes/2026-01-08 0944 Adults.md",
     "Home.md",
+    "README.md",
+    "Public",
+    "Templates/Bases/Categories.base",
     "Obsidian Plugin Development Guide.md",
     "Notes/2026-01-09 1527.md",
     "Categories/Urlaub.md",
@@ -230,7 +233,6 @@
     "Categories/Apps.md",
     "Templates/Bases/Urlaub.base",
     "Example - Customer Meeting Acme Corp.md",
-    "README.md",
     "Categories/People.md",
     "Categories/Movies.md",
     "Categories/Meetings.md",
@@ -245,13 +247,10 @@
     "Categories/Board games.md",
     "Categories/Albums.md",
     "Notes/2026-01-09 1025.md",
-    "Notes/Obsidian Plugin Development Guide.md",
-    "Testing Guide.md",
     "Templates/Bases/Customers.base",
     "Templates/Scripts/create-category-base.js",
     "Templates/Scripts/sync-categories.js",
     "Templates/Scripts/sync-public.js",
-    "Templates/Scripts/publish-note.js",
-    "Templates/Scripts"
+    "Templates/Scripts/publish-note.js"
   ]
 }

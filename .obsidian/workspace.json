@@ -81,12 +81,11 @@
             "state": {
               "type": "recent-files",
               "state": {},
-              "icon": "clock",
-              "title": "Recent Files"
+              "icon": "lucide-ghost",
+              "title": "recent-files"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       },
       {
         "id": "d87297e3f75a1d77",
@@ -225,7 +224,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "2ac86a6831379d0a",
+  "active": "9ccfe5555d20f838",
   "lastOpenFiles": [
     "Robert.md",
     "Home.md",

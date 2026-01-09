@@ -18,3 +18,8 @@
 
 # Exclude macOS Finder (System Explorer) View States
 .DS_Store
+
+.obsidian/plugins/recent-files-obsidian/data.json
+
+.obsidian/workspace.json
+

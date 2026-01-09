@@ -74,6 +74,16 @@
               "icon": "lucide-bookmark",
               "title": "Bookmarks"
             }
+          },
+          {
+            "id": "9ac7e7a147b78c82",
+            "type": "leaf",
+            "state": {
+              "type": "recent-files",
+              "state": {},
+              "icon": "lucide-ghost",
+              "title": "recent-files"
+            }
           }
         ]
       },
@@ -206,7 +216,7 @@
       "bases:Create new base": false
     }
   },
-  "active": "43ac6e0bbb4ecab3",
+  "active": "9ccfe5555d20f838",
   "lastOpenFiles": [
     "Embrace Chaos.md",
     "Templates/Bases/Categories.base",

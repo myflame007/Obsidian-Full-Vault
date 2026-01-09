@@ -22,7 +22,7 @@
             }
           },
           {
-            "id": "55f7c8c580b0a755",
+            "id": "161f6a4f3940e00a",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -35,7 +35,8 @@
               "title": "Robert"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -88,6 +89,16 @@
               "icon": "lucide-bookmark",
               "title": "Bookmarks"
             }
+          },
+          {
+            "id": "2b14d2d7e3d81117",
+            "type": "leaf",
+            "state": {
+              "type": "recent-files",
+              "state": {},
+              "icon": "clock",
+              "title": "Recent Files"
+            }
           }
         ]
       },
@@ -119,6 +130,7 @@
       {
         "id": "798f3f073ae1f27c",
         "type": "tabs",
+        "dimension": 57.87746170678337,
         "children": [
           {
             "id": "bf0386e48616fc00",
@@ -126,7 +138,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Embrace Chaos.md",
+                "file": "Robert.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -136,7 +148,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Embrace Chaos"
+              "title": "Backlinks for Robert"
             }
           },
           {
@@ -174,23 +186,31 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Untitled 1.md",
+                "file": "Robert.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Untitled 1"
+              "title": "Outline of Robert"
             }
-          },
+          }
+        ],
+        "currentTab": 3
+      },
+      {
+        "id": "ead4415180bd675a",
+        "type": "tabs",
+        "dimension": 42.122538293216635,
+        "children": [
           {
             "id": "42148a3f1b99d6a0",
             "type": "leaf",
             "state": {
               "type": "calendar",
               "state": {},
-              "icon": "lucide-ghost",
-              "title": "calendar"
+              "icon": "calendar-with-checkmark",
+              "title": "Calendar"
             }
           }
         ]
@@ -211,16 +231,21 @@
       "zk-prefixer:Create new unique note": false,
       "random-note:Open random note": false,
       "workspaces:Manage workspace layouts": false,
-      "bases:Create new base": false
+      "bases:Create new base": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "obsidian-excalidraw-plugin:New drawing": false,
+      "obsidian-git:Open Git source control": false,
+      "homepage:Open homepage": false,
+      "omnisearch:Omnisearch": false
     }
   },
-  "active": "43ac6e0bbb4ecab3",
+  "active": "42148a3f1b99d6a0",
   "lastOpenFiles": [
-    "Test.md",
-    "Custom-CSS-Notes.md",
-    "Robert.md",
     "Embrace Chaos.md",
-    "Sam.md",
+    "Robert.md",
+    "Custom-CSS-Notes.md",
+    "References/Sam.md",
+    "Test.md",
     "Notes/2026-01-08 0944 Adults.md",
     "Home.md",
     "README.md",

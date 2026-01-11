@@ -1,76 +1,181 @@
-Original Post by [Steph Ango](https://stephango.com/):
-https://stephango.com/vault
+---
+categories:
+  - "[[Evergreen]]"
+tags:
+  - philosophy
+  - obsidian
+source: https://stephango.com/vault
+---
 
-Corresponding Youtube VIdeo i've watched:
-https://www.youtube.com/watch?v=Dq3R3uS0sQ4
+# Embrace the Chaos
 
-Optimized for Laziness and Speed
+> *A bottom-up approach to note-taking and organizing things I am interested in.*
+> — [Steph Ango](https://stephango.com/), CEO of Obsidian
 
+---
 
-Obsidian is just a Collection of Text-Files
-We can eg open it with VS Code or LateX
+## Sources
 
+- **Original Post:** [How I use Obsidian](https://stephango.com/vault) by Steph Ango
+- **Video:** [YouTube Walkthrough](https://www.youtube.com/watch?v=Dq3R3uS0sQ4)
+- **Theme Recommendation:** Vicious (modern design)
 
+---
 
-My personal [Obsidian](https://obsidian.md/) vault template. A bottom-up approach to note-taking and organizing things I am interested in. It is in no way dogmatic, just one example of how you can use Obsidian. Take the parts you like and tailor them to your needs.
+## Core Philosophy
 
-See the article [How I use Obsidian](https://stephango.com/vault) on my site for a detailed explanation of this vault structure.
+### Obsidian is Just Text Files
 
-Template recommendation Vicious because of modern Design
+Obsidian ist im Kern nur eine Sammlung von Text-Dateien. Du kannst den Vault jederzeit mit VS Code, LaTeX oder jedem anderen Editor offnen. Keine Vendor Lock-in.
 
+### Optimized for Laziness and Speed
 
-Obsidian Notes includes [[Frontmatter]]. This are Properties that contains Data. Like the Cover of a book. eg: Subject, Author, Schoolgrade
-What's possible with this is limitless, the most important thing is that we can search for this.
+Das System ist darauf ausgelegt, **schnell** und **unkompliziert** zu sein:
+- Minimaler Aufwand beim Erstellen von Notizen
+- Maximale Auffindbarkeit durch Links und Suche
+- Keine komplizierte Ordnerstruktur
 
-Categories are used to who had guessed it? categories things
-The vault contains "Overview Pages". On this kind of pages we have a Bases (like Views) embedded. That's another way to find notes
-Eg Meetings
+---
 
-Navigation does not happen with file navigation!
-we do this with the quick switcher Strg + O (CMD + O)
+## How It Works
 
-Creating a Note starts with a Template (eg Meeting Template)
+### Frontmatter (Properties)
 
-Inserting Template STRG + SHIFT + T
+Jede Notiz kann **Frontmatter** enthalten — strukturierte Metadaten am Anfang der Datei:
 
-Create Shortcuts for often used tasks
-Open Unique Note as starting point:
-Strg + N
+```yaml
+---
+categories:
+  - "[[Meetings]]"
+tags:
+  - calculation
+author: Max Mustermann
+date: 2026-01-09
+---
+```
 
-Open today daily note:
-STRG  + D
+Diese Properties ermoglichen:
+- Suche und Filterung
+- Automatische Ubersichten (Bases)
+- Konsistente Struktur
 
-add internal Link:
-STRG  + L 
+### Categories
 
-Links makes Obsidian so Powerful
-Started with two square brackets
+Categories sind **Ubersichtsseiten** (Maps of Content). Sie enthalten eingebettete **Bases** — dynamische Ansichten, die automatisch passende Notizen anzeigen.
 
-Categories are also Links
-Lings to the Overview Pages containing the Base
+Beispiel: `[[Meetings]]` zeigt alle Notizen mit `categories: [[Meetings]]`
 
-notes with name yyyy-mm-dd are to have an overview of the notes created on a specific day
+### Navigation
 
-Fiels live in attachments
-templates contains all the etmplates
-clippings are articles clipped from the internet
+**Nicht uber Ordner navigieren!**
 
-Expert Level: Second Brain for personal use
-The first mention of anything should be mentioned
+Stattdessen:
+- **Quick Switcher** (`Cmd/Ctrl + O`) — Findet alles sofort
+- **Categories** — Ubersichtsseiten mit gefilterten Ansichten
+- **Links** — Direktverbindungen zwischen Notizen
 
-everything outside of the world is in reverences folder folder
-notes and categories are in the rootfolder for the personal 
-media db plugin for movies
+---
 
-composable template
-its possible to add multiple templates to the same note
-eg meetings and people template
+## Keyboard Shortcuts
 
-Reuse or remind yourselfe with evergreen Note (0🌲)
-evergreen notes turn ideas into objects we can manipulate
+| Action | Windows/Linux | Mac |
+|--------|---------------|-----|
+| Quick Switcher | `Ctrl + O` | `Cmd + O` |
+| New Note | `Ctrl + N` | `Cmd + N` |
+| Daily Note | `Ctrl + D` | `Cmd + D` |
+| Insert Template | `Ctrl + Shift + T` | `Cmd + Shift + T` |
+| Add Link | `Ctrl + L` | `Cmd + L` |
 
-when do we take notes??
-every day
-every idea
+---
 
-every view days take an overview of what was created in eg the week
+## Links — The Power of Obsidian
+
+Links machen Obsidian machtig. Sie werden mit doppelten eckigen Klammern erstellt:
+
+```markdown
+[[Note Name]]
+[[Person/Max Mustermann]]
+[[Category Name]]
+```
+
+**Alles kann verlinkt werden:**
+- Notizen
+- Categories
+- Personen
+- Projekte
+- Ideen
+
+Categories sind selbst auch Links — sie fuhren zu Ubersichtsseiten.
+
+---
+
+## Folder Structure
+
+```
+Vault/
+├── Notes/           # Eigene Notizen
+├── Categories/      # Ubersichtsseiten mit Bases
+├── References/      # Externe Referenzen (Bucher, Personen, Orte)
+├── Templates/       # Vorlagen
+├── Attachments/     # Bilder, PDFs
+├── Clippings/       # Web-Artikel
+└── Daily/           # Tagliche Notizen (yyyy-mm-dd)
+```
+
+**Steph Angos Original-Ansatz:** Alles im Root-Folder, nur externe Referenzen in Unterordnern.
+
+**Unsere Anpassung:** Leichte Ordnerstruktur fur bessere Ubersicht, aber Navigation weiterhin uber Links und Quick Switcher.
+
+---
+
+## Daily Notes
+
+Notizen mit dem Format `yyyy-mm-dd` dienen als Tagesubersicht:
+- Was wurde an diesem Tag erstellt?
+- Welche Gedanken hatte ich?
+- Rueckblick und Reflexion
+
+---
+
+## Composable Templates
+
+Templates sind **kombinierbar**. Eine Notiz kann mehrere Templates enthalten:
+
+1. Meeting Template anwenden
+2. People Template hinzufugen
+3. Fertig!
+
+So entsteht eine Meeting-Notiz mit Personen-Metadaten.
+
+---
+
+## Evergreen Notes
+
+> *"Evergreen notes turn ideas into objects we can manipulate."*
+
+Evergreen Notes sind zeitlose Ideen — Konzepte, die immer relevant bleiben:
+- Gut formuliert
+- Atomar (eine Idee pro Note)
+- Stark verlinkt
+
+Beispiel: [[Evergreen notes turn ideas into objects that you can manipulate]]
+
+---
+
+## When to Take Notes?
+
+- **Jeden Tag** — Daily Notes
+- **Bei jeder Idee** — Sofort festhalten
+- **Alle paar Tage** — Ruckblick auf die Woche
+
+Der Schluessel: **Nicht nachdenken, einfach schreiben.**
+
+---
+
+## Expert Level: Second Brain
+
+Fur fortgeschrittene Nutzung:
+- Jede erste Erwahnung von etwas wird verlinkt
+- References fur alles ausserhalb deiner Welt (Bucher, Personen, Orte)
+- Media DB Plugin fur Filme/Serien
+- Regelmassige Review-Sessions

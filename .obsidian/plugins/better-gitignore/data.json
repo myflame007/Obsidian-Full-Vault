@@ -1,0 +1,15 @@
+{
+  "templates": {
+    "workspaceJson": true,
+    "workspaceMobileJson": true,
+    "trash": false,
+    "pluginData": false,
+    "hotkeys": false,
+    "appJson": false,
+    "appearanceJson": false,
+    "graphJson": false,
+    "dsStore": true,
+    "thumbsDb": true
+  },
+  "customPatterns": "Robert.md\nTest.md"
+}

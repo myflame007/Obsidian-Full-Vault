@@ -2,7 +2,7 @@
 categories:
   - "[[Friend]]"
   - "[[Rob]]"
-  - "[[Test]]"
+  - "[[Categories - Test]]"
 isPublished: true
 ---
 

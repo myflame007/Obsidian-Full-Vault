@@ -1,8 +1,68 @@
 {
   "recentFiles": [
     {
+      "basename": "Lernpfad-Psychologie",
+      "path": "Lernpfad-Psychologie.md"
+    },
+    {
+      "basename": "2026-01-08 1003",
+      "path": "Notes/2026-01-08 1003.md"
+    },
+    {
+      "basename": "2023-09-12 Meeting with Steph",
+      "path": "Notes/2023-09-12 Meeting with Steph.md"
+    },
+    {
+      "basename": "Psychologie-Kapitel-3",
+      "path": "Flashcards/Psychologie-Kapitel-3.md"
+    },
+    {
+      "basename": "Psychologie-Kapitel-2",
+      "path": "Flashcards/Psychologie-Kapitel-2.md"
+    },
+    {
+      "basename": "Psychologie-Kapitel-1",
+      "path": "Flashcards/Psychologie-Kapitel-1.md"
+    },
+    {
+      "basename": "Psychologie",
+      "path": "Categories/Psychologie.md"
+    },
+    {
+      "basename": "Links für Psychologie Aufnahmetest",
+      "path": "Links für Psychologie Aufnahmetest.md"
+    },
+    {
+      "basename": "00-Index",
+      "path": "00-Index.md"
+    },
+    {
       "basename": "Home",
       "path": "Home.md"
+    },
+    {
+      "basename": "Lernpfad-Aufnahmepruefung",
+      "path": "Lernpfad-Aufnahmepruefung.md"
+    },
+    {
+      "basename": "Lernen",
+      "path": "Lernen.md"
+    },
+    {
+      "basename": "Test",
+      "path": "Notes/Test.md"
+    },
+    {
+      "basename": "Psychologische-Schulen",
+      "path": "Notes/Psychologische-Schulen.md"
+    },
+    {
+      "basename": "Personen-Index",
+      "path": "Notes/Personen-Index.md"
+    },
+    {
+      "basename": "Psychologie-im-NS",
+      "path": "Notes/Psychologie-im-NS.md"
     },
     {
       "basename": "Robert",
@@ -107,90 +167,6 @@
     {
       "basename": "Albums",
       "path": "Categories/Albums.md"
-    },
-    {
-      "basename": "2026-01-09 1025",
-      "path": "Notes/2026-01-09 1025.md"
-    },
-    {
-      "basename": "Event Template",
-      "path": "Templates/Event Template.md"
-    },
-    {
-      "basename": "2026-01-08 1242",
-      "path": "Notes/2026-01-08 1242.md"
-    },
-    {
-      "basename": "2026-01-08 1050 Create Conditional Autonumber",
-      "path": "Notes/2026-01-08 1050 Create Conditional Autonumber.md"
-    },
-    {
-      "basename": "Bass on Top",
-      "path": "References/Bass on Top.md"
-    },
-    {
-      "basename": "Ernest Becker",
-      "path": "Notes/Ernest Becker.md"
-    },
-    {
-      "basename": "2026-01-08 1005 Robert Stickler",
-      "path": "Notes/2026-01-08 1005 Robert Stickler.md"
-    },
-    {
-      "basename": "2026-01-08 1003",
-      "path": "Notes/2026-01-08 1003.md"
-    },
-    {
-      "basename": "Product usage analysis",
-      "path": "Notes/Product usage analysis.md"
-    },
-    {
-      "basename": "Minimal Theme",
-      "path": "Notes/Minimal Theme.md"
-    },
-    {
-      "basename": "Evergreen notes turn ideas into objects that you can manipulate",
-      "path": "Notes/Evergreen notes turn ideas into objects that you can manipulate.md"
-    },
-    {
-      "basename": "2023-09-12 Meeting with Steph",
-      "path": "Notes/2023-09-12 Meeting with Steph.md"
-    },
-    {
-      "basename": "2023 Japan Trip",
-      "path": "Notes/2023 Japan Trip.md"
-    },
-    {
-      "basename": "2023-09-12",
-      "path": "Daily/2023-09-12.md"
-    },
-    {
-      "basename": "2023-09-30",
-      "path": "Daily/2023-09-30.md"
-    },
-    {
-      "basename": "Buy wisely",
-      "path": "Clippings/Buy wisely.md"
-    },
-    {
-      "basename": "In good hands",
-      "path": "Clippings/In good hands.md"
-    },
-    {
-      "basename": "68 Bits of Unsolicited Advice",
-      "path": "Clippings/68 Bits of Unsolicited Advice.md"
-    },
-    {
-      "basename": "The Machine Stops",
-      "path": "References/The Machine Stops.md"
-    },
-    {
-      "basename": "The Legend of Zelda Breath of the Wild",
-      "path": "References/The Legend of Zelda Breath of the Wild.md"
-    },
-    {
-      "basename": "Paul Chambers",
-      "path": "References/Paul Chambers.md"
     }
   ],
   "omittedPaths": [],

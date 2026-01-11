@@ -33,6 +33,7 @@ Was sind die 3 Kategorien der psychologischen Teildisziplinen?
 1. **Methodenfächer** (Statistik, Methodik, Ethik)
 2. **Grundlagenfächer** (Biologische, Allgemeine, Entwicklungs-, Sozial-, Differentielle Psych.)
 3. **Anwendungsfächer** (Klinische, Pädagogische, AOW-Psychologie)
+<!--SR:!2026-01-12,1,230-->
 
 ---
 
@@ -89,6 +90,7 @@ Was bedeutet "Kognition"?
 ?
 lat. "cognoscere" = (er-)kennen
 Sammelbegriff für **mentale Fähigkeiten und Prozesse** (Aufnahme, Verarbeitung, Speicherung von Information)
+<!--SR:!2026-01-14,3,250-->
 
 ---
 
@@ -99,6 +101,7 @@ Nenne 5 kognitive Prozesse.
 3. Gedächtnis
 4. Schlussfolgern
 5. Denken & Problemlösen
+<!--SR:!2026-01-12,1,230-->
 
 ---
 
@@ -111,12 +114,14 @@ Nenne die 5 ethischen Grundsätze der APA.
 3. **Integrität** (Ehrlichkeit)
 4. **Gerechtigkeit**
 5. **Respekt für Rechte und Würde**
+<!--SR:!2026-01-12,1,230-->
 
 ---
 
 Was bedeutet "informierte Einwilligung"?
 ?
 Teilnehmer müssen über die Studie aufgeklärt werden und freiwillig teilnehmen
+<!--SR:!2026-01-14,3,250-->
 
 ---
 

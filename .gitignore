@@ -1,25 +1,9 @@
-# ===========================================
-# Obsidian Vault - Selective Sync Configuration
-# ===========================================
-# Root-Dateien werden gesynct
-# Unterordner werden ignoriert (ausser Public/)
-# ===========================================
-
-# Ignoriere alle Unterordner
-/*/
-
-# Aber NICHT diese Ordner:
-!Public/
-!.obsidian/
-
-# .obsidian Unterordner ignorieren, ausser snippets
-.obsidian/*
-!.obsidian/snippets/
-
-# Exclude macOS Finder (System Explorer) View States
-.DS_Store
-
-.obsidian/plugins/recent-files-obsidian/data.json
-
+# === BetterGitignore Managed ===
 .obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.DS_Store
+Thumbs.db
+# === End BetterGitignore ===
 
+Robert.md
+Test.md

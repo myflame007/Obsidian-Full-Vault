@@ -1,9 +1,4 @@
-# === BetterGitignore Managed ===
-.obsidian/workspace.json
-.obsidian/workspace-mobile.json
-.DS_Store
-Thumbs.db
-# === End BetterGitignore ===
 
-Robert.md
-Test.md
+
+# Exclude macOS Finder (System Explorer) View States
+.DS_Store

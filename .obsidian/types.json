@@ -50,7 +50,6 @@
     "monthly-uses": "number",
     "runtime": "number",
     "pages": "number",
-    "acquired": "date",
-    "isPublished": "checkbox"
+    "acquired": "date"
   }
 }

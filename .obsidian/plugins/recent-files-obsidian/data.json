@@ -1,6 +1,10 @@
 {
   "recentFiles": [
     {
+      "basename": "Home",
+      "path": "Home.md"
+    },
+    {
       "basename": "Lernpfad-Psychologie",
       "path": "Lernpfad-Psychologie.md"
     },
@@ -35,10 +39,6 @@
     {
       "basename": "00-Index",
       "path": "00-Index.md"
-    },
-    {
-      "basename": "Home",
-      "path": "Home.md"
     },
     {
       "basename": "Lernpfad-Aufnahmepruefung",

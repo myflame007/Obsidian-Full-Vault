@@ -7,6 +7,7 @@
 Was bedeutet "Psychologie" wörtlich?
 ?
 griech. "psyche" (Seele) + "logos" (Wissenschaft) → Wissenschaft vom Erleben und Verhalten des Menschen
+<!--SR:!2026-01-14,3,250-->
 
 ---
 
@@ -16,6 +17,7 @@ Was sind die 4 Ziele der Psychologie?
 2. **Erklären** - Theorien entwickeln
 3. **Vorhersagen** - Wahrscheinlichkeit einschätzen
 4. **Verändern** - Verhaltensänderung bewirken
+<!--SR:!2026-01-14,3,250-->
 
 ---
 
@@ -23,6 +25,7 @@ Was ist der Unterschied zwischen dispositionalen und situativen Faktoren?
 ?
 - **Dispositional:** Zeitlich stabile, innere Merkmale (Gene, Persönlichkeit)
 - **Situativ:** Äußere Umweltfaktoren (andere Personen, Situation)
+<!--SR:!2026-01-14,3,250-->
 
 ---
 
@@ -40,12 +43,14 @@ Was sind die 3 Kategorien der psychologischen Teildisziplinen?
 Was fragt die **Allgemeine Psychologie**?
 ?
 Welche **allgemeinen Prozesse** liegen Erleben und Verhalten zugrunde? (z.B. Wahrnehmung, Gedächtnis, Denken)
+<!--SR:!2026-01-12,1,230-->
 
 ---
 
 Was fragt die **Differentielle Psychologie**?
 ?
 Welche **Unterschiede** gibt es zwischen Menschen? (z.B. Persönlichkeit, Intelligenz)
+<!--SR:!2026-01-12,1,230-->
 
 ---
 
@@ -58,6 +63,7 @@ Nenne die 5 großen psychologischen Ansätze.
 3. Humanistisch (Rogers, Maslow)
 4. Kognitiv
 5. Biologisch-neurowissenschaftlich
+<!--SR:!2026-01-12,1,230-->
 
 ---
 
@@ -66,6 +72,7 @@ Was ist der Fokus des **psychodynamischen Ansatzes**?
 - Unbewusste Triebe und innere Konflikte
 - Verhalten = Konfliktlösung zwischen Bedürfnissen & sozialen Erfordernissen
 - Begründer: Sigmund Freud
+<!--SR:!2026-01-12,1,230-->
 
 ---
 
@@ -75,12 +82,14 @@ Was ist der Fokus des **behavioristischen Ansatzes**?
 - "Black Box" - mentale Prozesse werden ignoriert
 - Reiz-Reaktions-Schema (S-R)
 - Begründer: John Watson
+<!--SR:!2026-01-14,3,250-->
 
 ---
 
 Was bedeutet "eklektischer Ansatz"?
 ?
 Kombination mehrerer Perspektiven für komplexe Phänomene → Die Ansätze ergänzen sich, schließen sich nicht aus
+<!--SR:!2026-01-14,3,250-->
 
 ---
 
@@ -129,3 +138,4 @@ Wofür steht APA?
 ?
 **A**merican **P**sychological **A**ssociation
 - Weltweit einflussreichste Fachgesellschaft für Psychologie
+<!--SR:!2026-01-14,3,250-->

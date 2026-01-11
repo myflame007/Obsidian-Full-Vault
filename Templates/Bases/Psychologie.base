@@ -1,0 +1,37 @@
+filters:
+  and:
+    - categories.contains(link("Psychologie"))
+    - '!file.name.contains("Template")'
+properties:
+  file.name:
+    displayName: Name
+  created:
+    displayName: Created
+  file.ctime:
+    displayName: File Created
+  file.mtime:
+    displayName: Modified
+  tags:
+    displayName: Tags
+views:
+  - type: table
+    name: All
+    order:
+      - file.name
+      - created
+      - file.mtime
+      - tags
+    sort:
+      - property: file.mtime
+        direction: DESC
+    columnSize:
+      file.mtime: 180
+  - type: cards
+    name: Cards
+    order:
+      - file.name
+      - created
+    sort:
+      - property: file.mtime
+        direction: DESC
+    coverProperty: cover

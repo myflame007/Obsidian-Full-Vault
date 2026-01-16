@@ -904,6 +904,29 @@ var RecallSettingsTab = class extends import_obsidian3.PluginSettingTab {
     containerEl.empty();
     containerEl.addClass("recall-settings");
     containerEl.createEl("h2", { text: "Recall Settings" });
+    const guideEl = containerEl.createDiv("recall-guide");
+    guideEl.createEl("h3", { text: "Quick Start" });
+    const guideContent = guideEl.createDiv("recall-guide-content");
+    guideContent.innerHTML = `
+			<p><strong>Flashcard Format:</strong></p>
+			<pre>Q: Your question here
+A: Your answer here
+Hint: Optional hint
+Memo: Optional memory palace visualization
+Tags: optional, tags</pre>
+
+			<p><strong>Multiple cards per file:</strong> Separate with <code>---</code></p>
+
+			<p><strong>Cloze deletions:</strong> Use <code>{{c1::hidden text}}</code></p>
+
+			<p><strong>Keyboard shortcuts during review:</strong></p>
+			<ul>
+				<li><kbd>Space</kbd> - Next step (Hint \u2192 Memo \u2192 Answer)</li>
+				<li><kbd>H</kbd> - Show hint</li>
+				<li><kbd>M</kbd> - Show memo</li>
+				<li><kbd>1</kbd> / <kbd>2</kbd> / <kbd>3</kbd> - Rate Hard / Good / Easy</li>
+			</ul>
+		`;
     containerEl.createEl("h3", { text: "Flashcard Sources" });
     new import_obsidian3.Setting(containerEl).setName("Flashcard folders").setDesc("Only scan these folders for flashcards (comma-separated, empty = all folders)").addText(
       (text) => text.setPlaceholder("Flashcards, Notes/Study").setValue(this.plugin.settings.flashcardFolders.join(", ")).onChange(async (value) => {

@@ -1,12 +1,184 @@
 {
   "recentFiles": [
     {
+      "basename": "Test-Recall-Plugin",
+      "path": "Flashcards/Test-Recall-Plugin.md"
+    },
+    {
       "basename": "Home",
       "path": "Home.md"
     },
     {
+      "basename": "Avanade",
+      "path": "Avanade.md"
+    },
+    {
+      "basename": "Robert",
+      "path": "Robert.md"
+    },
+    {
+      "basename": "Hanna",
+      "path": "Hanna.md"
+    },
+    {
+      "basename": "Was bedeutet Psychologie?",
+      "path": "Was bedeutet Psychologie?.md"
+    },
+    {
+      "basename": "Psychologie-Flashcard",
+      "path": "Categories/Psychologie-Flashcard.md"
+    },
+    {
+      "basename": "Music-Production",
+      "path": "Categories/Music-Production.md"
+    },
+    {
+      "basename": "Mixing and Mastering 2",
+      "path": "Notes/Mixing and Mastering 2.md"
+    },
+    {
+      "basename": "Dell",
+      "path": "Categories/Dell.md"
+    },
+    {
+      "basename": "Embrace Chaos",
+      "path": "Embrace Chaos.md"
+    },
+    {
+      "basename": "Allgemeine-Psychologie",
+      "path": "Flashcards/Kapitel-1/Allgemeine-Psychologie.md"
+    },
+    {
+      "basename": "Future Plugins",
+      "path": "Future Plugins.md"
+    },
+    {
+      "basename": "Test-Flashcard-Hints",
+      "path": "Flashcards/Test-Flashcard-Hints.md"
+    },
+    {
       "basename": "Lernpfad-Psychologie",
       "path": "Lernpfad-Psychologie.md"
+    },
+    {
+      "basename": "APA-Definition",
+      "path": "Flashcards/Kapitel-1/APA-Definition.md"
+    },
+    {
+      "basename": "Psychologie-Kapitel-1",
+      "path": "Flashcards/Psychologie-Kapitel-1.md"
+    },
+    {
+      "basename": "Psychologie-Kapitel-2",
+      "path": "Flashcards/Psychologie-Kapitel-2.md"
+    },
+    {
+      "basename": "Links für Psychologie Aufnahmetest",
+      "path": "Notes/Links für Psychologie Aufnahmetest.md"
+    },
+    {
+      "basename": "00-Index",
+      "path": "Notes/00-Index.md"
+    },
+    {
+      "basename": "Custom-CSS-Notes",
+      "path": "Custom-CSS-Notes.md"
+    },
+    {
+      "basename": "Mixing and Mastering",
+      "path": "Notes/Mixing and Mastering.md"
+    },
+    {
+      "basename": "More Synths - Kick und Bass",
+      "path": "Notes/More Synths - Kick und Bass.md"
+    },
+    {
+      "basename": "Music-Production",
+      "path": "Templates/Bases/Music-Production.base"
+    },
+    {
+      "basename": "Make a Song from one Sound",
+      "path": "Notes/Make a Song from one Sound.md"
+    },
+    {
+      "basename": "Musik als Sprache",
+      "path": "Notes/Musik als Sprache.md"
+    },
+    {
+      "basename": "Synthese und Obertöne",
+      "path": "Notes/Synthese und Obertöne.md"
+    },
+    {
+      "basename": "Abelton tipps",
+      "path": "Notes/Abelton tipps.md"
+    },
+    {
+      "basename": "2026-01-15 1945",
+      "path": "Notes/2026-01-15 1945.md"
+    },
+    {
+      "basename": "Music Production Course Template",
+      "path": "Templates/Music Production Course Template.md"
+    },
+    {
+      "basename": "In good hands",
+      "path": "Clippings/In good hands.md"
+    },
+    {
+      "basename": "Psychologie Kapitel 1 - Was ist Psychologie?",
+      "path": "Notes/Psychologie Kapitel 1 - Was ist Psychologie?.md"
+    },
+    {
+      "basename": "Invalid date",
+      "path": "Daily/Invalid date.md"
+    },
+    {
+      "basename": "Psychologie-Entrance-Exam",
+      "path": "Categories/Psychologie-Entrance-Exam.md"
+    },
+    {
+      "basename": "Psychologie",
+      "path": "Categories/Psychologie.md"
+    },
+    {
+      "basename": "Blade Runner",
+      "path": "References/Blade Runner.md"
+    },
+    {
+      "basename": "Bass on Top",
+      "path": "References/Bass on Top.md"
+    },
+    {
+      "basename": "Kyoto",
+      "path": "References/Kyoto.md"
+    },
+    {
+      "basename": "Obsidian",
+      "path": "References/Obsidian.md"
+    },
+    {
+      "basename": "Steph Ango",
+      "path": "References/Steph Ango.md"
+    },
+    {
+      "basename": "Paul Chambers",
+      "path": "References/Paul Chambers.md"
+    },
+    {
+      "basename": "Well Made 145 Kevin Kelly",
+      "path": "References/Well Made 145 Kevin Kelly.md"
+    },
+    {
+      "basename": "Well Made",
+      "path": "References/Well Made.md"
+    },
+    {
+      "basename": "Rationalismus-vs-Empirismus",
+      "path": "Notes/Rationalismus-vs-Empirismus.md"
+    },
+    {
+      "basename": "Kognitive-Wende",
+      "path": "Notes/Kognitive-Wende.md"
     },
     {
       "basename": "2026-01-08 1003",
@@ -21,152 +193,12 @@
       "path": "Flashcards/Psychologie-Kapitel-3.md"
     },
     {
-      "basename": "Psychologie-Kapitel-2",
-      "path": "Flashcards/Psychologie-Kapitel-2.md"
-    },
-    {
-      "basename": "Psychologie-Kapitel-1",
-      "path": "Flashcards/Psychologie-Kapitel-1.md"
-    },
-    {
-      "basename": "Psychologie",
-      "path": "Categories/Psychologie.md"
-    },
-    {
-      "basename": "Links für Psychologie Aufnahmetest",
-      "path": "Links für Psychologie Aufnahmetest.md"
-    },
-    {
-      "basename": "00-Index",
-      "path": "00-Index.md"
-    },
-    {
-      "basename": "Lernpfad-Aufnahmepruefung",
-      "path": "Lernpfad-Aufnahmepruefung.md"
-    },
-    {
-      "basename": "Lernen",
-      "path": "Lernen.md"
-    },
-    {
       "basename": "Test",
       "path": "Notes/Test.md"
     },
     {
       "basename": "Psychologische-Schulen",
       "path": "Notes/Psychologische-Schulen.md"
-    },
-    {
-      "basename": "Personen-Index",
-      "path": "Notes/Personen-Index.md"
-    },
-    {
-      "basename": "Psychologie-im-NS",
-      "path": "Notes/Psychologie-im-NS.md"
-    },
-    {
-      "basename": "Robert",
-      "path": "Robert.md"
-    },
-    {
-      "basename": "Friend",
-      "path": "Categories/Friend.md"
-    },
-    {
-      "basename": "README",
-      "path": "README.md"
-    },
-    {
-      "basename": "Sam",
-      "path": "Sam.md"
-    },
-    {
-      "basename": "Embrace Chaos",
-      "path": "Embrace Chaos.md"
-    },
-    {
-      "basename": "Sam",
-      "path": "Sam.md"
-    },
-    {
-      "basename": "2026-01-08 0944 Adults",
-      "path": "Notes/2026-01-08 0944 Adults.md"
-    },
-    {
-      "basename": "Categories",
-      "path": "Templates/Bases/Categories.base"
-    },
-    {
-      "basename": "Obsidian Plugin Development Guide",
-      "path": "Obsidian Plugin Development Guide.md"
-    },
-    {
-      "basename": "2026-01-09 1527",
-      "path": "Notes/2026-01-09 1527.md"
-    },
-    {
-      "basename": "Urlaub",
-      "path": "Categories/Urlaub.md"
-    },
-    {
-      "basename": "SuperCycle",
-      "path": "Categories/SuperCycle.md"
-    },
-    {
-      "basename": "Example - Customer Meeting Acme Corp",
-      "path": "Example - Customer Meeting Acme Corp.md"
-    },
-    {
-      "basename": "People",
-      "path": "Categories/People.md"
-    },
-    {
-      "basename": "Movies",
-      "path": "Categories/Movies.md"
-    },
-    {
-      "basename": "Meetings",
-      "path": "Categories/Meetings.md"
-    },
-    {
-      "basename": "Journal",
-      "path": "Categories/Journal.md"
-    },
-    {
-      "basename": "Games",
-      "path": "Categories/Games.md"
-    },
-    {
-      "basename": "Evergreen",
-      "path": "Categories/Evergreen.md"
-    },
-    {
-      "basename": "Events",
-      "path": "Categories/Events.md"
-    },
-    {
-      "basename": "Customers",
-      "path": "Categories/Customers.md"
-    },
-    {
-      "basename": "Companies",
-      "path": "Categories/Companies.md"
-    },
-    {
-      "basename": "Clippings",
-      "path": "Categories/Clippings.md"
-    },
-    {
-      "basename": "Books",
-      "path": "Categories/Books.md"
-    },
-    {
-      "basename": "Board games",
-      "path": "Categories/Board games.md"
-    },
-    {
-      "basename": "Albums",
-      "path": "Categories/Albums.md"
     }
   ],
   "omittedPaths": [],

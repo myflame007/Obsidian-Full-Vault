@@ -12,6 +12,9 @@ tags:
 
 ## Quick Navigation
 
+
+[[Hanna]] arbeitet bei [[Avanade]]
+
 | Action | Shortcut |
 |--------|----------|
 | Quick Switcher (find anything) | `Cmd/Ctrl + O` |

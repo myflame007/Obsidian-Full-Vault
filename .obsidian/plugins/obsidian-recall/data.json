@@ -1,11 +1,29 @@
 {
-  "schedules": {},
+  "schedules": {
+    "card-202add0d": {
+      "cardId": "card-202add0d",
+      "interval": 1,
+      "ease": 2.5,
+      "dueDate": "2026-01-17",
+      "repetitions": 1,
+      "lastReview": "2026-01-16"
+    },
+    "card-202add2a": {
+      "cardId": "card-202add2a",
+      "interval": 1,
+      "ease": 2.5,
+      "dueDate": "2026-01-17",
+      "repetitions": 1,
+      "lastReview": "2026-01-16"
+    }
+  },
   "stats": {
     "totalCards": 0,
     "dueToday": 0,
     "newToday": 0,
-    "reviewedToday": 0,
-    "streak": 0
+    "reviewedToday": 2,
+    "streak": 1,
+    "lastStudyDate": "2026-01-16"
   },
   "settings": {
     "useLegacySyntax": false,

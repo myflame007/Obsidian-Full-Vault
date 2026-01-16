@@ -6,27 +6,18 @@
 :root {
 	--recall-primary: var(--interactive-accent);
 	--recall-primary-hover: var(--interactive-accent-hover);
-	--recall-hard: #d9534f;
-	--recall-hard-hover: #c9302c;
-	--recall-good: #5cb85c;
-	--recall-good-hover: #449d44;
-	--recall-easy: #5bc0de;
-	--recall-easy-hover: #31b0d5;
+	/* Use Obsidian theme colors */
+	--recall-hard: var(--color-red);
+	--recall-hard-hover: var(--color-red);
+	--recall-good: var(--color-green);
+	--recall-good-hover: var(--color-green);
+	--recall-easy: var(--color-cyan);
+	--recall-easy-hover: var(--color-cyan);
 	--recall-hint-bg: var(--background-secondary);
 	--recall-memo-bg: var(--background-secondary-alt);
 	--recall-border: var(--background-modifier-border);
 	--recall-text-muted: var(--text-muted);
-	--recall-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
-
-/* Dark mode adjustments */
-.theme-dark {
-	--recall-hard: #e74c3c;
-	--recall-hard-hover: #c0392b;
-	--recall-good: #27ae60;
-	--recall-good-hover: #1e8449;
-	--recall-easy: #3498db;
-	--recall-easy-hover: #2980b9;
+	--recall-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
 }
 
 /* ===========================================
@@ -34,12 +25,17 @@
    =========================================== */
 
 .recall-review-modal {
-	width: 600px;
-	max-width: 90vw;
+	width: 90vw;
+	max-width: 900px;
+	height: 85vh;
+	max-height: 800px;
 }
 
 .recall-review-modal .modal-content {
 	padding: 0;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
 }
 
 /* ----- Header ----- */
@@ -88,14 +84,19 @@
 
 /* ----- Content Area ----- */
 .recall-content {
-	padding: 24px;
-	min-height: 200px;
+	padding: 32px 48px;
+	flex: 1;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .recall-question {
-	font-size: 18px;
-	line-height: 1.6;
-	margin-bottom: 20px;
+	font-size: 22px;
+	line-height: 1.7;
+	margin-bottom: 24px;
+	text-align: center;
 }
 
 .recall-question p {
@@ -114,16 +115,17 @@
 
 /* ----- Hint Section ----- */
 .recall-hint {
-	margin-top: 20px;
-	padding: 16px;
+	margin-top: 24px;
+	padding: 20px 24px;
 	background: var(--recall-hint-bg);
-	border-radius: 8px;
-	border-left: 3px solid var(--text-accent);
+	border-radius: 12px;
+	border-left: 4px solid var(--color-yellow);
+	text-align: center;
 }
 
 .recall-hint-content {
-	font-size: 15px;
-	line-height: 1.5;
+	font-size: 17px;
+	line-height: 1.6;
 	color: var(--text-normal);
 }
 
@@ -133,16 +135,17 @@
 
 /* ----- Memo Section ----- */
 .recall-memo {
-	margin-top: 20px;
-	padding: 16px;
+	margin-top: 24px;
+	padding: 20px 24px;
 	background: var(--recall-memo-bg);
-	border-radius: 8px;
-	border-left: 3px solid var(--color-purple);
+	border-radius: 12px;
+	border-left: 4px solid var(--color-purple);
+	text-align: center;
 }
 
 .recall-memo-content {
-	font-size: 15px;
-	line-height: 1.5;
+	font-size: 17px;
+	line-height: 1.6;
 	font-style: italic;
 	color: var(--text-normal);
 }
@@ -153,16 +156,17 @@
 
 /* ----- Answer Section ----- */
 .recall-answer {
-	margin-top: 20px;
-	padding: 16px;
+	margin-top: 24px;
+	padding: 20px 24px;
 	background: var(--background-secondary);
-	border-radius: 8px;
-	border-left: 3px solid var(--recall-good);
+	border-radius: 12px;
+	border-left: 4px solid var(--recall-good);
+	text-align: center;
 }
 
 .recall-answer-content {
-	font-size: 16px;
-	line-height: 1.6;
+	font-size: 18px;
+	line-height: 1.7;
 	color: var(--text-normal);
 }
 
@@ -176,27 +180,28 @@
 
 /* ----- Buttons ----- */
 .recall-buttons {
-	padding: 16px 24px 24px;
+	padding: 24px 48px 32px;
 	border-top: 1px solid var(--recall-border);
 	background: var(--background-primary);
+	flex-shrink: 0;
 }
 
 .recall-btn-row {
 	display: flex;
-	gap: 12px;
+	gap: 16px;
 	justify-content: center;
 	flex-wrap: wrap;
 }
 
 .recall-btn {
-	padding: 10px 20px;
-	font-size: 14px;
+	padding: 14px 28px;
+	font-size: 15px;
 	font-weight: 500;
 	border: none;
-	border-radius: 6px;
+	border-radius: 8px;
 	cursor: pointer;
 	transition: all 0.15s ease;
-	min-width: 120px;
+	min-width: 140px;
 }
 
 .recall-btn:hover {

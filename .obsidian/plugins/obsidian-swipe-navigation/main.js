@@ -142,7 +142,9 @@ var SwipeNavigationPlugin = class extends import_obsidian2.Plugin {
     const command = NAVIGATION_COMMANDS[direction];
     const success = this.app.commands.executeCommandById(command);
     if (success) {
-      this.log(`Navigating ${direction.toUpperCase()}`);
+      if (this.settings.debugMode) {
+        this.log(`Navigating ${direction.toUpperCase()}`);
+      }
     } else {
       this.logWarn(`Navigation ${direction} failed - command not found`);
       new import_obsidian2.Notice(`Swipe Navigation: Could not navigate ${direction}`);

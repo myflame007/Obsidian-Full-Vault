@@ -1,0 +1,591 @@
+/* ===========================================
+   Obsidian Recall Plugin - Styles
+   =========================================== */
+
+/* ----- Variables ----- */
+:root {
+	--recall-primary: var(--interactive-accent);
+	--recall-primary-hover: var(--interactive-accent-hover);
+	--recall-hard: #d9534f;
+	--recall-hard-hover: #c9302c;
+	--recall-good: #5cb85c;
+	--recall-good-hover: #449d44;
+	--recall-easy: #5bc0de;
+	--recall-easy-hover: #31b0d5;
+	--recall-hint-bg: var(--background-secondary);
+	--recall-memo-bg: var(--background-secondary-alt);
+	--recall-border: var(--background-modifier-border);
+	--recall-text-muted: var(--text-muted);
+	--recall-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark mode adjustments */
+.theme-dark {
+	--recall-hard: #e74c3c;
+	--recall-hard-hover: #c0392b;
+	--recall-good: #27ae60;
+	--recall-good-hover: #1e8449;
+	--recall-easy: #3498db;
+	--recall-easy-hover: #2980b9;
+}
+
+/* ===========================================
+   Review Modal
+   =========================================== */
+
+.recall-review-modal {
+	width: 600px;
+	max-width: 90vw;
+}
+
+.recall-review-modal .modal-content {
+	padding: 0;
+}
+
+/* ----- Header ----- */
+.recall-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 12px 16px;
+	border-bottom: 1px solid var(--recall-border);
+	background: var(--background-secondary);
+}
+
+.recall-progress {
+	font-weight: 600;
+	font-size: 14px;
+	color: var(--text-normal);
+}
+
+.recall-context {
+	flex: 1;
+	text-align: center;
+	font-size: 12px;
+	color: var(--recall-text-muted);
+	padding: 0 16px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.recall-edit-btn {
+	background: transparent;
+	border: none;
+	padding: 6px;
+	cursor: pointer;
+	border-radius: 4px;
+	color: var(--text-muted);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.recall-edit-btn:hover {
+	background: var(--background-modifier-hover);
+	color: var(--text-normal);
+}
+
+/* ----- Content Area ----- */
+.recall-content {
+	padding: 24px;
+	min-height: 200px;
+}
+
+.recall-question {
+	font-size: 18px;
+	line-height: 1.6;
+	margin-bottom: 20px;
+}
+
+.recall-question p {
+	margin: 0 0 12px 0;
+}
+
+/* ----- Section Labels ----- */
+.recall-section-label {
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	color: var(--recall-text-muted);
+	margin-bottom: 8px;
+}
+
+/* ----- Hint Section ----- */
+.recall-hint {
+	margin-top: 20px;
+	padding: 16px;
+	background: var(--recall-hint-bg);
+	border-radius: 8px;
+	border-left: 3px solid var(--text-accent);
+}
+
+.recall-hint-content {
+	font-size: 15px;
+	line-height: 1.5;
+	color: var(--text-normal);
+}
+
+.recall-hint-content p {
+	margin: 0;
+}
+
+/* ----- Memo Section ----- */
+.recall-memo {
+	margin-top: 20px;
+	padding: 16px;
+	background: var(--recall-memo-bg);
+	border-radius: 8px;
+	border-left: 3px solid var(--color-purple);
+}
+
+.recall-memo-content {
+	font-size: 15px;
+	line-height: 1.5;
+	font-style: italic;
+	color: var(--text-normal);
+}
+
+.recall-memo-content p {
+	margin: 0;
+}
+
+/* ----- Answer Section ----- */
+.recall-answer {
+	margin-top: 20px;
+	padding: 16px;
+	background: var(--background-secondary);
+	border-radius: 8px;
+	border-left: 3px solid var(--recall-good);
+}
+
+.recall-answer-content {
+	font-size: 16px;
+	line-height: 1.6;
+	color: var(--text-normal);
+}
+
+.recall-answer-content p {
+	margin: 0 0 8px 0;
+}
+
+.recall-answer-content p:last-child {
+	margin-bottom: 0;
+}
+
+/* ----- Buttons ----- */
+.recall-buttons {
+	padding: 16px 24px 24px;
+	border-top: 1px solid var(--recall-border);
+	background: var(--background-primary);
+}
+
+.recall-btn-row {
+	display: flex;
+	gap: 12px;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.recall-btn {
+	padding: 10px 20px;
+	font-size: 14px;
+	font-weight: 500;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: all 0.15s ease;
+	min-width: 120px;
+}
+
+.recall-btn:hover {
+	transform: translateY(-1px);
+	box-shadow: var(--recall-shadow);
+}
+
+.recall-btn:active {
+	transform: translateY(0);
+}
+
+/* Question phase buttons */
+.recall-btn-hint {
+	background: var(--background-secondary);
+	color: var(--text-normal);
+	border: 1px solid var(--recall-border);
+}
+
+.recall-btn-hint:hover {
+	background: var(--background-secondary-alt);
+}
+
+.recall-btn-memo {
+	background: var(--background-secondary);
+	color: var(--text-normal);
+	border: 1px solid var(--recall-border);
+}
+
+.recall-btn-memo:hover {
+	background: var(--background-secondary-alt);
+}
+
+.recall-btn-answer {
+	background: var(--recall-primary);
+	color: white;
+}
+
+.recall-btn-answer:hover {
+	background: var(--recall-primary-hover);
+}
+
+/* Rating buttons */
+.recall-rating-row {
+	gap: 16px;
+}
+
+.recall-btn-hard,
+.recall-btn-good,
+.recall-btn-easy {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 4px;
+	min-width: 100px;
+	padding: 12px 16px;
+}
+
+.recall-btn-hard {
+	background: var(--recall-hard);
+	color: white;
+}
+
+.recall-btn-hard:hover {
+	background: var(--recall-hard-hover);
+}
+
+.recall-btn-good {
+	background: var(--recall-good);
+	color: white;
+}
+
+.recall-btn-good:hover {
+	background: var(--recall-good-hover);
+}
+
+.recall-btn-easy {
+	background: var(--recall-easy);
+	color: white;
+}
+
+.recall-btn-easy:hover {
+	background: var(--recall-easy-hover);
+}
+
+.recall-interval {
+	font-size: 11px;
+	opacity: 0.9;
+	font-weight: 400;
+}
+
+/* Keyboard hint */
+.recall-keyboard-hint {
+	text-align: center;
+	font-size: 12px;
+	color: var(--recall-text-muted);
+	margin-top: 12px;
+}
+
+/* ----- Complete Screen ----- */
+.recall-complete {
+	text-align: center;
+	padding: 40px 20px;
+}
+
+.recall-complete h2 {
+	margin: 0 0 24px 0;
+	font-size: 24px;
+	color: var(--text-normal);
+}
+
+.recall-complete-stats {
+	margin-bottom: 24px;
+}
+
+.recall-complete-stats p {
+	margin: 8px 0;
+	font-size: 16px;
+	color: var(--text-muted);
+}
+
+.recall-btn-close {
+	background: var(--recall-primary);
+	color: white;
+	padding: 12px 32px;
+	font-size: 15px;
+}
+
+.recall-btn-close:hover {
+	background: var(--recall-primary-hover);
+}
+
+/* ===========================================
+   Stats Modal
+   =========================================== */
+
+.recall-stats-modal {
+	width: 500px;
+	max-width: 90vw;
+}
+
+.recall-stats-section {
+	margin-bottom: 24px;
+}
+
+.recall-stats-section:last-child {
+	margin-bottom: 0;
+}
+
+.recall-stats-section h3 {
+	margin: 0 0 12px 0;
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--text-muted);
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+/* Stats Grid */
+.recall-stats-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+	gap: 12px;
+}
+
+.recall-stat-card {
+	background: var(--background-secondary);
+	border-radius: 8px;
+	padding: 16px;
+	text-align: center;
+}
+
+.recall-stat-value {
+	font-size: 28px;
+	font-weight: 700;
+	color: var(--text-normal);
+	line-height: 1.2;
+}
+
+.recall-stat-label {
+	font-size: 12px;
+	color: var(--recall-text-muted);
+	margin-top: 4px;
+}
+
+/* Forecast */
+.recall-forecast {
+	background: var(--background-secondary);
+	border-radius: 8px;
+	padding: 12px 16px;
+}
+
+.recall-forecast-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 8px 0;
+	border-bottom: 1px solid var(--recall-border);
+}
+
+.recall-forecast-row:last-child {
+	border-bottom: none;
+}
+
+.recall-forecast-label {
+	font-size: 14px;
+	color: var(--text-normal);
+}
+
+.recall-forecast-count {
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--text-accent);
+	background: var(--background-primary);
+	padding: 2px 10px;
+	border-radius: 12px;
+	min-width: 32px;
+	text-align: center;
+}
+
+/* ===========================================
+   Cloze Deletions
+   =========================================== */
+
+.recall-cloze {
+	background: var(--text-accent);
+	color: var(--text-on-accent);
+	padding: 2px 6px;
+	border-radius: 4px;
+	font-weight: 500;
+}
+
+.recall-cloze-blank {
+	background: var(--background-modifier-border);
+	color: transparent;
+	padding: 2px 24px;
+	border-radius: 4px;
+	border-bottom: 2px solid var(--text-accent);
+}
+
+/* ===========================================
+   Settings Tab Overrides
+   =========================================== */
+
+.recall-settings-section {
+	margin-bottom: 24px;
+	padding-bottom: 24px;
+	border-bottom: 1px solid var(--recall-border);
+}
+
+.recall-settings-section:last-child {
+	border-bottom: none;
+	margin-bottom: 0;
+}
+
+/* ===========================================
+   Responsive Design
+   =========================================== */
+
+@media (max-width: 600px) {
+	.recall-review-modal,
+	.recall-stats-modal {
+		width: 95vw;
+	}
+
+	.recall-content {
+		padding: 16px;
+	}
+
+	.recall-question {
+		font-size: 16px;
+	}
+
+	.recall-btn {
+		min-width: 90px;
+		padding: 10px 14px;
+		font-size: 13px;
+	}
+
+	.recall-btn-hard,
+	.recall-btn-good,
+	.recall-btn-easy {
+		min-width: 80px;
+		padding: 10px 12px;
+	}
+
+	.recall-stats-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+/* ===========================================
+   Animations
+   =========================================== */
+
+@keyframes recall-fade-in {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.recall-hint,
+.recall-memo,
+.recall-answer {
+	animation: recall-fade-in 0.2s ease-out;
+}
+
+/* ===========================================
+   Print Styles
+   =========================================== */
+
+@media print {
+	.recall-review-modal,
+	.recall-stats-modal {
+		box-shadow: none;
+	}
+}
+
+/* ===========================================
+   Settings Tab
+   =========================================== */
+
+.recall-settings h3 {
+	margin-top: 24px;
+	margin-bottom: 12px;
+	padding-bottom: 6px;
+	border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.recall-settings h3:first-of-type {
+	margin-top: 0;
+}
+
+/* Advanced Settings Dropdown */
+.recall-advanced-settings {
+	margin-top: 32px;
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 8px;
+	background: var(--background-secondary);
+}
+
+.recall-advanced-summary {
+	padding: 12px 16px;
+	cursor: pointer;
+	font-weight: 600;
+	font-size: 14px;
+	color: var(--text-muted);
+	user-select: none;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.recall-advanced-summary::before {
+	content: '▶';
+	font-size: 10px;
+	transition: transform 0.2s ease;
+}
+
+.recall-advanced-settings[open] .recall-advanced-summary::before {
+	transform: rotate(90deg);
+}
+
+.recall-advanced-summary:hover {
+	color: var(--text-normal);
+	background: var(--background-modifier-hover);
+	border-radius: 8px 8px 0 0;
+}
+
+.recall-advanced-container {
+	padding: 0 16px 16px;
+	border-top: 1px solid var(--background-modifier-border);
+}
+
+.recall-advanced-container h3 {
+	font-size: 13px;
+	color: var(--text-muted);
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.recall-algorithm-warning {
+	font-size: 12px;
+	color: var(--text-muted);
+	font-style: italic;
+	margin-top: -8px;
+	margin-bottom: 16px;
+}

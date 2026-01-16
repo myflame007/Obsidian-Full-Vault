@@ -1,0 +1,36 @@
+{
+  "schedules": {},
+  "stats": {
+    "totalCards": 0,
+    "dueToday": 0,
+    "newToday": 0,
+    "reviewedToday": 0,
+    "streak": 0
+  },
+  "settings": {
+    "useLegacySyntax": false,
+    "learningSteps": [
+      1,
+      10
+    ],
+    "graduatingInterval": 1,
+    "easyInterval": 4,
+    "maximumInterval": 365,
+    "startingEase": 2.5,
+    "easyBonus": 1.3,
+    "intervalModifier": 1,
+    "hardIntervalModifier": 1.2,
+    "lapseIntervalModifier": 0.5,
+    "dailyNewCardsLimit": 20,
+    "dailyReviewLimit": 200,
+    "showContext": true,
+    "randomizeOrder": true,
+    "flashcardFolders": [],
+    "showAddFlashcardCommand": false,
+    "showHintHotkey": "h",
+    "showMemoHotkey": "m",
+    "flashcardTags": [
+      "#flashcards"
+    ]
+  }
+}

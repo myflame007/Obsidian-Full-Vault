@@ -1,0 +1,10 @@
+{
+	"id": "obsidian-recall",
+	"name": "Recall",
+	"version": "1.0.0",
+	"minAppVersion": "1.0.0",
+	"description": "Spaced repetition flashcards with Hint and Memo support for memory palace learning",
+	"author": "Robert Stickler",
+	"authorUrl": "https://github.com/robert-stickler",
+	"isDesktopOnly": false
+}

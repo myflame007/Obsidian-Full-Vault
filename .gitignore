@@ -6,16 +6,23 @@
 .DS_Store
 Thumbs.db
 
-# === Private Ordner ignorieren ===
-# Alle Ordner ignorieren außer Public und .obsidian
-Attachments/
-Categories/
-Clippings/
-Daily/
-Flashcards/
-Notes/
-References/
-Templates/
+# === Private Ordner ignorieren (außer .gitkeep) ===
+Attachments/*
+!Attachments/.gitkeep
+Categories/*
+!Categories/.gitkeep
+Clippings/*
+!Clippings/.gitkeep
+Daily/*
+!Daily/.gitkeep
+Flashcards/*
+!Flashcards/.gitkeep
+Notes/*
+!Notes/.gitkeep
+References/*
+!References/.gitkeep
+Templates/*
+!Templates/.gitkeep
 
 # === Spezifische private Dateien ===
 Robert.md

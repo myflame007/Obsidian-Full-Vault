@@ -182,7 +182,7 @@
 .recall-buttons {
 	padding: 24px 48px 32px;
 	border-top: 1px solid var(--recall-border);
-	background: var(--background-primary);
+	background: var(--background-secondary);
 	flex-shrink: 0;
 }
 
@@ -215,37 +215,42 @@
 
 /* Question phase buttons */
 .recall-btn-hint {
-	background: var(--background-secondary);
+	background: var(--background-modifier-hover);
 	color: var(--text-normal);
-	border: 1px solid var(--recall-border);
+	border: 2px solid var(--background-modifier-border);
 }
 
 .recall-btn-hint:hover {
-	background: var(--background-secondary-alt);
+	background: var(--background-modifier-border);
+	border-color: var(--text-muted);
 }
 
 .recall-btn-memo {
-	background: var(--background-secondary);
+	background: var(--background-modifier-hover);
 	color: var(--text-normal);
-	border: 1px solid var(--recall-border);
+	border: 2px solid var(--background-modifier-border);
 }
 
 .recall-btn-memo:hover {
-	background: var(--background-secondary-alt);
+	background: var(--background-modifier-border);
+	border-color: var(--text-muted);
 }
 
 .recall-btn-answer {
-	background: var(--recall-primary);
-	color: white;
+	background: var(--interactive-accent);
+	color: var(--text-on-accent);
+	border: 2px solid var(--interactive-accent);
+	font-weight: 600;
 }
 
 .recall-btn-answer:hover {
-	background: var(--recall-primary-hover);
+	background: var(--interactive-accent-hover);
+	border-color: var(--interactive-accent-hover);
 }
 
 /* Rating buttons */
 .recall-rating-row {
-	gap: 16px;
+	gap: 20px;
 }
 
 .recall-btn-hard,
@@ -254,42 +259,51 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 4px;
-	min-width: 100px;
-	padding: 12px 16px;
+	gap: 6px;
+	min-width: 120px;
+	padding: 16px 24px;
+	font-weight: 600;
+	font-size: 16px;
+	border: 2px solid transparent;
 }
 
 .recall-btn-hard {
 	background: var(--recall-hard);
 	color: white;
+	border-color: var(--recall-hard);
 }
 
 .recall-btn-hard:hover {
-	background: var(--recall-hard-hover);
+	filter: brightness(1.1);
+	border-color: var(--text-normal);
 }
 
 .recall-btn-good {
 	background: var(--recall-good);
 	color: white;
+	border-color: var(--recall-good);
 }
 
 .recall-btn-good:hover {
-	background: var(--recall-good-hover);
+	filter: brightness(1.1);
+	border-color: var(--text-normal);
 }
 
 .recall-btn-easy {
 	background: var(--recall-easy);
 	color: white;
+	border-color: var(--recall-easy);
 }
 
 .recall-btn-easy:hover {
-	background: var(--recall-easy-hover);
+	filter: brightness(1.1);
+	border-color: var(--text-normal);
 }
 
 .recall-interval {
-	font-size: 11px;
+	font-size: 12px;
 	opacity: 0.9;
-	font-weight: 400;
+	font-weight: 500;
 }
 
 /* Keyboard hint */

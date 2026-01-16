@@ -1,10 +1,24 @@
-# === BetterGitignore Managed ===
+# === Obsidian Workspace (nicht synchronisieren) ===
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
+
+# === System Files ===
 .DS_Store
 Thumbs.db
-# === End BetterGitignore ===
 
+# === Private Ordner ignorieren ===
+# Alle Ordner ignorieren außer Public und .obsidian
+Attachments/
+Categories/
+Clippings/
+Daily/
+Flashcards/
+Notes/
+References/
+Templates/
+
+# === Spezifische private Dateien ===
 Robert.md
+Hanna.md
+Avanade.md
 Test.md
-.obsidian/plugins/recent-files-obsidian/data.json

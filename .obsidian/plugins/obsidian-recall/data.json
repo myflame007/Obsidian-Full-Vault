@@ -21,7 +21,7 @@
     "totalCards": 10,
     "dueToday": 0,
     "newToday": 0,
-    "reviewedToday": 3,
+    "reviewedToday": 0,
     "streak": 1,
     "lastStudyDate": "2026-01-16"
   },
@@ -45,8 +45,10 @@
     "randomizeOrder": true,
     "flashcardFolders": [],
     "newFlashcardFolder": "Flashcards",
+    "newFlashcardTemplatePath": "Templates/Recall Flashcard Template.md",
     "showHintHotkey": "h",
     "showMemoHotkey": "m",
+    "newFlashcardTemplate": "---\ntags:\n  - flashcards\ncreated: {{date}}\n---\n\n# {{title}}\n\nQ:\nA:\nHint:\nMemo:\nTags:",
     "showAddFlashcardCommand": false,
     "flashcardTags": [
       "#flashcards"

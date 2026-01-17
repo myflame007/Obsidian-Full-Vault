@@ -12,7 +12,6 @@
   "obsidian-icon-folder",
   "omnisearch",
   "url-into-selection",
-  "obsidian-plugin-update-tracker",
   "obsidian-reading-time",
   "recent-files-obsidian",
   "auto-categories",
@@ -21,6 +20,5 @@
   "templater-obsidian",
   "command-overview",
   "obsidian-recall",
-  "obsidian-swipe-navigation",
-  "colored-tags"
+  "obsidian-swipe-navigation"
 ]

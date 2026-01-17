@@ -49,6 +49,7 @@ var DEFAULT_SETTINGS = {
   // Empty = scan all folders
   newFlashcardFolder: "Flashcards",
   // Default folder for new flashcards
+  newFlashcardTemplatePath: "Templates/Recall Flashcard Template.md",
   showHintHotkey: "h",
   showMemoHotkey: "m"
 };
@@ -965,6 +966,12 @@ Tags: optional, tags</pre>
         await this.plugin.saveSettings();
       })
     );
+    new import_obsidian3.Setting(containerEl).setName("Flashcard template file").setDesc("Path to template file. Use {{title}} and {{date}} as placeholders in the template.").addText(
+      (text) => text.setPlaceholder("Templates/Recall Flashcard Template.md").setValue(this.plugin.settings.newFlashcardTemplatePath).onChange(async (value) => {
+        this.plugin.settings.newFlashcardTemplatePath = value.trim();
+        await this.plugin.saveSettings();
+      })
+    );
     containerEl.createEl("h3", { text: "Daily Limits" });
     new import_obsidian3.Setting(containerEl).setName("New cards per day").setDesc("Maximum new cards to introduce per day").addText(
       (text) => text.setPlaceholder("20").setValue(String(this.plugin.settings.dailyNewCardsLimit)).onChange(async (value) => {
@@ -1223,20 +1230,23 @@ var RecallPlugin = class extends import_obsidian4.Plugin {
         new import_obsidian4.Notice(`Could not create folder: ${folderPath}`);
         return;
       }
-      const content = `---
-tags:
-  - flashcards
-created: ${(/* @__PURE__ */ new Date()).toISOString().split("T")[0]}
----
-
-# ${title}
+      const templatePath = this.settings.newFlashcardTemplatePath;
+      const templateFile = this.app.vault.getAbstractFileByPath(templatePath);
+      let templateContent = "";
+      if (templateFile instanceof import_obsidian4.TFile) {
+        templateContent = await this.app.vault.read(templateFile);
+      } else {
+        templateContent = `# {{title}}
 
 Q:
 A:
 Hint:
 Memo:
-Tags:
-`;
+Tags:`;
+        new import_obsidian4.Notice(`Template not found: ${templatePath}, using default`);
+      }
+      const today = (/* @__PURE__ */ new Date()).toISOString().split("T")[0];
+      const content = templateContent.replace(/\{\{title\}\}/g, title).replace(/\{\{date\}\}/g, today);
       let fileName = `${title}.md`;
       let filePath = `${folderPath}/${fileName}`;
       let counter = 1;
@@ -1252,11 +1262,17 @@ Tags:
       if (view) {
         const editor = view.editor;
         const lines = content.split("\n");
+        let cursorSet = false;
         for (let i = 0; i < lines.length; i++) {
-          if (lines[i].startsWith("Q: ")) {
-            editor.setCursor({ line: i, ch: 3 });
+          if (lines[i].startsWith("Q:")) {
+            const chPos = lines[i].length > 2 ? lines[i].length : 2;
+            editor.setCursor({ line: i, ch: chPos });
+            cursorSet = true;
             break;
           }
+        }
+        if (!cursorSet) {
+          editor.setCursor({ line: lines.length - 1, ch: 0 });
         }
       }
       new import_obsidian4.Notice(`Created flashcard: ${title}`);

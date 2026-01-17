@@ -32,3 +32,4 @@ Test.md
 
 # === Plugin-spezifische Daten (nicht synchronisieren) ===
 .obsidian/plugins/recent-files-obsidian/
+.obsidian/plugins/recent-files-obsidian/data.json

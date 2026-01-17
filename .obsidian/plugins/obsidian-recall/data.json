@@ -15,13 +15,21 @@
       "dueDate": "2026-01-17",
       "repetitions": 1,
       "lastReview": "2026-01-16"
+    },
+    "card-5c155d30": {
+      "cardId": "card-5c155d30",
+      "interval": 1,
+      "ease": 2.5,
+      "dueDate": "2026-01-17",
+      "repetitions": 1,
+      "lastReview": "2026-01-16"
     }
   },
   "stats": {
     "totalCards": 0,
     "dueToday": 0,
     "newToday": 0,
-    "reviewedToday": 2,
+    "reviewedToday": 3,
     "streak": 1,
     "lastStudyDate": "2026-01-16"
   },
@@ -44,9 +52,10 @@
     "showContext": true,
     "randomizeOrder": true,
     "flashcardFolders": [],
-    "showAddFlashcardCommand": false,
+    "newFlashcardFolder": "Flashcards",
     "showHintHotkey": "h",
     "showMemoHotkey": "m",
+    "showAddFlashcardCommand": false,
     "flashcardTags": [
       "#flashcards"
     ]

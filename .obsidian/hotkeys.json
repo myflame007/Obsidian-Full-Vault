@@ -60,5 +60,15 @@
       ],
       "key": "T"
     }
-  ]
+  ],
+  "templater-obsidian:create-new-note-from-template": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "N"
+    }
+  ],
+  "table-editor-obsidian:table-control-bar": []
 }

@@ -3,7 +3,6 @@
   "better-word-count",
   "calendar",
   "code-styler",
-  "colored-tags",
   "cmdr",
   "obsidian-excalidraw-plugin",
   "file-explorer-note-count",
@@ -22,5 +21,6 @@
   "templater-obsidian",
   "command-overview",
   "obsidian-recall",
-  "obsidian-swipe-navigation"
+  "obsidian-swipe-navigation",
+  "colored-tags"
 ]

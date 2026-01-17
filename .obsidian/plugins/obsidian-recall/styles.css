@@ -25,10 +25,7 @@
    =========================================== */
 
 .recall-review-modal {
-	width: 90vw;
-	max-width: 900px;
-	height: 85vh;
-	max-height: 800px;
+	/* Size defined in responsive section */
 }
 
 .recall-review-modal .modal-content {
@@ -194,14 +191,18 @@
 }
 
 .recall-btn {
-	padding: 14px 28px;
-	font-size: 15px;
+	padding: 12px 20px;
+	font-size: 14px;
 	font-weight: 500;
 	border: none;
 	border-radius: 8px;
 	cursor: pointer;
 	transition: all 0.15s ease;
-	min-width: 140px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	flex: 1 1 auto;
+	max-width: 200px;
 }
 
 .recall-btn:hover {
@@ -250,7 +251,9 @@
 
 /* Rating buttons */
 .recall-rating-row {
-	gap: 20px;
+	gap: 12px;
+	width: 100%;
+	max-width: 400px;
 }
 
 .recall-btn-hard,
@@ -259,12 +262,24 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 6px;
-	min-width: 120px;
-	padding: 16px 24px;
+	justify-content: center;
+	gap: 4px;
+	flex: 1 1 0;
+	min-width: 0;
+	padding: 14px 12px;
 	font-weight: 600;
-	font-size: 16px;
+	font-size: 15px;
 	border: 2px solid transparent;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.recall-btn-hard span,
+.recall-btn-good span,
+.recall-btn-easy span {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 100%;
 }
 
 .recall-btn-hard {
@@ -317,34 +332,80 @@
 /* ----- Complete Screen ----- */
 .recall-complete {
 	text-align: center;
-	padding: 40px 20px;
+	padding: 32px 24px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
 }
 
-.recall-complete h2 {
-	margin: 0 0 24px 0;
-	font-size: 24px;
-	color: var(--text-normal);
-}
-
-.recall-complete-stats {
+.recall-complete-icon {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	background: var(--color-green);
+	color: white;
+	font-size: 48px;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	margin-bottom: 24px;
 }
 
-.recall-complete-stats p {
-	margin: 8px 0;
-	font-size: 16px;
+.recall-complete h2 {
+	margin: 0 0 32px 0;
+	font-size: 28px;
+	color: var(--text-normal);
+	font-weight: 600;
+}
+
+.recall-complete-grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 16px;
+	margin-bottom: 32px;
+	width: 100%;
+	max-width: 500px;
+}
+
+.recall-complete-stat {
+	background: var(--background-secondary);
+	border-radius: 12px;
+	padding: 16px 12px;
+}
+
+.recall-complete-value {
+	font-size: 32px;
+	font-weight: 700;
+	color: var(--text-normal);
+	line-height: 1.2;
+}
+
+.recall-complete-label {
+	font-size: 12px;
 	color: var(--text-muted);
+	margin-top: 4px;
+}
+
+.recall-complete-message {
+	font-size: 18px;
+	color: var(--text-muted);
+	margin-bottom: 32px;
 }
 
 .recall-btn-close {
-	background: var(--recall-primary);
-	color: white;
-	padding: 12px 32px;
-	font-size: 15px;
+	background: var(--interactive-accent);
+	color: var(--text-on-accent);
+	padding: 14px 48px;
+	font-size: 16px;
+	font-weight: 600;
+	border: none;
 }
 
 .recall-btn-close:hover {
-	background: var(--recall-primary-hover);
+	background: var(--interactive-accent-hover);
 }
 
 /* ===========================================
@@ -474,10 +535,44 @@
    Responsive Design
    =========================================== */
 
-@media (max-width: 600px) {
-	.recall-review-modal,
-	.recall-stats-modal {
+/* Modal adapts to available space */
+.recall-review-modal {
+	width: min(90vw, 900px);
+	height: min(85vh, 800px);
+}
+
+/* Medium screens / Split view */
+@media (max-width: 800px) {
+	.recall-review-modal {
 		width: 95vw;
+		height: 90vh;
+		max-width: none;
+		max-height: none;
+	}
+
+	.recall-content {
+		padding: 24px;
+	}
+
+	.recall-question {
+		font-size: 18px;
+	}
+
+	.recall-complete-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.recall-complete-value {
+		font-size: 24px;
+	}
+}
+
+/* Small screens */
+@media (max-width: 500px) {
+	.recall-review-modal {
+		width: 100vw;
+		height: 100vh;
+		border-radius: 0;
 	}
 
 	.recall-content {
@@ -489,7 +584,7 @@
 	}
 
 	.recall-btn {
-		min-width: 90px;
+		min-width: 80px;
 		padding: 10px 14px;
 		font-size: 13px;
 	}
@@ -497,12 +592,81 @@
 	.recall-btn-hard,
 	.recall-btn-good,
 	.recall-btn-easy {
-		min-width: 80px;
-		padding: 10px 12px;
+		min-width: 0;
+		padding: 12px 8px;
+		font-size: 13px;
+	}
+
+	.recall-rating-row {
+		gap: 6px;
+		max-width: 100%;
+	}
+
+	.recall-interval {
+		font-size: 11px;
+	}
+
+	.recall-buttons {
+		padding: 16px;
+	}
+
+	.recall-complete-grid {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 8px;
+	}
+
+	.recall-complete-value {
+		font-size: 20px;
+	}
+
+	.recall-complete-icon {
+		width: 60px;
+		height: 60px;
+		font-size: 36px;
 	}
 
 	.recall-stats-grid {
 		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+/* Extra small screens (very narrow split views) */
+@media (max-width: 350px) {
+	.recall-btn-hard,
+	.recall-btn-good,
+	.recall-btn-easy {
+		padding: 10px 6px;
+		font-size: 12px;
+		gap: 2px;
+	}
+
+	.recall-interval {
+		font-size: 10px;
+	}
+
+	.recall-rating-row {
+		gap: 4px;
+	}
+
+	.recall-keyboard-hint {
+		display: none;
+	}
+
+	.recall-complete-grid {
+		grid-template-columns: 1fr 1fr;
+		gap: 6px;
+	}
+
+	.recall-complete-stat {
+		padding: 10px 8px;
+	}
+
+	.recall-complete-value {
+		font-size: 18px;
+	}
+
+	.recall-complete-label {
+		font-size: 10px;
 	}
 }
 

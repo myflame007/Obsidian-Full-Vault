@@ -47,7 +47,8 @@ var DEFAULT_SETTINGS = {
   randomizeOrder: true,
   flashcardFolders: [],
   // Empty = scan all folders
-  showAddFlashcardCommand: false,
+  newFlashcardFolder: "Flashcards",
+  // Default folder for new flashcards
   showHintHotkey: "h",
   showMemoHotkey: "m"
 };
@@ -797,16 +798,40 @@ var ReviewModal = class extends import_obsidian.Modal {
   showComplete() {
     this.cardContentEl.empty();
     this.buttonContainer.empty();
-    this.progressEl.setText("Complete!");
+    this.progressEl.setText("");
     this.contextEl.setText("");
     const completeDiv = this.cardContentEl.createDiv("recall-complete");
-    completeDiv.createEl("h2", { text: "Review Complete!" });
+    const iconDiv = completeDiv.createDiv("recall-complete-icon");
+    iconDiv.innerHTML = "\u2713";
+    completeDiv.createEl("h2", { text: "Session Complete!" });
     const stats = this.dataManager.getStats();
-    const statsDiv = completeDiv.createDiv("recall-complete-stats");
-    statsDiv.createEl("p", { text: `Reviewed today: ${stats.reviewedToday}` });
-    statsDiv.createEl("p", { text: `Current streak: ${stats.streak} days` });
+    const cardsReviewed = this.currentIndex;
+    const statsGrid = completeDiv.createDiv("recall-complete-grid");
+    const sessionCard = statsGrid.createDiv("recall-complete-stat");
+    sessionCard.createDiv({ text: String(cardsReviewed), cls: "recall-complete-value" });
+    sessionCard.createDiv({ text: "Cards reviewed", cls: "recall-complete-label" });
+    const todayCard = statsGrid.createDiv("recall-complete-stat");
+    todayCard.createDiv({ text: String(stats.reviewedToday), cls: "recall-complete-value" });
+    todayCard.createDiv({ text: "Total today", cls: "recall-complete-label" });
+    const streakCard = statsGrid.createDiv("recall-complete-stat");
+    streakCard.createDiv({ text: String(stats.streak), cls: "recall-complete-value" });
+    streakCard.createDiv({ text: "Day streak", cls: "recall-complete-label" });
+    const dueCount = this.dataManager.countDueCards();
+    const dueCard = statsGrid.createDiv("recall-complete-stat");
+    dueCard.createDiv({ text: String(dueCount), cls: "recall-complete-value" });
+    dueCard.createDiv({ text: "Still due", cls: "recall-complete-label" });
+    const messageDiv = completeDiv.createDiv("recall-complete-message");
+    if (stats.streak >= 7) {
+      messageDiv.setText("\u{1F525} Amazing streak! Keep it up!");
+    } else if (stats.streak >= 3) {
+      messageDiv.setText("\u{1F4AA} Great consistency!");
+    } else if (dueCount === 0) {
+      messageDiv.setText("\u{1F389} All caught up for today!");
+    } else {
+      messageDiv.setText("\u{1F44D} Good work!");
+    }
     const closeBtn = completeDiv.createEl("button", {
-      text: "Close",
+      text: "Done",
       cls: "recall-btn recall-btn-close"
     });
     closeBtn.onclick = () => this.close();
@@ -934,6 +959,12 @@ Tags: optional, tags</pre>
         await this.plugin.saveSettings();
       })
     );
+    new import_obsidian3.Setting(containerEl).setName("New flashcard folder").setDesc('Default folder for new flashcards created with "Create Flashcard" command').addText(
+      (text) => text.setPlaceholder("Flashcards").setValue(this.plugin.settings.newFlashcardFolder).onChange(async (value) => {
+        this.plugin.settings.newFlashcardFolder = value.trim() || "Flashcards";
+        await this.plugin.saveSettings();
+      })
+    );
     containerEl.createEl("h3", { text: "Daily Limits" });
     new import_obsidian3.Setting(containerEl).setName("New cards per day").setDesc("Maximum new cards to introduce per day").addText(
       (text) => text.setPlaceholder("20").setValue(String(this.plugin.settings.dailyNewCardsLimit)).onChange(async (value) => {
@@ -978,12 +1009,6 @@ Tags: optional, tags</pre>
     new import_obsidian3.Setting(advancedContainer).setName("Legacy syntax support").setDesc("Enable ? separator for cards (in addition to YAML-style Q:/A:)").addToggle(
       (toggle) => toggle.setValue(this.plugin.settings.useLegacySyntax).onChange(async (value) => {
         this.plugin.settings.useLegacySyntax = value;
-        await this.plugin.saveSettings();
-      })
-    );
-    new import_obsidian3.Setting(advancedContainer).setName('Show "Add Flashcard" command').setDesc("Enable the command to insert a flashcard template (requires reload)").addToggle(
-      (toggle) => toggle.setValue(this.plugin.settings.showAddFlashcardCommand).onChange(async (value) => {
-        this.plugin.settings.showAddFlashcardCommand = value;
         await this.plugin.saveSettings();
       })
     );
@@ -1095,22 +1120,11 @@ var RecallPlugin = class extends import_obsidian4.Plugin {
       name: "Review Current File",
       callback: () => this.reviewCurrentFile()
     });
-    if (this.settings.showAddFlashcardCommand) {
-      this.addCommand({
-        id: "add-flashcard",
-        name: "Add Flashcard",
-        editorCallback: (editor) => {
-          const template = `Q: 
-A: 
-Hint: 
-Memo: 
-Tags: `;
-          editor.replaceSelection(template);
-          const cursor = editor.getCursor();
-          editor.setCursor({ line: cursor.line - 4, ch: 3 });
-        }
-      });
-    }
+    this.addCommand({
+      id: "create-flashcard",
+      name: "Create Flashcard",
+      callback: () => this.createFlashcard()
+    });
     this.addCommand({
       id: "show-statistics",
       name: "Show Statistics",
@@ -1193,6 +1207,63 @@ Tags: `;
     new StatsModal(this.app, this.dataManager).open();
   }
   /**
+   * Create a new flashcard file
+   */
+  async createFlashcard() {
+    const modal = new FlashcardTitleModal(this.app, async (title) => {
+      if (!title)
+        return;
+      const folderPath = this.settings.newFlashcardFolder;
+      let folder = this.app.vault.getAbstractFileByPath(folderPath);
+      if (!folder) {
+        await this.app.vault.createFolder(folderPath);
+        folder = this.app.vault.getAbstractFileByPath(folderPath);
+      }
+      if (!(folder instanceof import_obsidian4.TFolder)) {
+        new import_obsidian4.Notice(`Could not create folder: ${folderPath}`);
+        return;
+      }
+      const content = `---
+tags:
+  - flashcards
+created: ${(/* @__PURE__ */ new Date()).toISOString().split("T")[0]}
+---
+
+# ${title}
+
+Q:
+A:
+Hint:
+Memo:
+Tags:
+`;
+      let fileName = `${title}.md`;
+      let filePath = `${folderPath}/${fileName}`;
+      let counter = 1;
+      while (this.app.vault.getAbstractFileByPath(filePath)) {
+        fileName = `${title} ${counter}.md`;
+        filePath = `${folderPath}/${fileName}`;
+        counter++;
+      }
+      const file = await this.app.vault.create(filePath, content);
+      const leaf = this.app.workspace.getLeaf(false);
+      await leaf.openFile(file);
+      const view = this.app.workspace.getActiveViewOfType(import_obsidian4.MarkdownView);
+      if (view) {
+        const editor = view.editor;
+        const lines = content.split("\n");
+        for (let i = 0; i < lines.length; i++) {
+          if (lines[i].startsWith("Q: ")) {
+            editor.setCursor({ line: i, ch: 3 });
+            break;
+          }
+        }
+      }
+      new import_obsidian4.Notice(`Created flashcard: ${title}`);
+    });
+    modal.open();
+  }
+  /**
    * Collect all cards that are due for review
    */
   async collectDueCards() {
@@ -1263,5 +1334,51 @@ Tags: `;
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
     }
+  }
+};
+var FlashcardTitleModal = class extends import_obsidian4.Modal {
+  constructor(app, onSubmit) {
+    super(app);
+    this.onSubmit = onSubmit;
+  }
+  onOpen() {
+    const { contentEl } = this;
+    contentEl.createEl("h3", { text: "Create Flashcard" });
+    const inputContainer = contentEl.createDiv("recall-input-container");
+    inputContainer.createEl("label", { text: "Title:" });
+    this.inputEl = new import_obsidian4.TextComponent(inputContainer);
+    this.inputEl.inputEl.style.width = "100%";
+    this.inputEl.inputEl.style.marginTop = "8px";
+    this.inputEl.inputEl.placeholder = "Enter flashcard title...";
+    this.inputEl.inputEl.focus();
+    this.inputEl.inputEl.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        this.submit();
+      }
+    });
+    const buttonContainer = contentEl.createDiv("recall-modal-buttons");
+    buttonContainer.style.marginTop = "16px";
+    buttonContainer.style.display = "flex";
+    buttonContainer.style.justifyContent = "flex-end";
+    buttonContainer.style.gap = "8px";
+    const cancelBtn = buttonContainer.createEl("button", { text: "Cancel" });
+    cancelBtn.onclick = () => this.close();
+    const createBtn = buttonContainer.createEl("button", {
+      text: "Create",
+      cls: "mod-cta"
+    });
+    createBtn.onclick = () => this.submit();
+  }
+  submit() {
+    const title = this.inputEl.getValue().trim();
+    if (title) {
+      this.onSubmit(title);
+      this.close();
+    }
+  }
+  onClose() {
+    const { contentEl } = this;
+    contentEl.empty();
   }
 };

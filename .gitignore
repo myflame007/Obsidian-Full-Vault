@@ -15,8 +15,6 @@ Clippings/*
 !Clippings/.gitkeep
 Daily/*
 !Daily/.gitkeep
-Flashcards/*
-!Flashcards/.gitkeep
 Notes/*
 !Notes/.gitkeep
 References/*
@@ -25,10 +23,7 @@ Templates/*
 !Templates/.gitkeep
 
 # === Spezifische private Dateien ===
-Robert.md
-Hanna.md
-Avanade.md
-Test.md
+
 
 # === Plugin-spezifische Daten (nicht synchronisieren) ===
 .obsidian/plugins/recent-files-obsidian/

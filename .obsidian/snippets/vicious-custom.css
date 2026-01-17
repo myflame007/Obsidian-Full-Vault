@@ -88,3 +88,19 @@ a.internal-link > svg {
 .workspace-leaf-content[data-type="file-explorer"] {
 	background-color: var(--card-color) !important;
 }
+
+/* -----------------------------------------------------
+   5. CATEGORIES FIX - Links in Multi-Select Pills lesbar machen
+   ----------------------------------------------------- */
+
+/* Links innerhalb von Multi-Select Pills (z.B. Categories) */
+.multi-select-pill a.internal-link,
+.multi-select-pill .internal-link,
+.metadata-property-value .multi-select-pill a {
+	color: var(--background-primary) !important;
+}
+
+/* Mehr Padding fuer Multi-Select Pills */
+.multi-select-pill {
+	padding: 4px 8px !important;
+}

@@ -1,13 +1,13 @@
 ---
 tags:
-  - flashcards
+  - flashcard
   - entrance-exam
-  - psychologie-kapitel-1
+  - was-ist-psychologie
 created: 2026-01-17
 categories:
   - "[[Psychologie-Flashcard]]"
   - "[[Psychologie-Entrance-Exam]]"
-priority: "3"
+priority: "8"
 ---
 
 Q: Was beschreibt das Zwei-Stufen-Modell der Psychologie?

@@ -27,13 +27,13 @@ __export(main_exports, {
   default: () => RecallPlugin
 });
 module.exports = __toCommonJS(main_exports);
-var import_obsidian5 = require("obsidian");
+var import_obsidian6 = require("obsidian");
 
 // src/types.ts
 var DEFAULT_SETTINGS = {
   useLegacySyntax: false,
   learningSteps: [1, 10],
-  graduatingInterval: 1,
+  graduatingInterval: 2,
   easyInterval: 4,
   maximumInterval: 365,
   startingEase: 2.5,
@@ -47,6 +47,8 @@ var DEFAULT_SETTINGS = {
   randomizeOrder: true,
   flashcardFolders: [],
   // Empty = scan all folders
+  deckTags: ["#flashcards"],
+  // Default deck tag (matches common frontmatter usage)
   newFlashcardFolder: "Flashcards",
   // Default folder for new flashcards
   newFlashcardTemplatePath: "Templates/Recall Flashcard Template.md",
@@ -184,15 +186,51 @@ var DataManager = class {
 // src/parser.ts
 function parseFlashcards(content, file, settings) {
   const cards = [];
-  const yamlCards = parseYamlStyleCards(content, file);
+  const frontmatterTags = parseFrontmatterTags(content);
+  const yamlCards = parseYamlStyleCards(content, file, frontmatterTags);
   cards.push(...yamlCards);
   if (settings.useLegacySyntax) {
-    const legacyCards = parseLegacyCards(content, file);
+    const legacyCards = parseLegacyCards(content, file, frontmatterTags);
     cards.push(...legacyCards);
   }
   return cards;
 }
-function parseYamlStyleCards(content, file) {
+function parseFrontmatterTags(content) {
+  const tags = [];
+  if (!content.startsWith("---")) {
+    return tags;
+  }
+  const endIndex = content.indexOf("---", 3);
+  if (endIndex === -1) {
+    return tags;
+  }
+  const frontmatter = content.substring(3, endIndex);
+  const lines = frontmatter.split("\n");
+  let inTags = false;
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (trimmed === "tags:" || trimmed.startsWith("tags:")) {
+      inTags = true;
+      const inlineMatch = trimmed.match(/tags:\s*\[([^\]]+)\]/);
+      if (inlineMatch) {
+        const inlineTags = inlineMatch[1].split(",").map((t) => t.trim().replace(/['"]/g, ""));
+        tags.push(...inlineTags);
+        inTags = false;
+      }
+      continue;
+    }
+    if (inTags && trimmed.startsWith("-")) {
+      const tag = trimmed.substring(1).trim().replace(/['"]/g, "");
+      if (tag) {
+        tags.push(tag);
+      }
+    } else if (inTags && !trimmed.startsWith("-") && trimmed !== "") {
+      inTags = false;
+    }
+  }
+  return tags;
+}
+function parseYamlStyleCards(content, file, frontmatterTags = []) {
   const cards = [];
   const lines = content.split("\n");
   let currentCard = null;
@@ -206,7 +244,7 @@ function parseYamlStyleCards(content, file) {
       if (currentCard && currentField) {
         saveFieldValue(currentCard, currentField, currentValue);
         if (currentCard.question && currentCard.answer) {
-          cards.push(finalizeCard(currentCard, file, startLine));
+          cards.push(finalizeCard(currentCard, file, startLine, frontmatterTags));
         }
       }
       currentCard = { type: "basic", tags: [] };
@@ -232,7 +270,7 @@ function parseYamlStyleCards(content, file) {
     } else if (trimmed === "---" && currentCard) {
       saveFieldValue(currentCard, currentField, currentValue);
       if (currentCard.question && currentCard.answer) {
-        cards.push(finalizeCard(currentCard, file, startLine));
+        cards.push(finalizeCard(currentCard, file, startLine, frontmatterTags));
       }
       currentCard = null;
       currentField = null;
@@ -244,18 +282,19 @@ function parseYamlStyleCards(content, file) {
   if (currentCard && currentField) {
     saveFieldValue(currentCard, currentField, currentValue);
     if (currentCard.question && currentCard.answer) {
-      cards.push(finalizeCard(currentCard, file, startLine));
+      cards.push(finalizeCard(currentCard, file, startLine, frontmatterTags));
     }
   }
   return cards;
 }
-function parseLegacyCards(content, file) {
+function parseLegacyCards(content, file, frontmatterTags = []) {
   const cards = [];
   const lines = content.split("\n");
   let questionLines = [];
   let answerLines = [];
   let inAnswer = false;
   let startLine = 0;
+  const baseTags = [.../* @__PURE__ */ new Set([...frontmatterTags, ...extractTagsFromContent(content)])];
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     const trimmed = line.trim();
@@ -267,7 +306,7 @@ function parseLegacyCards(content, file) {
           id: generateCardId(file.path, startLine),
           question: questionLines.join("\n").trim(),
           answer: answerLines.join("\n").trim(),
-          tags: extractTagsFromContent(content),
+          tags: baseTags,
           sourcePath: file.path,
           lineNumber: startLine,
           type: "basic"
@@ -295,7 +334,7 @@ function parseLegacyCards(content, file) {
       id: generateCardId(file.path, startLine),
       question: questionLines.join("\n").trim(),
       answer: answerLines.join("\n").trim(),
-      tags: extractTagsFromContent(content),
+      tags: baseTags,
       sourcePath: file.path,
       lineNumber: startLine,
       type: "basic"
@@ -370,15 +409,17 @@ function saveFieldValue(card, field, value) {
       break;
   }
 }
-function finalizeCard(card, file, lineNumber) {
+function finalizeCard(card, file, lineNumber, frontmatterTags = []) {
   const id = generateCardId(file.path, lineNumber);
+  const cardTags = card.tags || [];
+  const allTags = [.../* @__PURE__ */ new Set([...frontmatterTags, ...cardTags])];
   return {
     id,
     question: card.question || "",
     answer: card.answer || "",
     hint: card.hint,
     memo: card.memo,
-    tags: card.tags || [],
+    tags: allTags,
     sourcePath: file.path,
     lineNumber,
     type: "basic"
@@ -846,19 +887,19 @@ var ReviewModal = class extends import_obsidian2.Modal {
     const intervals = previewNextIntervals(schedule, this.settings);
     const btnRow = this.buttonContainer.createDiv("recall-btn-row recall-rating-row");
     const easyBtn = btnRow.createEl("button", {
-      cls: "recall-btn recall-btn-easy"
+      cls: "recall-btn recall-btn-easy",
+      text: `Easy (${formatInterval(intervals.easy)})`
     });
-    easyBtn.innerHTML = `<span>Easy</span><span class="recall-interval">${formatInterval(intervals.easy)}</span>`;
     easyBtn.onclick = () => this.submitResponse("easy");
     const goodBtn = btnRow.createEl("button", {
-      cls: "recall-btn recall-btn-good"
+      cls: "recall-btn recall-btn-good",
+      text: `Good (${formatInterval(intervals.good)})`
     });
-    goodBtn.innerHTML = `<span>Good</span><span class="recall-interval">${formatInterval(intervals.good)}</span>`;
     goodBtn.onclick = () => this.submitResponse("good");
     const hardBtn = btnRow.createEl("button", {
-      cls: "recall-btn recall-btn-hard"
+      cls: "recall-btn recall-btn-hard",
+      text: `Hard (${formatInterval(intervals.hard)})`
     });
-    hardBtn.innerHTML = `<span>Hard</span><span class="recall-interval">${formatInterval(intervals.hard)}</span>`;
     hardBtn.onclick = () => this.submitResponse("hard");
     const hint = this.buttonContainer.createDiv("recall-keyboard-hint");
     hint.setText("Press 1 (Easy), 2 (Good), or 3 (Hard)");
@@ -1041,9 +1082,83 @@ var StatsModal = class extends import_obsidian3.Modal {
   }
 };
 
-// src/SettingsTab.ts
+// src/DeckOverviewModal.ts
 var import_obsidian4 = require("obsidian");
-var RecallSettingsTab = class extends import_obsidian4.PluginSettingTab {
+var DeckOverviewModal = class extends import_obsidian4.Modal {
+  constructor(app, decks, onSelectDeck) {
+    super(app);
+    this.decks = decks;
+    this.onSelectDeck = onSelectDeck;
+  }
+  onOpen() {
+    this.modalEl.addClass("recall-deck-modal");
+    this.titleEl.setText("Decks");
+    const { contentEl } = this;
+    contentEl.empty();
+    if (this.decks.length === 0) {
+      contentEl.createDiv({
+        text: "No decks found. Add deck tags in settings and tag your flashcards.",
+        cls: "recall-deck-empty"
+      });
+      return;
+    }
+    const totalDue = this.decks.reduce((sum, d) => sum + d.dueCards, 0);
+    const totalNew = this.decks.reduce((sum, d) => sum + d.newCards, 0);
+    const totalCards = this.decks.reduce((sum, d) => sum + d.totalCards, 0);
+    const summaryEl = contentEl.createDiv("recall-deck-summary");
+    summaryEl.innerHTML = `
+			<span class="recall-deck-summary-item"><strong>${totalDue}</strong> due</span>
+			<span class="recall-deck-summary-item"><strong>${totalNew}</strong> new</span>
+			<span class="recall-deck-summary-item"><strong>${totalCards}</strong> total</span>
+		`;
+    const listEl = contentEl.createDiv("recall-deck-list");
+    for (const deck of this.decks) {
+      const deckEl = listEl.createDiv("recall-deck-item");
+      const infoEl = deckEl.createDiv("recall-deck-info");
+      infoEl.createDiv({ text: deck.name, cls: "recall-deck-name" });
+      const statsEl = infoEl.createDiv("recall-deck-stats");
+      if (deck.dueCards > 0) {
+        statsEl.createSpan({ text: `${deck.dueCards} due`, cls: "recall-deck-due" });
+      }
+      if (deck.newCards > 0) {
+        statsEl.createSpan({ text: `${deck.newCards} new`, cls: "recall-deck-new" });
+      }
+      statsEl.createSpan({ text: `${deck.totalCards} total`, cls: "recall-deck-total" });
+      const btnEl = deckEl.createEl("button", {
+        text: "Review",
+        cls: "recall-deck-btn"
+      });
+      if (deck.dueCards === 0 && deck.newCards === 0) {
+        btnEl.disabled = true;
+        btnEl.setText("Done");
+        btnEl.addClass("recall-deck-btn-done");
+      } else {
+        btnEl.onclick = () => {
+          this.close();
+          this.onSelectDeck(deck.tag);
+        };
+      }
+    }
+    if (totalDue > 0 || totalNew > 0) {
+      const allBtnContainer = contentEl.createDiv("recall-deck-all-btn-container");
+      const allBtn = allBtnContainer.createEl("button", {
+        text: `Review All (${totalDue + totalNew})`,
+        cls: "recall-deck-btn-all"
+      });
+      allBtn.onclick = () => {
+        this.close();
+        this.onSelectDeck("__all__");
+      };
+    }
+  }
+  onClose() {
+    this.contentEl.empty();
+  }
+};
+
+// src/SettingsTab.ts
+var import_obsidian5 = require("obsidian");
+var RecallSettingsTab = class extends import_obsidian5.PluginSettingTab {
   constructor(app, plugin) {
     super(app, plugin);
     this.plugin = plugin;
@@ -1077,26 +1192,36 @@ Tags: optional, tags</pre>
 			</ul>
 		`;
     containerEl.createEl("h3", { text: "Flashcard Sources" });
-    new import_obsidian4.Setting(containerEl).setName("Flashcard folders").setDesc("Only scan these folders for flashcards (comma-separated, empty = all folders)").addText(
+    new import_obsidian5.Setting(containerEl).setName("Flashcard folders").setDesc("Only scan these folders for flashcards (comma-separated, empty = all folders)").addText(
       (text) => text.setPlaceholder("Flashcards, Notes/Study").setValue(this.plugin.settings.flashcardFolders.join(", ")).onChange(async (value) => {
         this.plugin.settings.flashcardFolders = value.split(",").map((t) => t.trim()).filter((t) => t.length > 0);
         await this.plugin.saveSettings();
       })
     );
-    new import_obsidian4.Setting(containerEl).setName("New flashcard folder").setDesc('Default folder for new flashcards created with "Create Flashcard" command').addText(
+    new import_obsidian5.Setting(containerEl).setName("New flashcard folder").setDesc('Default folder for new flashcards created with "Create Flashcard" command').addText(
       (text) => text.setPlaceholder("Flashcards").setValue(this.plugin.settings.newFlashcardFolder).onChange(async (value) => {
         this.plugin.settings.newFlashcardFolder = value.trim() || "Flashcards";
         await this.plugin.saveSettings();
       })
     );
-    new import_obsidian4.Setting(containerEl).setName("Flashcard template file").setDesc("Path to template file. Use {{title}} and {{date}} as placeholders in the template.").addText(
+    new import_obsidian5.Setting(containerEl).setName("Flashcard template file").setDesc("Path to template file. Use {{title}} and {{date}} as placeholders in the template.").addText(
       (text) => text.setPlaceholder("Templates/Recall Flashcard Template.md").setValue(this.plugin.settings.newFlashcardTemplatePath).onChange(async (value) => {
         this.plugin.settings.newFlashcardTemplatePath = value.trim();
         await this.plugin.saveSettings();
       })
     );
+    containerEl.createEl("h3", { text: "Decks" });
+    new import_obsidian5.Setting(containerEl).setName("Deck tags").setDesc('Tags that define decks (comma-separated). Cards with these tags will be grouped into decks. Use "Browse Decks" command to review by deck.').addText(
+      (text) => text.setPlaceholder("#flashcard, #math, #german").setValue(this.plugin.settings.deckTags.join(", ")).onChange(async (value) => {
+        this.plugin.settings.deckTags = value.split(",").map((t) => t.trim()).filter((t) => t.length > 0).map((t) => t.startsWith("#") ? t : "#" + t);
+        if (this.plugin.settings.deckTags.length === 0) {
+          this.plugin.settings.deckTags = ["#flashcard"];
+        }
+        await this.plugin.saveSettings();
+      })
+    );
     containerEl.createEl("h3", { text: "Daily Limits" });
-    new import_obsidian4.Setting(containerEl).setName("New cards per day").setDesc("Maximum new cards to introduce per day").addText(
+    new import_obsidian5.Setting(containerEl).setName("New cards per day").setDesc("Maximum new cards to introduce per day").addText(
       (text) => text.setPlaceholder("20").setValue(String(this.plugin.settings.dailyNewCardsLimit)).onChange(async (value) => {
         const num = parseInt(value, 10);
         if (!isNaN(num) && num >= 0) {
@@ -1105,7 +1230,7 @@ Tags: optional, tags</pre>
         }
       })
     );
-    new import_obsidian4.Setting(containerEl).setName("Reviews per day").setDesc("Maximum reviews per day").addText(
+    new import_obsidian5.Setting(containerEl).setName("Reviews per day").setDesc("Maximum reviews per day").addText(
       (text) => text.setPlaceholder("200").setValue(String(this.plugin.settings.dailyReviewLimit)).onChange(async (value) => {
         const num = parseInt(value, 10);
         if (!isNaN(num) && num >= 0) {
@@ -1115,13 +1240,13 @@ Tags: optional, tags</pre>
       })
     );
     containerEl.createEl("h3", { text: "Display" });
-    new import_obsidian4.Setting(containerEl).setName("Show context").setDesc("Show source file and line number during review").addToggle(
+    new import_obsidian5.Setting(containerEl).setName("Show context").setDesc("Show source file and line number during review").addToggle(
       (toggle) => toggle.setValue(this.plugin.settings.showContext).onChange(async (value) => {
         this.plugin.settings.showContext = value;
         await this.plugin.saveSettings();
       })
     );
-    new import_obsidian4.Setting(containerEl).setName("Randomize order").setDesc("Shuffle the order of cards during review").addToggle(
+    new import_obsidian5.Setting(containerEl).setName("Randomize order").setDesc("Shuffle the order of cards during review").addToggle(
       (toggle) => toggle.setValue(this.plugin.settings.randomizeOrder).onChange(async (value) => {
         this.plugin.settings.randomizeOrder = value;
         await this.plugin.saveSettings();
@@ -1136,7 +1261,7 @@ Tags: optional, tags</pre>
     });
     const advancedContainer = advancedDetails.createDiv("recall-advanced-container");
     advancedContainer.createEl("h3", { text: "Card Syntax" });
-    new import_obsidian4.Setting(advancedContainer).setName("Legacy syntax support").setDesc("Enable ? separator for cards (in addition to YAML-style Q:/A:)").addToggle(
+    new import_obsidian5.Setting(advancedContainer).setName("Legacy syntax support").setDesc("Enable ? separator for cards (in addition to YAML-style Q:/A:)").addToggle(
       (toggle) => toggle.setValue(this.plugin.settings.useLegacySyntax).onChange(async (value) => {
         this.plugin.settings.useLegacySyntax = value;
         await this.plugin.saveSettings();
@@ -1147,7 +1272,7 @@ Tags: optional, tags</pre>
       text: "These settings control the spaced repetition algorithm. Only change if you understand the SM-2 algorithm.",
       cls: "setting-item-description recall-algorithm-warning"
     });
-    new import_obsidian4.Setting(advancedContainer).setName("Graduating interval").setDesc("Days until first review after learning phase").addText(
+    new import_obsidian5.Setting(advancedContainer).setName("Graduating interval").setDesc("Days until first review after learning phase").addText(
       (text) => text.setPlaceholder("1").setValue(String(this.plugin.settings.graduatingInterval)).onChange(async (value) => {
         const num = parseInt(value, 10);
         if (!isNaN(num) && num > 0) {
@@ -1156,7 +1281,7 @@ Tags: optional, tags</pre>
         }
       })
     );
-    new import_obsidian4.Setting(advancedContainer).setName("Easy interval").setDesc("Days until first review when pressing Easy").addText(
+    new import_obsidian5.Setting(advancedContainer).setName("Easy interval").setDesc("Days until first review when pressing Easy").addText(
       (text) => text.setPlaceholder("4").setValue(String(this.plugin.settings.easyInterval)).onChange(async (value) => {
         const num = parseInt(value, 10);
         if (!isNaN(num) && num > 0) {
@@ -1165,7 +1290,7 @@ Tags: optional, tags</pre>
         }
       })
     );
-    new import_obsidian4.Setting(advancedContainer).setName("Maximum interval").setDesc("Maximum days between reviews").addText(
+    new import_obsidian5.Setting(advancedContainer).setName("Maximum interval").setDesc("Maximum days between reviews").addText(
       (text) => text.setPlaceholder("365").setValue(String(this.plugin.settings.maximumInterval)).onChange(async (value) => {
         const num = parseInt(value, 10);
         if (!isNaN(num) && num > 0) {
@@ -1174,7 +1299,7 @@ Tags: optional, tags</pre>
         }
       })
     );
-    new import_obsidian4.Setting(advancedContainer).setName("Starting ease").setDesc("Initial ease factor for new cards (min: 1.3)").addText(
+    new import_obsidian5.Setting(advancedContainer).setName("Starting ease").setDesc("Initial ease factor for new cards (min: 1.3)").addText(
       (text) => text.setPlaceholder("2.5").setValue(String(this.plugin.settings.startingEase)).onChange(async (value) => {
         const num = parseFloat(value);
         if (!isNaN(num) && num >= 1.3) {
@@ -1183,7 +1308,7 @@ Tags: optional, tags</pre>
         }
       })
     );
-    new import_obsidian4.Setting(advancedContainer).setName("Easy bonus").setDesc("Multiplier applied when pressing Easy").addText(
+    new import_obsidian5.Setting(advancedContainer).setName("Easy bonus").setDesc("Multiplier applied when pressing Easy").addText(
       (text) => text.setPlaceholder("1.3").setValue(String(this.plugin.settings.easyBonus)).onChange(async (value) => {
         const num = parseFloat(value);
         if (!isNaN(num) && num >= 1) {
@@ -1192,7 +1317,7 @@ Tags: optional, tags</pre>
         }
       })
     );
-    new import_obsidian4.Setting(advancedContainer).setName("Interval modifier").setDesc("Global multiplier for all intervals").addText(
+    new import_obsidian5.Setting(advancedContainer).setName("Interval modifier").setDesc("Global multiplier for all intervals").addText(
       (text) => text.setPlaceholder("1.0").setValue(String(this.plugin.settings.intervalModifier)).onChange(async (value) => {
         const num = parseFloat(value);
         if (!isNaN(num) && num > 0) {
@@ -1202,7 +1327,7 @@ Tags: optional, tags</pre>
       })
     );
     advancedContainer.createEl("h3", { text: "Keyboard Shortcuts" });
-    new import_obsidian4.Setting(advancedContainer).setName("Show hint hotkey").setDesc("Key to reveal hint during review").addText(
+    new import_obsidian5.Setting(advancedContainer).setName("Show hint hotkey").setDesc("Key to reveal hint during review").addText(
       (text) => text.setPlaceholder("h").setValue(this.plugin.settings.showHintHotkey).onChange(async (value) => {
         if (value.length === 1) {
           this.plugin.settings.showHintHotkey = value.toLowerCase();
@@ -1210,7 +1335,7 @@ Tags: optional, tags</pre>
         }
       })
     );
-    new import_obsidian4.Setting(advancedContainer).setName("Show memo hotkey").setDesc("Key to reveal memo during review").addText(
+    new import_obsidian5.Setting(advancedContainer).setName("Show memo hotkey").setDesc("Key to reveal memo during review").addText(
       (text) => text.setPlaceholder("m").setValue(this.plugin.settings.showMemoHotkey).onChange(async (value) => {
         if (value.length === 1) {
           this.plugin.settings.showMemoHotkey = value.toLowerCase();
@@ -1219,7 +1344,7 @@ Tags: optional, tags</pre>
       })
     );
     advancedContainer.createEl("h3", { text: "Danger Zone" });
-    new import_obsidian4.Setting(advancedContainer).setName("Reset to defaults").setDesc("Reset all settings to their default values").addButton(
+    new import_obsidian5.Setting(advancedContainer).setName("Reset to defaults").setDesc("Reset all settings to their default values").addButton(
       (button) => button.setButtonText("Reset").setWarning().onClick(async () => {
         this.plugin.settings = { ...DEFAULT_SETTINGS };
         await this.plugin.saveSettings();
@@ -1230,7 +1355,7 @@ Tags: optional, tags</pre>
 };
 
 // src/main.ts
-var RecallPlugin = class extends import_obsidian5.Plugin {
+var RecallPlugin = class extends import_obsidian6.Plugin {
   async onload() {
     this.dataManager = new DataManager(this);
     await this.dataManager.load();
@@ -1260,6 +1385,11 @@ var RecallPlugin = class extends import_obsidian5.Plugin {
       name: "Show Statistics",
       callback: () => this.showStats()
     });
+    this.addCommand({
+      id: "browse-decks",
+      name: "Browse Decks",
+      callback: () => this.browseDecks()
+    });
     await this.dataManager.resetDailyStats();
     console.log("Recall plugin loaded");
   }
@@ -1275,7 +1405,7 @@ var RecallPlugin = class extends import_obsidian5.Plugin {
   async startReview() {
     const cards = await this.collectDueCards();
     if (cards.length === 0) {
-      new import_obsidian5.Notice("No cards due for review!");
+      new import_obsidian6.Notice("No cards due for review!");
       return;
     }
     if (this.settings.randomizeOrder) {
@@ -1288,7 +1418,7 @@ var RecallPlugin = class extends import_obsidian5.Plugin {
       this.dataManager,
       this.settings,
       () => {
-        new import_obsidian5.Notice(`Review session complete!`);
+        new import_obsidian6.Notice(`Review session complete!`);
       }
     ).open();
   }
@@ -1298,12 +1428,12 @@ var RecallPlugin = class extends import_obsidian5.Plugin {
   async reviewCurrentFile() {
     const activeFile = this.app.workspace.getActiveFile();
     if (!activeFile) {
-      new import_obsidian5.Notice("No active file");
+      new import_obsidian6.Notice("No active file");
       return;
     }
     const cards = await this.parseFile(activeFile);
     if (cards.length === 0) {
-      new import_obsidian5.Notice("No flashcards found in this file");
+      new import_obsidian6.Notice("No flashcards found in this file");
       return;
     }
     const dueCards = cards.filter((card) => {
@@ -1314,7 +1444,7 @@ var RecallPlugin = class extends import_obsidian5.Plugin {
       return schedule.dueDate <= today;
     });
     if (dueCards.length === 0) {
-      new import_obsidian5.Notice("No cards due in this file");
+      new import_obsidian6.Notice("No cards due in this file");
       return;
     }
     if (this.settings.randomizeOrder) {
@@ -1326,7 +1456,7 @@ var RecallPlugin = class extends import_obsidian5.Plugin {
       this.dataManager,
       this.settings,
       () => {
-        new import_obsidian5.Notice(`Review complete!`);
+        new import_obsidian6.Notice(`Review complete!`);
       }
     ).open();
   }
@@ -1335,6 +1465,93 @@ var RecallPlugin = class extends import_obsidian5.Plugin {
    */
   showStats() {
     new StatsModal(this.app, this.dataManager).open();
+  }
+  /**
+   * Browse decks and start review by deck
+   */
+  async browseDecks() {
+    const allCards = await this.collectAllCards();
+    const decks = this.buildDecks(allCards);
+    new DeckOverviewModal(this.app, decks, async (deckTag) => {
+      if (deckTag === "__all__") {
+        await this.startReview();
+      } else {
+        await this.startDeckReview(deckTag, allCards);
+      }
+    }).open();
+  }
+  /**
+   * Start review for a specific deck
+   */
+  async startDeckReview(deckTag, allCards) {
+    const today = (/* @__PURE__ */ new Date()).toISOString().split("T")[0];
+    const deckCards = allCards.filter(
+      (card) => card.tags.some((tag) => tag.toLowerCase() === deckTag.toLowerCase().replace("#", ""))
+    );
+    const dueCards = deckCards.filter((card) => {
+      const schedule = this.dataManager.getSchedule(card.id);
+      if (!schedule)
+        return true;
+      return schedule.dueDate <= today;
+    });
+    if (dueCards.length === 0) {
+      new import_obsidian6.Notice("No cards due in this deck!");
+      return;
+    }
+    if (this.settings.randomizeOrder) {
+      this.shuffleArray(dueCards);
+    }
+    const limitedCards = this.applyLimits(dueCards);
+    new ReviewModal(
+      this.app,
+      limitedCards,
+      this.dataManager,
+      this.settings,
+      () => {
+        new import_obsidian6.Notice(`Deck review complete!`);
+      }
+    ).open();
+  }
+  /**
+   * Build deck information from cards
+   */
+  buildDecks(allCards) {
+    const today = (/* @__PURE__ */ new Date()).toISOString().split("T")[0];
+    const decks = [];
+    for (const deckTag of this.settings.deckTags) {
+      const tagWithoutHash = deckTag.replace("#", "").toLowerCase();
+      const deckCards = allCards.filter(
+        (card) => card.tags.some((tag) => tag.toLowerCase() === tagWithoutHash)
+      );
+      const newCards = deckCards.filter((card) => this.dataManager.isNewCard(card.id));
+      const dueCards = deckCards.filter((card) => {
+        const schedule = this.dataManager.getSchedule(card.id);
+        if (!schedule)
+          return true;
+        return schedule.dueDate <= today;
+      });
+      decks.push({
+        tag: deckTag,
+        name: tagWithoutHash.charAt(0).toUpperCase() + tagWithoutHash.slice(1),
+        totalCards: deckCards.length,
+        dueCards: dueCards.length,
+        newCards: newCards.length
+      });
+    }
+    decks.sort((a, b) => b.dueCards - a.dueCards);
+    return decks;
+  }
+  /**
+   * Collect all cards (not filtered by due date)
+   */
+  async collectAllCards() {
+    const allCards = [];
+    const files = this.app.vault.getMarkdownFiles();
+    for (const file of files) {
+      const cards = await this.parseFile(file);
+      allCards.push(...cards);
+    }
+    return allCards;
   }
   /**
    * Create a new flashcard file
@@ -1349,14 +1566,14 @@ var RecallPlugin = class extends import_obsidian5.Plugin {
         await this.app.vault.createFolder(folderPath);
         folder = this.app.vault.getAbstractFileByPath(folderPath);
       }
-      if (!(folder instanceof import_obsidian5.TFolder)) {
-        new import_obsidian5.Notice(`Could not create folder: ${folderPath}`);
+      if (!(folder instanceof import_obsidian6.TFolder)) {
+        new import_obsidian6.Notice(`Could not create folder: ${folderPath}`);
         return;
       }
       const templatePath = this.settings.newFlashcardTemplatePath;
       const templateFile = this.app.vault.getAbstractFileByPath(templatePath);
       let templateContent = "";
-      if (templateFile instanceof import_obsidian5.TFile) {
+      if (templateFile instanceof import_obsidian6.TFile) {
         templateContent = await this.app.vault.read(templateFile);
       } else {
         templateContent = `# {{title}}
@@ -1366,7 +1583,7 @@ A:
 Hint:
 Memo:
 Tags:`;
-        new import_obsidian5.Notice(`Template not found: ${templatePath}, using default`);
+        new import_obsidian6.Notice(`Template not found: ${templatePath}, using default`);
       }
       const today = (/* @__PURE__ */ new Date()).toISOString().split("T")[0];
       const content = templateContent.replace(/\{\{title\}\}/g, title).replace(/\{\{date\}\}/g, today);
@@ -1381,7 +1598,7 @@ Tags:`;
       const file = await this.app.vault.create(filePath, content);
       const leaf = this.app.workspace.getLeaf(false);
       await leaf.openFile(file);
-      const view = this.app.workspace.getActiveViewOfType(import_obsidian5.MarkdownView);
+      const view = this.app.workspace.getActiveViewOfType(import_obsidian6.MarkdownView);
       if (view) {
         const editor = view.editor;
         const lines = content.split("\n");
@@ -1398,7 +1615,7 @@ Tags:`;
           editor.setCursor({ line: lines.length - 1, ch: 0 });
         }
       }
-      new import_obsidian5.Notice(`Created flashcard: ${title}`);
+      new import_obsidian6.Notice(`Created flashcard: ${title}`);
     });
     modal.open();
   }
@@ -1475,7 +1692,7 @@ Tags:`;
     }
   }
 };
-var FlashcardTitleModal = class extends import_obsidian5.Modal {
+var FlashcardTitleModal = class extends import_obsidian6.Modal {
   constructor(app, onSubmit) {
     super(app);
     this.onSubmit = onSubmit;
@@ -1485,7 +1702,7 @@ var FlashcardTitleModal = class extends import_obsidian5.Modal {
     contentEl.createEl("h3", { text: "Create Flashcard" });
     const inputContainer = contentEl.createDiv("recall-input-container");
     inputContainer.createEl("label", { text: "Title:" });
-    this.inputEl = new import_obsidian5.TextComponent(inputContainer);
+    this.inputEl = new import_obsidian6.TextComponent(inputContainer);
     this.inputEl.inputEl.style.width = "100%";
     this.inputEl.inputEl.style.marginTop = "8px";
     this.inputEl.inputEl.placeholder = "Enter flashcard title...";

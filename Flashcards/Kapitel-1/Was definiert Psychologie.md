@@ -1,13 +1,13 @@
 ---
 tags:
-  - flashcards
-  - psychologie-kapitel-1
+  - flashcard
+  - was-ist-psychologie
   - entrance-exam
 created: 2026-01-16
 categories:
   - "[[Psychologie-Flashcard]]"
   - "[[Psychologie-Entrance-Exam]]"
-priority: "3"
+priority: "8"
 ---
 
 # Was ist Psychologie?

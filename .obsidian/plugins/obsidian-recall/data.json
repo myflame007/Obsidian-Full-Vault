@@ -1,12 +1,45 @@
 {
-  "schedules": {},
+  "schedules": {
+    "card-523384e6": {
+      "cardId": "card-523384e6",
+      "interval": 4,
+      "ease": 2.65,
+      "dueDate": "2026-01-22",
+      "repetitions": 1,
+      "lastReview": "2026-01-18"
+    },
+    "card-575139a8": {
+      "cardId": "card-575139a8",
+      "interval": 4,
+      "ease": 2.65,
+      "dueDate": "2026-01-22",
+      "repetitions": 1,
+      "lastReview": "2026-01-18"
+    },
+    "card-2b2ac194": {
+      "cardId": "card-2b2ac194",
+      "interval": 1,
+      "ease": 2.5,
+      "dueDate": "2026-01-19",
+      "repetitions": 1,
+      "lastReview": "2026-01-18"
+    },
+    "card-5142151f": {
+      "cardId": "card-5142151f",
+      "interval": 4,
+      "ease": 2.65,
+      "dueDate": "2026-01-22",
+      "repetitions": 1,
+      "lastReview": "2026-01-18"
+    }
+  },
   "stats": {
-    "totalCards": 13,
+    "totalCards": 12,
     "dueToday": 0,
     "newToday": 0,
-    "reviewedToday": 0,
+    "reviewedToday": 4,
     "streak": 1,
-    "lastStudyDate": "2026-01-16"
+    "lastStudyDate": "2026-01-18"
   },
   "settings": {
     "useLegacySyntax": false,
@@ -26,7 +59,13 @@
     "dailyReviewLimit": 200,
     "showContext": true,
     "randomizeOrder": true,
-    "flashcardFolders": [],
+    "flashcardFolders": [
+      "Flashcards"
+    ],
+    "deckTags": [
+      "#flashcard",
+      "#entrance-exam"
+    ],
     "newFlashcardFolder": "Flashcards",
     "newFlashcardTemplatePath": "Templates/Recall Flashcard Template.md",
     "showHintHotkey": "h",

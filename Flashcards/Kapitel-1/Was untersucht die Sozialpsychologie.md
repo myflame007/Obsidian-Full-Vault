@@ -1,20 +1,20 @@
 ---
 tags:
-  - flashcards
+  - flashcard
   - entrance-exam
-  - psychologie-kapitel-1
+  - was-ist-psychologie
 created: 2026-01-17
 categories:
   - "[[Psychologie-Flashcard]]"
   - "[[Psychologie-Entrance-Exam]]"
-priority: "3"
+priority: "8"
 ---
 
 Q: Was untersucht die Sozialpsychologie?
 
 A: Unterschiede im Erleben und Verhalten zwischen Personen und innerhalb einer Person sowie Einflüsse von Genen, Umwelt und Kultur
 
-Hint: Unterschiede & Persönlichkeit
+Hint: Was macht dich aus, ich nehm was wahr, ich reagier drauf 
 
-Memo: Unterschiedliche Figuren auf dem Bauernhof mit eigenen Eigenschaften
+Memo: Wie wird . . . vom sozialen Gefüge / von anderen beeinflusst?
 

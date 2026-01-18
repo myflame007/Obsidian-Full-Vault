@@ -20,5 +20,7 @@
   "templater-obsidian",
   "command-overview",
   "obsidian-recall",
-  "obsidian-swipe-navigation"
+  "obsidian-swipe-navigation",
+  "tag-wrangler",
+  "inline-spoilers"
 ]

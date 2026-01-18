@@ -11,9 +11,6 @@ priority: "8"
 ---
 
 Q: Was untersucht die Biologische Psychologie?
-
 A: Physiologische Abläufe im Körper (besonders in Gehirn und Nervensystem)
-
-Hint: Beispiel allgemeine Fragestellung: Wie ist ... im Körper bzw Gehirn verankert?
-Beispielfrage zur Wahrnehmung: Wie funktionieren unsere Augen und wie werden visuelle Informationen im Gehirn verarbeitet?
-
+Hint: Körper und Gehirn
+Memo: Wie ist etwas im Körper bzw. Gehirn verankert?

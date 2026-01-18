@@ -11,10 +11,6 @@ priority: "8"
 ---
 
 Q: Was untersucht die Sozialpsychologie?
-
-A: Unterschiede im Erleben und Verhalten zwischen Personen und innerhalb einer Person sowie Einflüsse von Genen, Umwelt und Kultur
-
-Hint: Was macht dich aus, ich nehm was wahr, ich reagier drauf 
-
-Memo: Wie wird . . . vom sozialen Gefüge / von anderen beeinflusst?
-
+A: Den Einfluss anderer Menschen und sozialer Situationen auf Erleben und Verhalten
+Hint: Soziales Gefüge
+Memo: Wie wird Verhalten vom sozialen Umfeld beeinflusst?

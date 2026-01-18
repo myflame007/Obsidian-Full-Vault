@@ -12,10 +12,5 @@ priority: "8"
 
 Q: Was untersucht die Differentielle und Persönlichkeitspsychologie?
 A: Unterschiede im Erleben und Verhalten zwischen Personen und innerhalb einer Person; Einfluss von Genen, Umwelt und kulturellem Kontext auf die Persönlichkeit
-
 Hint: Unterschiede + Einflussfaktoren
-
-Memo: 
-
-
-
+Memo: Was macht dich einzigartig? Gene, Umwelt und Kultur formen dich

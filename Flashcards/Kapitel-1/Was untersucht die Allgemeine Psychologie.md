@@ -9,7 +9,8 @@ categories:
   - "[[Psychologie-Entrance-Exam]]"
 priority: "8"
 ---
+
 Q: Was untersucht die Allgemeine Psychologie?
 A: Allgemeingültige psychische Prozesse wie Wahrnehmung, Denken, Lernen, Gedächtnis, Sprache, Emotion und Motivation
-Hint: 👀(nicht sehen), 🧠 und 💾, 📚, 🗣️, ❤️, ⚡
+Hint: Allgemeingültige Prozesse
 Memo: Wie funktioniert unsere visuelle Wahrnehmung?

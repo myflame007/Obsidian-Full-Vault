@@ -1,18 +1,16 @@
 ---
 tags:
   - flashcard
-  - was-ist-psychologie
   - entrance-exam
+  - was-ist-psychologie
 created: 2026-01-16
 categories:
   - "[[Psychologie-Flashcard]]"
   - "[[Psychologie-Entrance-Exam]]"
-priority: "8"
+priority: "9"
 ---
-
-
 
 Q: Welche wissenschaftlichen Bereiche vereint die Psychologie?
 A: Geisteswissenschaften, Sozialwissenschaften, Naturwissenschaften
 Hint: innen – zwischen – körperlich
-Memo: Dreieck 🧠 👥 🪴
+Memo: Dreieck aus Geist, Gesellschaft und Natur

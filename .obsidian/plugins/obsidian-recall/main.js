@@ -632,20 +632,18 @@ var EditCardModal = class extends import_obsidian.Modal {
         const viewport = window.visualViewport;
         if (!viewport)
           return;
-        const keyboardHeight = window.innerHeight - viewport.height;
-        if (keyboardHeight > 50) {
-          this.modalEl.style.bottom = `${keyboardHeight}px`;
-          this.modalEl.style.maxHeight = `${viewport.height}px`;
-          setTimeout(() => {
-            this.textArea.scrollIntoView({ block: "center", behavior: "smooth" });
-          }, 100);
-        } else {
-          this.modalEl.style.bottom = "0";
-          this.modalEl.style.maxHeight = "";
-        }
+        const availableHeight = viewport.height;
+        this.modalEl.style.position = "fixed";
+        this.modalEl.style.top = `${viewport.offsetTop + 10}px`;
+        this.modalEl.style.bottom = "auto";
+        this.modalEl.style.maxHeight = `${availableHeight - 20}px`;
+        this.modalEl.style.overflow = "auto";
+        this.contentEl.style.maxHeight = `${availableHeight - 80}px`;
+        this.contentEl.style.overflowY = "auto";
       };
       window.visualViewport.addEventListener("resize", this.viewportHandler);
       window.visualViewport.addEventListener("scroll", this.viewportHandler);
+      this.viewportHandler();
     }
   }
   async save() {
@@ -682,8 +680,13 @@ var EditCardModal = class extends import_obsidian.Modal {
       window.visualViewport.removeEventListener("scroll", this.viewportHandler);
       this.viewportHandler = null;
     }
+    this.modalEl.style.position = "";
+    this.modalEl.style.top = "";
     this.modalEl.style.bottom = "";
     this.modalEl.style.maxHeight = "";
+    this.modalEl.style.overflow = "";
+    this.contentEl.style.maxHeight = "";
+    this.contentEl.style.overflowY = "";
     this.contentEl.empty();
   }
 };

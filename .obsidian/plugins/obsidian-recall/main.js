@@ -578,6 +578,7 @@ var EditCardModal = class extends import_obsidian.Modal {
   constructor(app, card, cardText, onSave) {
     super(app);
     this.resolved = false;
+    this.viewportHandler = null;
     this.card = card;
     this.cardText = cardText;
     this.onSave = onSave;
@@ -626,6 +627,26 @@ var EditCardModal = class extends import_obsidian.Modal {
       this.textArea.selectionStart = this.textArea.value.length;
       this.textArea.selectionEnd = this.textArea.value.length;
     }, 50);
+    if (import_obsidian.Platform.isMobile && window.visualViewport) {
+      this.viewportHandler = () => {
+        const viewport = window.visualViewport;
+        if (!viewport)
+          return;
+        const keyboardHeight = window.innerHeight - viewport.height;
+        if (keyboardHeight > 50) {
+          this.modalEl.style.bottom = `${keyboardHeight}px`;
+          this.modalEl.style.maxHeight = `${viewport.height}px`;
+          setTimeout(() => {
+            this.textArea.scrollIntoView({ block: "center", behavior: "smooth" });
+          }, 100);
+        } else {
+          this.modalEl.style.bottom = "0";
+          this.modalEl.style.maxHeight = "";
+        }
+      };
+      window.visualViewport.addEventListener("resize", this.viewportHandler);
+      window.visualViewport.addEventListener("scroll", this.viewportHandler);
+    }
   }
   async save() {
     if (this.resolved)
@@ -656,6 +677,13 @@ var EditCardModal = class extends import_obsidian.Modal {
     }
   }
   onClose() {
+    if (this.viewportHandler && window.visualViewport) {
+      window.visualViewport.removeEventListener("resize", this.viewportHandler);
+      window.visualViewport.removeEventListener("scroll", this.viewportHandler);
+      this.viewportHandler = null;
+    }
+    this.modalEl.style.bottom = "";
+    this.modalEl.style.maxHeight = "";
     this.contentEl.empty();
   }
 };

@@ -1265,3 +1265,55 @@
 		font-size: 12px;
 	}
 }
+
+/* ===========================================
+   Mobile Keyboard Fix for Edit Modal
+   =========================================== */
+
+/* Use dynamic viewport units for better keyboard handling */
+@supports (height: 100dvh) {
+	@media (max-width: 500px) {
+		.recall-edit-modal {
+			height: auto;
+			max-height: 100dvh;
+			min-height: 0;
+		}
+
+		.recall-edit-modal .modal-content {
+			max-height: calc(100dvh - 60px);
+			overflow-y: auto;
+			-webkit-overflow-scrolling: touch;
+		}
+	}
+}
+
+/* Fallback and iOS keyboard inset support */
+@media (max-width: 500px) {
+	.recall-edit-modal {
+		position: fixed;
+		bottom: 0;
+		bottom: env(keyboard-inset-bottom, 0);
+		top: auto;
+		transform: none;
+		transition: bottom 0.2s ease;
+	}
+
+	.recall-edit-modal .modal-content {
+		display: flex;
+		flex-direction: column;
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	.recall-edit-textarea {
+		flex-shrink: 1;
+		min-height: 100px;
+		max-height: 40vh;
+		max-height: 40dvh;
+	}
+
+	.recall-edit-buttons {
+		flex-shrink: 0;
+		padding-bottom: env(safe-area-inset-bottom, 8px);
+	}
+}

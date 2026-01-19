@@ -1,0 +1,40 @@
+filters:
+  and:
+    - categories.contains(link("Music-Production"))
+    - '!file.name.contains("Template")'
+properties:
+  file.name:
+    displayName: Name
+  created:
+    displayName: Created
+  file.ctime:
+    displayName: File Created
+  file.mtime:
+    displayName: Modified
+  tags:
+    displayName: Tags
+views:
+  - type: table
+    name: All
+    order:
+      - file.name
+      - created
+      - file.mtime
+      - tags
+      - lesson
+    sort:
+      - property: file.mtime
+        direction: DESC
+    columnSize:
+      note.created: 143
+      file.mtime: 200
+      note.tags: 327
+  - type: cards
+    name: Cards
+    order:
+      - file.name
+      - created
+    sort:
+      - property: file.mtime
+        direction: DESC
+    coverProperty: cover

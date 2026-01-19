@@ -6,21 +6,12 @@
 .DS_Store
 Thumbs.db
 
-# === Private Ordner ignorieren (außer .gitkeep) ===
-Attachments/*
-!Attachments/.gitkeep
-Categories/*
-!Categories/.gitkeep
-Clippings/*
-!Clippings/.gitkeep
+# === Do not sync Notes and Journal ===
 Daily/*
 !Daily/.gitkeep
 Notes/*
 !Notes/.gitkeep
-References/*
-!References/.gitkeep
-Templates/*
-!Templates/.gitkeep
+
 
 # === Spezifische private Dateien ===
 

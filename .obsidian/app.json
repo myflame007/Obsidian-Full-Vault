@@ -3,5 +3,6 @@
   "alwaysUpdateLinks": true,
   "promptDelete": false,
   "newFileLocation": "folder",
-  "newFileFolderPath": "Notes"
+  "newFileFolderPath": "Notes",
+  "showIndentGuide": false
 }

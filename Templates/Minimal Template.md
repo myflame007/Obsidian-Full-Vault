@@ -1,5 +1,6 @@
 ---
-categories: "[[Apps]]"
+categories:
+  - Unsorted
 tags: ""
-created:
+created: "{{date}}"
 ---

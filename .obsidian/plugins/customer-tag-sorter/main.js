@@ -28,9 +28,29 @@ __export(main_exports, {
 });
 module.exports = __toCommonJS(main_exports);
 var import_obsidian = require("obsidian");
+var INVALID_FOLDER_CHARS = /[\\/:*?"<>|]/g;
+function sanitizeFolderName(name) {
+  if (!name || typeof name !== "string") {
+    return null;
+  }
+  let sanitized = name.trim();
+  if (sanitized.includes("..") || sanitized.startsWith("/") || sanitized.startsWith("\\")) {
+    return null;
+  }
+  sanitized = sanitized.replace(INVALID_FOLDER_CHARS, "");
+  if (!sanitized || sanitized.length === 0) {
+    return null;
+  }
+  if (sanitized.length > 255) {
+    sanitized = sanitized.substring(0, 255);
+  }
+  return sanitized;
+}
 var DEFAULT_SETTINGS = {
   sourceFolder: "Notes",
-  runOnStartup: true
+  targetFolder: "Customer",
+  runOnStartup: true,
+  propertyName: "Customer"
 };
 var CustomerTagSorterPlugin = class extends import_obsidian.Plugin {
   constructor() {
@@ -58,7 +78,20 @@ var CustomerTagSorterPlugin = class extends import_obsidian.Plugin {
       new import_obsidian.Notice(`Source folder "${this.settings.sourceFolder}" not found!`);
       return;
     }
+    const targetParent = this.settings.targetFolder;
+    if (targetParent && !vault.getAbstractFileByPath(targetParent)) {
+      try {
+        await vault.createFolder(targetParent);
+        await new Promise((resolve) => setTimeout(resolve, 50));
+      } catch (error) {
+        console.error(`[CustomerTag] Failed to create target folder: ${targetParent}`, error);
+        new import_obsidian.Notice(`Failed to create target folder "${targetParent}"`);
+        return;
+      }
+    }
     let movedCount = 0;
+    let skippedCount = 0;
+    let errorCount = 0;
     const filesToProcess = [];
     for (const child of sourceFolder.children) {
       if (child instanceof import_obsidian.TFile && child.extension === "md") {
@@ -66,34 +99,68 @@ var CustomerTagSorterPlugin = class extends import_obsidian.Plugin {
       }
     }
     for (const file of filesToProcess) {
-      const customer = this.getCustomerFromFrontmatter(file);
-      if (customer) {
-        const targetFolderPath = customer;
-        let targetFolder = vault.getAbstractFileByPath(targetFolderPath);
-        if (!targetFolder) {
-          await vault.createFolder(targetFolderPath);
-          targetFolder = vault.getAbstractFileByPath(targetFolderPath);
+      const rawCustomer = this.getCustomerFromFrontmatter(file);
+      if (rawCustomer) {
+        const customer = sanitizeFolderName(rawCustomer);
+        if (!customer) {
+          console.warn(`[CustomerTag] Invalid customer name in ${file.path}: "${rawCustomer}"`);
+          skippedCount++;
+          continue;
         }
-        if (targetFolder instanceof import_obsidian.TFolder) {
+        const targetFolderPath = targetParent ? `${targetParent}/${customer}` : customer;
+        try {
+          let targetFolder = vault.getAbstractFileByPath(targetFolderPath);
+          if (!targetFolder) {
+            await vault.createFolder(targetFolderPath);
+            await new Promise((resolve) => setTimeout(resolve, 50));
+            targetFolder = vault.getAbstractFileByPath(targetFolderPath);
+          }
+          if (!targetFolder || !(targetFolder instanceof import_obsidian.TFolder)) {
+            console.error(`[CustomerTag] Failed to create/access folder: ${targetFolderPath}`);
+            errorCount++;
+            continue;
+          }
           const newPath = `${targetFolderPath}/${file.name}`;
           const existingFile = vault.getAbstractFileByPath(newPath);
-          if (!existingFile) {
-            await vault.rename(file, newPath);
-            movedCount++;
+          if (existingFile) {
+            skippedCount++;
+            continue;
           }
+          await vault.rename(file, newPath);
+          movedCount++;
+        } catch (error) {
+          console.error(`[CustomerTag] Error moving ${file.path}:`, error);
+          errorCount++;
         }
       }
     }
-    if (movedCount > 0) {
-      new import_obsidian.Notice(`Moved ${movedCount} file(s) to customer folders.`);
+    const messages = [];
+    if (movedCount > 0)
+      messages.push(`Moved ${movedCount} file(s)`);
+    if (skippedCount > 0)
+      messages.push(`Skipped ${skippedCount}`);
+    if (errorCount > 0)
+      messages.push(`Errors: ${errorCount}`);
+    if (messages.length > 0) {
+      new import_obsidian.Notice(messages.join(", "));
     } else {
       new import_obsidian.Notice("No files to move.");
     }
   }
   getCustomerFromFrontmatter(file) {
     const cache = this.app.metadataCache.getFileCache(file);
-    if ((cache == null ? void 0 : cache.frontmatter) && cache.frontmatter["Customer"]) {
-      return cache.frontmatter["Customer"];
+    const propertyName = this.settings.propertyName;
+    if ((cache == null ? void 0 : cache.frontmatter) && cache.frontmatter[propertyName]) {
+      const value = cache.frontmatter[propertyName];
+      if (typeof value === "string") {
+        return value;
+      }
+      if (Array.isArray(value) && value.length > 0) {
+        const firstValue = value[0];
+        if (typeof firstValue === "string") {
+          return firstValue;
+        }
+      }
     }
     return null;
   }
@@ -113,9 +180,21 @@ var CustomerTagSorterSettingTab = class extends import_obsidian.PluginSettingTab
     const { containerEl } = this;
     containerEl.empty();
     containerEl.createEl("h2", { text: "Customer Tag Sorter Settings" });
-    new import_obsidian.Setting(containerEl).setName("Source Folder").setDesc("The folder to scan for files with Customer tags").addText(
+    new import_obsidian.Setting(containerEl).setName("Source Folder").setDesc("The folder to scan for files with tags").addText(
       (text) => text.setPlaceholder("Notes").setValue(this.plugin.settings.sourceFolder).onChange(async (value) => {
         this.plugin.settings.sourceFolder = value;
+        await this.plugin.saveSettings();
+      })
+    );
+    new import_obsidian.Setting(containerEl).setName("Target Folder").setDesc("Parent folder where subfolders will be created (e.g. 'Customer' creates Customer/ClientName)").addText(
+      (text) => text.setPlaceholder("Customer").setValue(this.plugin.settings.targetFolder).onChange(async (value) => {
+        this.plugin.settings.targetFolder = value;
+        await this.plugin.saveSettings();
+      })
+    );
+    new import_obsidian.Setting(containerEl).setName("Property Name").setDesc("The frontmatter property to sort by (e.g. Customer, Project, Category)").addText(
+      (text) => text.setPlaceholder("Customer").setValue(this.plugin.settings.propertyName).onChange(async (value) => {
+        this.plugin.settings.propertyName = value || "Customer";
         await this.plugin.saveSettings();
       })
     );

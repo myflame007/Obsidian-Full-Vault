@@ -1,9 +1,12 @@
 ---
+created:
+  "{ date }":
 categories:
   - "[[People]]"
+tags:
+Customer:
+Position:
 birthday:
-org: []
-created: {{date}}
 ---
 ## Meetings
 

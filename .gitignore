@@ -14,7 +14,9 @@ Notes/*
 
 
 # === Spezifische private Dateien ===
-
+Customer/
+Attachments/*
+!Attachments/Public
 
 # === Plugin-spezifische Daten (nicht synchronisieren) ===
 .obsidian/plugins/recent-files-obsidian/

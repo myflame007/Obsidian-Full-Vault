@@ -2,10 +2,10 @@
   "version": 3,
   "homepages": {
     "Main Homepage": {
-      "value": "Home",
+      "value": "Task Management",
       "kind": "File",
-      "openOnStartup": false,
-      "openMode": "Replace all open notes",
+      "openOnStartup": true,
+      "openMode": "Keep open notes",
       "manualOpenMode": "Keep open notes",
       "view": "Default view",
       "revertView": true,

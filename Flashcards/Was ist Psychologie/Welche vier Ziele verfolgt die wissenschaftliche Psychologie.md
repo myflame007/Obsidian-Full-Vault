@@ -6,7 +6,7 @@ tags:
 created: 2026-01-18
 categories:
   - "[[Psychologie-Entrance-Exam-Flashcard]]"
-priority: "9"
+priority: 9
 ---
 
 Q: Welche vier Ziele verfolgt die wissenschaftliche Psychologie?

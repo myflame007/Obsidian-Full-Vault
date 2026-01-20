@@ -6,7 +6,7 @@ tags:
 created: 2026-01-18
 categories:
   - "[[Psychologie-Entrance-Exam-Flashcard]]"
-priority: "8"
+priority: 8
 ---
 
 Q: Was bedeutet Objektivität beim Beschreiben von Verhalten?

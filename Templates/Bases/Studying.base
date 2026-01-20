@@ -1,6 +1,6 @@
 filters:
   and:
-    - categories.contains(link("Psychologie-Entrance-Exam-Flashcard"))
+    - categories.contains(link("Studying"))
     - '!file.name.contains("Template")'
 properties:
   file.name:
@@ -18,25 +18,18 @@ views:
     name: All
     order:
       - file.name
-      - priority
+      - created
+      - file.mtime
       - tags
     sort:
-      - property: file.name
-        direction: ASC
-      - property: priority
-        direction: DESC
       - property: file.mtime
         direction: DESC
-    columnSize:
-      file.name: 637
-      note.priority: 94
-      note.tags: 446
   - type: cards
     name: Cards
+    coverProperty: cover
     order:
       - file.name
       - created
     sort:
       - property: file.mtime
         direction: DESC
-    coverProperty: cover

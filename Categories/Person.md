@@ -1,0 +1,6 @@
+---
+tags:
+  - categories
+---
+
+![[Person.base]]

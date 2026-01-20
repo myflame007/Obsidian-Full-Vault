@@ -156,6 +156,11 @@ Vault/
 
 ---
 
+# Task Management
+
+
+
+
 ## Resources
 
 - [[Embrace Chaos]] — Die Philosophie hinter diesem Vault

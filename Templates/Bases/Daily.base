@@ -27,12 +27,12 @@ views:
       - categories
       - tags
     sort:
+      - property: file.name
+        direction: DESC
       - property: tags
         direction: ASC
       - property: created
         direction: DESC
-      - property: file.name
-        direction: ASC
       - property: categories
         direction: ASC
     columnSize:

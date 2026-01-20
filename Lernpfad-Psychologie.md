@@ -49,7 +49,7 @@ Woche 6-8: Kapitel 3 - Methodenlehre
 - [ ] Ethische Grundsätze kennen
 
 ### Reihenfolge
-1. [[Was-ist-Psychologie]] - Einstieg, Überblick
+1. [[Was ist Psychologie - Zusammenfassung]] - Einstieg, Überblick
 2. [[Psychologische-Ansaetze]] - Die 5 großen Perspektiven
 3. [[Kognition]] - Wichtiger Grundbegriff
 4. [[Ethik-in-der-Psychologie]] - APA-Richtlinien
@@ -222,7 +222,7 @@ Einfach-Intervall: 4 Tage
 ## Quick Links
 
 ### Notes
-- [[Was-ist-Psychologie]]
+- [[Was ist Psychologie - Zusammenfassung]]
 - [[Geschichte-der-Psychologie]]
 - [[Methodenlehre]]
 

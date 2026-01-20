@@ -9,15 +9,6 @@
       "key": "N"
     }
   ],
-  "insert-template": [
-    {
-      "modifiers": [
-        "Mod",
-        "Shift"
-      ],
-      "key": "T"
-    }
-  ],
   "workspace:undo-close-pane": [],
   "daily-notes": [
     {
@@ -74,9 +65,18 @@
   "editor:cycle-list-checklist": [
     {
       "modifiers": [
-        "Mod"
+        "Alt"
       ],
       "key": "A"
+    }
+  ],
+  "templater-obsidian:insert-templater": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "T"
     }
   ]
 }

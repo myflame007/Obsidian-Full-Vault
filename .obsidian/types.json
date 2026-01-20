@@ -4,7 +4,7 @@
     "cssclasses": "multitext",
     "tags": "tags",
     "categories": "multitext",
-    "created": "text",
+    "created": "date",
     "genre": "multitext",
     "director": "multitext",
     "last": "date",

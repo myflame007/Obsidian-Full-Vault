@@ -2,5 +2,5 @@
 categories:
   - Unsorted
 tags: ""
-created: "{{date}}"
+created: <% tp.date.now("YYYY-MM-DD") %>
 ---

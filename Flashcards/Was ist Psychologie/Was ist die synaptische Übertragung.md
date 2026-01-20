@@ -3,7 +3,7 @@ tags:
   - flashcard
   - psychology-entrance-exam
   - bio-psy
-created: "2026-01-20"
+created: 2026-01-20
 categories:
   - "[[Psychologie-Entrance-Exam-Flashcard]]"
 priority: 2

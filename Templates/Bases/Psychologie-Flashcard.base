@@ -18,9 +18,8 @@ views:
     name: All
     order:
       - file.name
-      - created
-      - file.mtime
       - tags
+      - categories
     sort:
       - property: file.mtime
         direction: DESC

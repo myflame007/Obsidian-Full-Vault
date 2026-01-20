@@ -1,11 +1,10 @@
 ---
 tags:
   - flashcard
-  - entrance-exam
+  - psychology-entrance-exam
 created: "{{date}}"
 categories:
-  - "[[Psychologie-Flashcard]]"
-  - "[[Psychologie-Entrance-Exam]]"
+  - "[[Psychologie-Entrance-Exam-Flashcard]]"
 priority:
 ---
 

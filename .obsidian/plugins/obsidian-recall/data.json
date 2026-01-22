@@ -1,12 +1,69 @@
 {
-  "schedules": {},
+  "schedules": {
+    "card-52170cef": {
+      "cardId": "card-52170cef",
+      "interval": 1,
+      "ease": 2.35,
+      "dueDate": "2026-01-22",
+      "repetitions": 1,
+      "lastReview": "2026-01-21"
+    },
+    "card-591a93d4": {
+      "cardId": "card-591a93d4",
+      "interval": 1,
+      "ease": 2.5,
+      "dueDate": "2026-01-22",
+      "repetitions": 1,
+      "lastReview": "2026-01-21"
+    },
+    "card-ad6ebdd": {
+      "cardId": "card-ad6ebdd",
+      "interval": 1,
+      "ease": 2.35,
+      "dueDate": "2026-01-22",
+      "repetitions": 1,
+      "lastReview": "2026-01-21"
+    },
+    "card-26d34502": {
+      "cardId": "card-26d34502",
+      "interval": 1,
+      "ease": 2.35,
+      "dueDate": "2026-01-22",
+      "repetitions": 1,
+      "lastReview": "2026-01-21"
+    },
+    "card-3e8719fc": {
+      "cardId": "card-3e8719fc",
+      "interval": 1,
+      "ease": 2.35,
+      "dueDate": "2026-01-22",
+      "repetitions": 1,
+      "lastReview": "2026-01-21"
+    },
+    "card-48a2d9a1": {
+      "cardId": "card-48a2d9a1",
+      "interval": 1,
+      "ease": 2.5,
+      "dueDate": "2026-01-22",
+      "repetitions": 1,
+      "lastReview": "2026-01-21"
+    },
+    "card-59d52249": {
+      "cardId": "card-59d52249",
+      "interval": 1,
+      "ease": 2.35,
+      "dueDate": "2026-01-22",
+      "repetitions": 1,
+      "lastReview": "2026-01-21"
+    }
+  },
   "stats": {
-    "totalCards": 50,
+    "totalCards": 63,
     "dueToday": 0,
     "newToday": 0,
-    "reviewedToday": 0,
+    "reviewedToday": 7,
     "streak": 1,
-    "lastStudyDate": "2026-01-18"
+    "lastStudyDate": "2026-01-21"
   },
   "settings": {
     "useLegacySyntax": false,

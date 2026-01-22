@@ -11,5 +11,5 @@ priority: "8"
 
 Q: Was untersucht die Biologische Psychologie?
 A: Physiologische Abläufe im Körper (besonders in Gehirn und Nervensystem)
-Hint: Körper und Gehirn
-Memo: Wie ist etwas im Körper bzw. Gehirn verankert?
+Hint: ... Abläufe in ... ?
+Memo: Wo gibt es überall Nervenzellen?

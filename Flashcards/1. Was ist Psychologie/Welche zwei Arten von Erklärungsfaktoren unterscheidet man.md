@@ -10,6 +10,6 @@ priority: "9"
 ---
 
 Q: Welche zwei Arten von Erklärungsfaktoren unterscheidet man?
-A: Dispositionale und situative Faktoren
-Hint: Person vs. Umwelt
-Memo: Verhalten = Person + Situation
+A: Dispositionale 🧬 und situative 🌦️ Faktoren
+Hint: Person  🧬  vs.  🌦️ Umwelt
+Memo: Verhalten = Person + Situation (Zeitlich stabil vs. von außen beeinflusst)

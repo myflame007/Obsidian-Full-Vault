@@ -7,10 +7,10 @@
 Thumbs.db
 
 # === Do not sync Notes and Journal ===
-Daily/*
-!Daily/.gitkeep
-Notes/*
-!Notes/.gitkeep
+# Daily/*
+# !Daily/.gitkeep
+# Notes/*
+# !Notes/.gitkeep
 
 
 # === Spezifische private Dateien ===

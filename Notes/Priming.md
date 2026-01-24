@@ -3,6 +3,7 @@ categories:
   - "[[Sozialpsychologie]]"
 tags:
   - psychology-entrance-exam
+  - raw
 created: 2026-01-20
 chapter: 7.2.2
 ---

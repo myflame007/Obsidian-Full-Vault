@@ -7,7 +7,7 @@ tags:
   - sae
 created: 2026-01-22
 ---
-
+	
 man kann proq 4 auch als expander verwenden und die mitten sprich die musikaische information zu boosten
 
 wenn zwei sounds konkurrieren, dann lieber schauen, ob einer eine oktave höher oder tiefer gehört 

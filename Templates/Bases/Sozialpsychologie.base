@@ -22,14 +22,16 @@ views:
       - file.mtime
       - tags
     sort:
+      - property: created
+        direction: ASC
       - property: file.mtime
         direction: DESC
   - type: cards
     name: Cards
-    coverProperty: cover
     order:
       - file.name
       - created
     sort:
       - property: file.mtime
         direction: DESC
+    coverProperty: cover

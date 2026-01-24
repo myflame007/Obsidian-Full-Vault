@@ -3,11 +3,9 @@ tags:
   - flashcard
   - psychology-entrance-exam
   - sozialpsychologie
-created: "2026-01-21"
+created: 2026-01-21
 categories:
-  - "[[Psychologie]]"
-  - "[[Psychologie-Entrance-Exam]]"
-  - "[[Sozialpsychologie]]"
+  - "[[Psychologie-Entrance-Exam-Flashcard]]"
 priority: 2
 ---
 

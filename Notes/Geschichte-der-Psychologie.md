@@ -1,9 +1,9 @@
 ---
 Categories: Psychologie
 tags:
-    - geschichte
-    - kapitel2
+  - geschichte
 source: "[[Psychologie_Literatur 2.pdf]]"
+chapter: "1"
 ---
 
 # Geschichte der Psychologie

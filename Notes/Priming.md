@@ -6,6 +6,7 @@ tags:
   - raw
 created: 2026-01-20
 chapter: 7.2.2
+source: "[[Psychologie_Literatur 7.pdf]]"
 ---
 
 

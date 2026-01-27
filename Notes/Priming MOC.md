@@ -1,7 +1,6 @@
 ---
 tags:
   - MOC
-  - psychologie
   - sozialpsychologie
 categories: "[[Sozialpsychologie]]"
 RAW: "[[Priming]]"

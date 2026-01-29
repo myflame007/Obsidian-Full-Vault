@@ -122,25 +122,24 @@ a.internal-link > svg {
 body:not(.is-grabbing) .nav-file-title:hover,
 body:not(.is-grabbing) .nav-folder-title:hover,
 body:not(.is-grabbing) .tree-item-self.is-clickable:hover {
-	opacity: 0.8 !important;
+	opacity: 0.7 !important;
 	background-color: rgba(0, 0, 0, 0.15) !important;
 	border-radius: var(--radius-s) !important;
 }
 
 /* Aktuell geoeffnete/aktive Datei */
 .nav-file-title.is-active {
-	background-color: var(--interactive-accent) !important;
-	color: var(--text-on-accent) !important;
+	opacity: 0.6 !important;
+	background-color: rgba(0, 0, 0, 0.2) !important;
 	border-radius: var(--radius-s);
 }
 
 /* Selektierte Dateien (z.B. bei Multi-Select) */
 .nav-file-title.is-selected,
 .nav-folder-title.is-selected {
-	background-color: var(--interactive-accent-hover) !important;
-	color: var(--text-on-accent) !important;
+	opacity: 0.6 !important;
+	background-color: rgba(0, 0, 0, 0.2) !important;
 	border-radius: var(--radius-s);
-	box-shadow: 0 0 0 2px var(--interactive-accent);
 }
 
 /* Fokussierte Items */

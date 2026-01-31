@@ -9,12 +9,6 @@ tags:
 lesson: 7
 ---
 
-## TODO
-
-- [ ] Pascal anschreiben bzgl Track
-
----
-
 ## Best Practice: Gain Staging
 
 - Beim **Reinziehen eines Samples** gleich das **Gain anpassen**

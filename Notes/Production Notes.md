@@ -8,12 +8,27 @@ tags:
 ---
 
 ## Kind by Nature
+note für track 
+stimme leiser 
+high shelf boos 
 
-- **ML Distance** für Intro verwenden
-- **Nicht** auf Bass anwenden (hält den Bass tight und präsent)
+von der stimme den bass leiser bei 150hz
+
+drum im intro kann wieter nach vorne
+
+kick zu laut im verhältnis zum rest -> nach vorne 
+snare lauter - so laut wie kick 
+snare vom zweitern part nehmen, bissl leiser 
+
+drop anders arrangement und schauen, wie man das steigern kann
+alle grundelemente und nach undn ach dazuschalten 
+
+mitten könnten breiter werden
+stereo signal pushen, wenn stereo signal 
 
 
 
+## ideas
 Schrotthagen altmetall als DnB song 
 
 

@@ -1,6 +1,6 @@
 filters:
   and:
-    - categories.contains(link("D365"))
+    - categories.contains(link("Knowledge"))
     - '!file.name.contains("Template")'
 properties:
   file.name:
@@ -24,14 +24,12 @@ views:
     sort:
       - property: file.mtime
         direction: DESC
-    columnSize:
-      file.name: 186
   - type: cards
     name: Cards
+    coverProperty: cover
     order:
       - file.name
       - created
     sort:
       - property: file.mtime
         direction: DESC
-    coverProperty: cover

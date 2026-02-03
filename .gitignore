@@ -21,3 +21,4 @@ Attachments/*
 # === Plugin-spezifische Daten (nicht synchronisieren) ===
 .obsidian/plugins/recent-files-obsidian/
 .obsidian/plugins/homepage/data.json
+.obsidian/graph.json

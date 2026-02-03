@@ -20,9 +20,9 @@
   "templater-obsidian",
   "command-overview",
   "obsidian-recall",
-  "obsidian-swipe-navigation",
   "tag-wrangler",
   "inline-spoilers",
   "obsidian-tasks-plugin",
-  "customer-tag-sorter"
+  "customer-tag-sorter",
+  "obsidian-swipe-navigation"
 ]

@@ -30,7 +30,8 @@ später dann Shankara von Jilax, Dantara und Psyfeature
 https://open.spotify.com/track/6nZv84SGFxKd9jApaC1DVG
 
 Die Vocals sind Ai generiert mit der hilfe von Suno ai, weil meine aufnahmen ned gut waren und ich mich noch ned mit dem thema beschäftigen konnte 
-Den text habe ich selbst geschrieben, aufgrund der geschehnisse in amerika 
+Den text habe ich selbst geschrieben, 
+aufgrund der geschehnisse  aktuell weltweit
 ich habe ein paar kollegen in minnessota, die im epizentrum einer der faschisten stehen, die unschuldigen so viel leid antun und das in einem der am besten entwicketsten länder weltweit 
 
 
@@ -46,21 +47,20 @@ es gibt tolle seiten auf reddit, wo man nachschauen kann, welche wo gerade for f
 
 die dark piano melodie gefällt mir besonders gut 
 hier hab ich ein serum preset angepasst 
-bei diese m
-ioano melodie habe ich mit ienem lfo einen pich schift in jedem ton hinzugefügt, was den sound noch instabiler wirken lässt
+bei dieser pioano melodie habe ich mit ienem lfo einen pich schift in jedem ton hinzugefügt, was den sound noch instabiler wirken lässt
 deshalb hab ich melodie dann auch gerendert und angepasst, weil es sich sonst nicht richtig angehört hat
 
 generell schau ich viel durch die serum presets und passe sie dann an
 in vergangenheit hab ich viele serum presets selbst erstellt mit tutorials
 
-
+Ich habe die immer wieder herausgerendert, sicherheitshalber habe ich ein Custom Synth (gelb) hinzugefügt
 
 ich hatte so ungefähr im kopf wie ich das intro machen wollte und bin dann zufällig auf die richtigen sounds gestoßen 
 hab sie so arranged, wie ich mir das vorgestellt hab und die ai generated vocals hinzugefügt 
 nach und nach hab ich dann sounds gefunden, bei denen ich dachte, dass sie gut dazu passen
 
 ich hab das max 4 live plugin ml.distance gefunden und hatte die idee einen sound im raum herumschweben zu machen
- nach einigen trail and error war ich dann halbwegs zufrieden
+nach einigen trail and error war ich dann halbwegs zufrieden
 
 
 

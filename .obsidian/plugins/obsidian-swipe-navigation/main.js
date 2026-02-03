@@ -33,10 +33,17 @@ var import_obsidian2 = require("obsidian");
 var DEFAULT_SETTINGS = {
   sensitivity: 50,
   enabled: true,
-  debugMode: false
+  debugMode: false,
+  swipeMode: "two-finger"
+  // default to two-finger (works cross-platform)
 };
 var SWIPE_COOLDOWN = 300;
 var MIN_DELTA_FOR_LOG = 10;
+var SWIPE_THRESHOLD_MULTIPLIER = 3;
+var MIN_VELOCITY_TO_ACTIVATE = 25;
+var DIRECTION_RATIO = 2.5;
+var GESTURE_IDLE_TIMEOUT = 200;
+var DECAY_ANIMATION_DURATION = 250;
 
 // src/SettingsTab.ts
 var import_obsidian = require("obsidian");
@@ -54,26 +61,40 @@ var SwipeNavigationSettingsTab = class extends import_obsidian.PluginSettingTab 
       this.plugin.settings.enabled = value;
       await this.plugin.saveSettings();
     }));
-    new import_obsidian.Setting(containerEl).setName("Swipe sensitivity").setDesc("Minimum swipe distance to trigger navigation (lower = more sensitive)").addSlider((slider) => slider.setLimits(20, 100, 10).setValue(this.plugin.settings.sensitivity).setDynamicTooltip().onChange(async (value) => {
-      this.plugin.settings.sensitivity = value;
+    new import_obsidian.Setting(containerEl).setName("Swipe mode").setDesc('Two-finger: progressive swipe with visual feedback (all platforms). Three-finger: instant navigation (macOS only, requires "Swipe with three fingers" in System Settings > Trackpad).').addDropdown((dropdown) => dropdown.addOption("two-finger", "Two-finger swipe").addOption("three-finger", "Three-finger swipe (macOS)").setValue(this.plugin.settings.swipeMode).onChange(async (value) => {
+      this.plugin.settings.swipeMode = value;
       await this.plugin.saveSettings();
+      this.plugin.setupSwipeListener();
+      this.display();
     }));
+    if (this.plugin.settings.swipeMode === "two-finger") {
+      new import_obsidian.Setting(containerEl).setName("Swipe sensitivity").setDesc("Minimum swipe distance to trigger navigation (lower = more sensitive)").addSlider((slider) => slider.setLimits(20, 100, 10).setValue(this.plugin.settings.sensitivity).setDynamicTooltip().onChange(async (value) => {
+        this.plugin.settings.sensitivity = value;
+        await this.plugin.saveSettings();
+      }));
+    }
     containerEl.createEl("h3", { text: "Developer" });
-    new import_obsidian.Setting(containerEl).setName("Debug mode").setDesc("Log wheel events and navigation to the developer console (Cmd+Opt+I)").addToggle((toggle) => toggle.setValue(this.plugin.settings.debugMode).onChange(async (value) => {
+    new import_obsidian.Setting(containerEl).setName("Debug mode").setDesc("Log swipe events and navigation to the developer console (Cmd+Opt+I)").addToggle((toggle) => toggle.setValue(this.plugin.settings.debugMode).onChange(async (value) => {
       this.plugin.settings.debugMode = value;
       await this.plugin.saveSettings();
     }));
     containerEl.createEl("h3", { text: "How to use" });
-    containerEl.createEl("p", {
-      text: "Use two-finger swipe left/right on your trackpad to navigate back and forward through your note history."
-    });
+    if (this.plugin.settings.swipeMode === "two-finger") {
+      containerEl.createEl("p", {
+        text: "Swipe left/right with two fingers on your trackpad to navigate back and forward through your note history. The edge indicator shows your progress \u2014 release when the arrow appears to navigate, or swipe back to cancel."
+      });
+    } else {
+      containerEl.createEl("p", {
+        text: 'Swipe left/right with three fingers on your trackpad to navigate back and forward. Requires macOS with "Swipe between pages" set to "Swipe with three fingers" or "Swipe with two or three fingers" in System Settings > Trackpad > More Gestures.'
+      });
+    }
     containerEl.createEl("h3", { text: "Compatibility" });
     const compatList = containerEl.createEl("ul");
     compatList.addClass("swipe-navigation-compat-list");
-    compatList.createEl("li", { text: "macOS Trackpad - Excellent support" });
-    compatList.createEl("li", { text: "Windows Precision Touchpad - Good support" });
-    compatList.createEl("li", { text: "Older Windows Trackpads - Limited support" });
-    compatList.createEl("li", { text: "Desktop with mouse only - Not supported" });
+    compatList.createEl("li", { text: "macOS Trackpad \u2014 Two-finger and three-finger modes" });
+    compatList.createEl("li", { text: "Windows Precision Touchpad \u2014 Two-finger mode only" });
+    compatList.createEl("li", { text: "Older Windows Trackpads \u2014 Limited support" });
+    compatList.createEl("li", { text: "Desktop with mouse only \u2014 Not supported" });
   }
 };
 
@@ -86,29 +107,178 @@ var SwipeNavigationPlugin = class extends import_obsidian2.Plugin {
   constructor() {
     super(...arguments);
     this.lastSwipeTime = 0;
+    // Two-finger swipe state
     this.abortController = null;
+    this.accumulatedDelta = 0;
+    this.currentDirection = null;
+    this.swipeActive = false;
+    this.thresholdReached = false;
+    this.navigationLocked = false;
+    // Blocks all input until gesture fully ends
+    this.gestureIdleTimer = null;
+    // Three-finger swipe state (macOS only, via Electron BrowserWindow)
+    this.electronWindow = null;
+    this.swipeHandler = null;
+    // Visual indicator elements
+    this.indicatorLeft = null;
+    this.indicatorRight = null;
   }
   async onload() {
     await this.loadSettings();
     this.addSettingTab(new SwipeNavigationSettingsTab(this.app, this));
+    this.createIndicators();
     this.setupSwipeListener();
     this.log("Plugin loaded");
   }
   onunload() {
+    this.teardownListeners();
+    this.clearGestureIdleTimer();
+    this.removeIndicators();
+    this.log("Plugin unloaded");
+  }
+  // === Visual Indicators ===
+  createIndicators() {
+    this.indicatorLeft = document.body.createDiv({
+      cls: "swipe-nav-indicator swipe-nav-indicator-left"
+    });
+    this.indicatorLeft.createDiv({ cls: "swipe-nav-indicator-arrow" });
+    this.indicatorRight = document.body.createDiv({
+      cls: "swipe-nav-indicator swipe-nav-indicator-right"
+    });
+    this.indicatorRight.createDiv({ cls: "swipe-nav-indicator-arrow" });
+  }
+  removeIndicators() {
+    var _a, _b;
+    (_a = this.indicatorLeft) == null ? void 0 : _a.remove();
+    (_b = this.indicatorRight) == null ? void 0 : _b.remove();
+    this.indicatorLeft = null;
+    this.indicatorRight = null;
+  }
+  updateIndicator(direction, progress) {
+    const indicator = direction === "back" ? this.indicatorLeft : this.indicatorRight;
+    if (!indicator)
+      return;
+    const clampedProgress = Math.min(Math.max(progress, 0), 1);
+    const width = clampedProgress * 60;
+    indicator.style.width = `${width}px`;
+    indicator.style.opacity = `${clampedProgress}`;
+    const arrow = indicator.querySelector(".swipe-nav-indicator-arrow");
+    if (arrow) {
+      arrow.style.opacity = clampedProgress >= 1 ? "1" : "0";
+    }
+    indicator.classList.toggle("ready", clampedProgress >= 1);
+  }
+  resetIndicators() {
+    if (this.indicatorLeft) {
+      this.indicatorLeft.style.width = "0";
+      this.indicatorLeft.style.opacity = "0";
+      this.indicatorLeft.classList.remove("ready");
+    }
+    if (this.indicatorRight) {
+      this.indicatorRight.style.width = "0";
+      this.indicatorRight.style.opacity = "0";
+      this.indicatorRight.classList.remove("ready");
+    }
+  }
+  animateIndicatorReset() {
+    var _a, _b;
+    (_a = this.indicatorLeft) == null ? void 0 : _a.classList.add("animating");
+    (_b = this.indicatorRight) == null ? void 0 : _b.classList.add("animating");
+    this.resetIndicators();
+    setTimeout(() => {
+      var _a2, _b2;
+      (_a2 = this.indicatorLeft) == null ? void 0 : _a2.classList.remove("animating");
+      (_b2 = this.indicatorRight) == null ? void 0 : _b2.classList.remove("animating");
+    }, DECAY_ANIMATION_DURATION);
+  }
+  /**
+   * Brief flash of the indicator for discrete gestures (three-finger swipe)
+   * where there is no progressive feedback.
+   */
+  flashIndicator(direction) {
+    this.updateIndicator(direction, 1);
+    this.animateIndicatorReset();
+  }
+  // === Swipe Listener Setup ===
+  /**
+   * Initialize the appropriate swipe listener based on the current swipeMode setting.
+   * Called on load and when the setting changes.
+   */
+  setupSwipeListener() {
+    this.teardownListeners();
+    if (this.settings.swipeMode === "three-finger") {
+      const success = this.setupThreeFingerSwipe();
+      if (!success) {
+        this.logWarn("Three-finger swipe not available, falling back to two-finger mode");
+        this.setupTwoFingerSwipe();
+      }
+    } else {
+      this.setupTwoFingerSwipe();
+    }
+  }
+  teardownListeners() {
     var _a;
     (_a = this.abortController) == null ? void 0 : _a.abort();
     this.abortController = null;
-    this.log("Plugin unloaded");
+    this.resetSwipeState();
+    this.removeThreeFingerSwipe();
   }
-  // === Swipe Detection ===
-  setupSwipeListener() {
+  // === Three-Finger Swipe (macOS only) ===
+  /**
+   * Set up three-finger swipe via Electron's BrowserWindow 'swipe' event.
+   * This is a macOS-only feature that fires for three-finger swipes when
+   * the system preference "Swipe between pages" is set to "Swipe with
+   * three fingers" or "Swipe with two or three fingers".
+   *
+   * Returns true if setup succeeded, false if Electron API is not available.
+   */
+  setupThreeFingerSwipe() {
     var _a;
-    (_a = this.abortController) == null ? void 0 : _a.abort();
+    try {
+      const { remote } = require("electron");
+      const win = (_a = remote == null ? void 0 : remote.getCurrentWindow) == null ? void 0 : _a.call(remote);
+      if (!win) {
+        this.logWarn("Three-finger swipe: Could not access BrowserWindow");
+        return false;
+      }
+      this.swipeHandler = (_event, direction) => {
+        if (!this.settings.enabled)
+          return;
+        if (this.settings.debugMode) {
+          this.log("Three-finger swipe:", { direction });
+        }
+        if (direction === "left") {
+          this.flashIndicator("back");
+          this.navigate("back");
+        } else if (direction === "right") {
+          this.flashIndicator("forward");
+          this.navigate("forward");
+        }
+      };
+      win.on("swipe", this.swipeHandler);
+      this.electronWindow = win;
+      this.log("Three-finger swipe listener active");
+      return true;
+    } catch (e) {
+      this.logWarn("Three-finger swipe not available (Electron API inaccessible)", e);
+      return false;
+    }
+  }
+  removeThreeFingerSwipe() {
+    if (this.electronWindow && this.swipeHandler) {
+      this.electronWindow.removeListener("swipe", this.swipeHandler);
+      this.electronWindow = null;
+      this.swipeHandler = null;
+    }
+  }
+  // === Two-Finger Swipe Detection ===
+  setupTwoFingerSwipe() {
     this.abortController = new AbortController();
     const { signal } = this.abortController;
     document.addEventListener("wheel", (event) => {
       this.handleWheelEvent(event);
     }, { signal, passive: true });
+    this.log("Two-finger swipe listener active");
   }
   handleWheelEvent(event) {
     if (!this.settings.enabled) {
@@ -120,17 +290,102 @@ var SwipeNavigationPlugin = class extends import_obsidian2.Plugin {
       this.log("Wheel event:", {
         deltaX: horizontalDelta.toFixed(2),
         deltaY: event.deltaY.toFixed(2),
-        threshold: this.settings.sensitivity
+        accumulated: this.accumulatedDelta.toFixed(2),
+        active: this.swipeActive,
+        ready: this.thresholdReached
       });
     }
-    if (verticalDelta > Math.abs(horizontalDelta)) {
+    if (verticalDelta * DIRECTION_RATIO > Math.abs(horizontalDelta)) {
       return;
     }
-    const threshold = this.settings.sensitivity;
-    if (horizontalDelta < -threshold) {
-      this.navigate("back");
-    } else if (horizontalDelta > threshold) {
-      this.navigate("forward");
+    if (Math.abs(horizontalDelta) < 1) {
+      return;
+    }
+    this.resetGestureIdleTimer();
+    if (this.navigationLocked) {
+      return;
+    }
+    if (!this.swipeActive) {
+      if (Math.abs(horizontalDelta) >= MIN_VELOCITY_TO_ACTIVATE) {
+        this.swipeActive = true;
+        if (this.settings.debugMode) {
+          this.log("Swipe activated (velocity threshold met)");
+        }
+      } else {
+        return;
+      }
+    }
+    this.accumulatedDelta += horizontalDelta;
+    const newDirection = this.accumulatedDelta < 0 ? "back" : this.accumulatedDelta > 0 ? "forward" : null;
+    if (this.currentDirection && newDirection && this.currentDirection !== newDirection) {
+      this.resetSwipeState();
+      this.swipeActive = true;
+      this.accumulatedDelta = horizontalDelta;
+    }
+    this.currentDirection = newDirection;
+    if (this.currentDirection && !this.canNavigate(this.currentDirection)) {
+      return;
+    }
+    const threshold = this.settings.sensitivity * SWIPE_THRESHOLD_MULTIPLIER;
+    const progress = Math.abs(this.accumulatedDelta) / threshold;
+    if (this.currentDirection) {
+      this.updateIndicator(this.currentDirection, progress);
+    }
+    this.thresholdReached = progress >= 1;
+  }
+  resetSwipeState() {
+    this.accumulatedDelta = 0;
+    this.currentDirection = null;
+    this.swipeActive = false;
+    this.thresholdReached = false;
+  }
+  // === Gesture Idle Detection ===
+  /**
+   * Reset the idle timer. Called on every wheel event to keep the gesture alive.
+   * When no wheel events arrive for GESTURE_IDLE_TIMEOUT (200ms), the gesture
+   * is considered ended (finger lifted from trackpad).
+   */
+  resetGestureIdleTimer() {
+    this.clearGestureIdleTimer();
+    this.gestureIdleTimer = setTimeout(() => {
+      this.onGestureEnd();
+    }, GESTURE_IDLE_TIMEOUT);
+  }
+  clearGestureIdleTimer() {
+    if (this.gestureIdleTimer !== null) {
+      clearTimeout(this.gestureIdleTimer);
+      this.gestureIdleTimer = null;
+    }
+  }
+  /**
+   * Called when no wheel events have arrived for GESTURE_IDLE_TIMEOUT ms.
+   * This approximates the "finger lifted" moment. Navigation only fires here,
+   * not during the gesture — matching Safari's navigate-on-release behavior.
+   */
+  onGestureEnd() {
+    if (this.settings.debugMode && this.swipeActive) {
+      this.log("Gesture ended (idle timeout)", {
+        thresholdReached: this.thresholdReached,
+        direction: this.currentDirection
+      });
+    }
+    if (this.thresholdReached && this.currentDirection) {
+      this.navigate(this.currentDirection);
+      this.navigationLocked = true;
+    }
+    this.animateIndicatorReset();
+    this.resetSwipeState();
+    this.navigationLocked = false;
+  }
+  canNavigate(direction) {
+    const leaf = this.app.workspace.activeLeaf;
+    if (!(leaf == null ? void 0 : leaf.history)) {
+      return true;
+    }
+    if (direction === "back") {
+      return leaf.history.backHistory.length > 0;
+    } else {
+      return leaf.history.forwardHistory.length > 0;
     }
   }
   // === Navigation ===

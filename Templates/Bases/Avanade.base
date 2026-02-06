@@ -26,10 +26,10 @@ views:
         direction: DESC
   - type: cards
     name: Cards
-    coverProperty: cover
     order:
       - file.name
       - created
     sort:
       - property: file.mtime
         direction: DESC
+    coverProperty: cover

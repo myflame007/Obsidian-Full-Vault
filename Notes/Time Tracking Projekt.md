@@ -197,22 +197,10 @@ Then wird ein XLSX generiert mit Summen je Tag, Projekt, Item
 - CSV/XLSX Export
 - Excel-Import
 
-## 11. Roadmap
-
-### v1.1
-
-- PDF-Export
-- Erweiterte Filter
-- ADO-Metadaten (Titel, Status)
-
-### v1.2
-
-- Sync zwischen PCs (optional)
-- Custom-Dashboard-Builder
 
 ---
 
-## 12. Offene Punkte
+## 11. Offene Punkte
 
 - Zeitzonen-Unterstützung nötig? (vermutlich nein)
 - Custom-Farbschema für Projekte?
@@ -220,6 +208,10 @@ Then wird ein XLSX generiert mit Summen je Tag, Projekt, Item
 
 ---
 
-## 13. Zusammenfassung
+## 12. Zusammenfassung
 
 Dieses Dokument definiert eine schnelle, lokal laufende, Windows-basierte Zeiterfassungs-App mit kleinem, robustem Datenmodell, schneller Eingabe, projektbezogenen Strukturen, ADO-Linkfähigkeit und umfangreichen Export-/Reporting-Funktionen – ideal für einzelne User.
+
+
+## 13. Weitere Punkte
+Ich möchte den Zeitraum mit den geleisteten Stunden einstellbar machen

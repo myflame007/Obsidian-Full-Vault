@@ -215,3 +215,5 @@ Dieses Dokument definiert eine schnelle, lokal laufende, Windows-basierte Zeiter
 
 ## 13. Weitere Punkte
 Ich möchte den Zeitraum mit den geleisteten Stunden einstellbar machen
+Es muss auch so ein feld geben, wo ich reinschreib, das ich gemacht habe 
+das muss pro unterprojekt pro tag eig auch zusammengefügt werden 

@@ -21,11 +21,16 @@ views:
       - created
       - file.mtime
       - tags
+      - chapter
     sort:
+      - property: tags
+        direction: ASC
       - property: created
         direction: ASC
       - property: file.mtime
         direction: DESC
+    columnSize:
+      file.name: 414
   - type: cards
     name: Cards
     order:

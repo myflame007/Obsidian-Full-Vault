@@ -3,4 +3,4 @@ tags:
   - categories
 ---
 
-![[Projects.base]]
+![[Personal.base]]

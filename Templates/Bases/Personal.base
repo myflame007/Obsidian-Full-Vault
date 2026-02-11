@@ -1,6 +1,6 @@
 filters:
   and:
-    - categories.contains(link("Sozialpsychologie"))
+    - categories.contains(link("Personal"))
     - '!file.name.contains("Template")'
 properties:
   file.name:
@@ -21,22 +21,15 @@ views:
       - created
       - file.mtime
       - tags
-      - chapter
     sort:
-      - property: tags
-        direction: ASC
-      - property: created
-        direction: ASC
       - property: file.mtime
         direction: DESC
-    columnSize:
-      file.name: 414
   - type: cards
     name: Cards
+    coverProperty: cover
     order:
       - file.name
       - created
     sort:
       - property: file.mtime
         direction: DESC
-    coverProperty: cover

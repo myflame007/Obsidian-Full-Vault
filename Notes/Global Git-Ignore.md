@@ -4,6 +4,7 @@ categories:
   - "[[General]]"
 tags:
   - VSCode
+  - Git
 created: 2026-01-23
 ---
 Die globale Git-Ignore Konfiguration:

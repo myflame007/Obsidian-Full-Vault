@@ -1,5 +1,6 @@
 ---
-Categories: Psychologie
+categories:
+  - "[[Psychologie]]"
 tags:
     - geschichte
     - schule

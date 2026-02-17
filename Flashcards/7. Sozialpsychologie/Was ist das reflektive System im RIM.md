@@ -7,6 +7,7 @@ created: "2026-01-21"
 categories:
   - "[[Psychologie]]"
   - "[[Psychologie-Entrance-Exam]]"
+  - "[[Psychologie-Entrance-Exam-Flashcard]]"
   - "[[Sozialpsychologie]]"
 priority: 2
 ---

@@ -1,5 +1,6 @@
 ---
 categories:
+  - "[[Psychologie]]"
   - "[[Unsorted]]"
 tags: ""
 created: 2026-01-20

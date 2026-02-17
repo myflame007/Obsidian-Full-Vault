@@ -1,5 +1,6 @@
 ---
-Categories: Psychologie
+categories:
+  - "[[Psychologie]]"
 tags:
   - geschichte
 source: "[[Psychologie_Literatur 2.pdf]]"

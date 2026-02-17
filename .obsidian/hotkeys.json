@@ -1,10 +1,18 @@
 {
   "file-explorer:new-file-in-new-pane": [],
-  "file-explorer:new-file": [],
-  "zk-prefixer": [
+  "file-explorer:new-file": [
     {
       "modifiers": [
         "Mod"
+      ],
+      "key": "N"
+    }
+  ],
+  "zk-prefixer": [
+    {
+      "modifiers": [
+        "Mod",
+        "Alt"
       ],
       "key": "N"
     }

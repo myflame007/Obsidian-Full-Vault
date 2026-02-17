@@ -7,6 +7,9 @@ created: 2026-01-24
 ---
 ## Prioritäten – Fachwissen Psychologie Aufnahmetest (80/20)
 
+## NotebookLM Steuerung
+Siehe: [[NotebookLM - Flashcard Instruktionen Psychologie]]
+
 ### 🔥 Priorität 1 (absolut zentral – höchste Trefferquote)
 - Forschungsmethoden & Statistik (Hypothesen, Variablen, Experiment, Korrelation, Messniveaus)
 - Biologische Psychologie (Neuron, Aktionspotenzial, Nervensystem, Gehirnareale)

@@ -88,6 +88,28 @@ subject.OwnerId    // ❌ null! (PreImage war null)
 
 ---
 
+## ImageTypeEnum.Both – Das Beste aus beiden Welten
+
+`ImageTypeEnum.Both = 2` registriert **ein einziges Image** das in BEIDEN Collections erscheint:
+- `PreEntityImages["DefaultImage"]` → `context.PreImage` (Zustand vor Update)
+- `PostEntityImages["DefaultImage"]` → `context.PostImage` (Zustand nach Update)
+
+```csharp
+Image1Type = ImageTypeEnum.Both   // ← eine Zeile, beide Images verfügbar
+```
+
+**Wann sinnvoll**: Wenn du gleichzeitig prüfen willst ob sich ein Feld geändert hat (PreImage) UND den vollständigen aktuellen Record brauchst (PostImage).
+
+```csharp
+// context.PreImage → War ava_Type vorher null?
+if (context.PreImage?.ava_Type != null) return;  // war schon gesetzt → skip
+
+// context.Subject (= PreImage + Target) → vollständiger aktueller Zustand
+// context.PostImage → garantiert alle Felder nach dem Update
+```
+
+---
+
 ## Wann was registrieren?
 
 | Anwendungsfall | Stage | Image registrieren |
@@ -97,6 +119,7 @@ subject.OwnerId    // ❌ null! (PreImage war null)
 | Auf Änderung reagieren + `HasChanged` nutzen | PostOperation | **PreImage** |
 | Vollständigen Record nach Update brauchen | PostOperation | PostImage |
 | `Subject` verwenden (Standard-Pattern) | PostOperation | **PreImage** ← immer! |
+| Vorher-/Nachher-Vergleich + vollständige Daten | PostOperation | **Both** ← PreImage + PostImage in einem |
 
 ---
 
@@ -106,6 +129,7 @@ subject.OwnerId    // ❌ null! (PreImage war null)
 > - `Subject` verwenden → **PreImage** registrieren
 > - `HasChanged()` nutzen → **PreImage** registrieren
 > - Vollständiger Record nach Save ohne Subject → **PostImage**
+> - Vorher-/Nachher-Vergleich UND vollständige Daten → **Both**
 > - Pre-Stage (PreValidation / PreOperation) → **PostImage niemals möglich**
 
 ---
@@ -115,17 +139,20 @@ subject.OwnerId    // ❌ null! (PreImage war null)
 > [!warning] Klassische Bugs
 >
 > **PostImage registriert, aber Subject verwendet**
-> → Subject hat nur Target-Felder → nicht geänderte Felder (z.B. `OwnerId`) sind `null`
+> → Subject hat nur Target-Felder → nicht geänderte Felder (z.B. `OwnerId`, `ava_LegalConsellingId`) sind `null`
 >
 > **PreImage nicht registriert, aber `HasChanged()` genutzt**
-> → `pre` ist `null` → Vergleich funktioniert nicht korrekt
+> → `pre` ist `null` → `FieldChecker.HasChanged(null, target, field)` gibt immer `true` zurück → Vergleich funktioniert nicht
 >
 > **PostImage in PreOperation registriert**
 > → PostImage ist immer `null` in Pre-Stages – der DB-Schreibvorgang hat noch nicht stattgefunden
+>
+> **Subject verwendet um "war vorher null" zu prüfen, aber kein PreImage**
+> → `pre?.ava_Type != null` mit `pre = null` → ist immer `false` → Prüfung greift nie
 
 ---
 
-## Beispiel: Korrektes PostUpdate-Plugin
+## Beispiel: PostUpdate mit Subject + HasChanged (PreImage)
 
 ```csharp
 // ✅ PreImage registrieren wenn Subject oder HasChanged genutzt wird
@@ -136,7 +163,7 @@ subject.OwnerId    // ❌ null! (PreImage war null)
     ExecutionModeEnum.Synchronous, "",
     "MyPlugin.PostUpdate", 1, IsolationModeEnum.Sandbox,
     Image1Name = XrmPluginContext.PluginImageName,
-    Image1Type = ImageTypeEnum.PreImage,   // ← PreImage!
+    Image1Type = ImageTypeEnum.PreImage,
     Image1Attributes = "")]
 public class PostUpdate : XrmPluginBase<MyEntity>, IPlugin
 {
@@ -145,6 +172,35 @@ public class PostUpdate : XrmPluginBase<MyEntity>, IPlugin
         // context.Subject = PreImage + Target → vollständig ✅
         // context.PreImage = Zustand vor Update ✅
         // context.Target = nur geänderte Felder ✅
+        context.Subject.DoSomething(
+            context.CrmUserContext,
+            context.Target,
+            context.PreImage,
+            context.TracingService);
+    }
+}
+```
+
+## Beispiel: PostUpdate mit Both (PreImage + PostImage)
+
+```csharp
+// ✅ Both wenn: Vorher-Prüfung (pre) UND vollständige Daten nach Update (post) benötigt
+[CrmPluginRegistration(
+    MessageNameEnum.Update,
+    MyEntity.EntityLogicalName,
+    StageEnum.PostOperation,
+    ExecutionModeEnum.Synchronous, "",
+    "MyPlugin.PostUpdate", 1, IsolationModeEnum.Sandbox,
+    Image1Name = XrmPluginContext.PluginImageName,
+    Image1Type = ImageTypeEnum.Both,   // ← Pre + Post in einem
+    Image1Attributes = "")]
+public class PostUpdate : XrmPluginBase<MyEntity>, IPlugin
+{
+    protected override void ExecuteCrmPlugin(XrmPluginContext<MyEntity> context)
+    {
+        // context.PreImage  = Zustand VOR Update  (für Vergleiche) ✅
+        // context.PostImage = Zustand NACH Update (alle Felder garantiert) ✅
+        // context.Subject   = PreImage + Target   (effektiver aktueller Stand) ✅
         context.Subject.DoSomething(
             context.CrmUserContext,
             context.Target,

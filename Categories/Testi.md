@@ -1,6 +1,0 @@
----
-tags:
-  - categories
----
-
-![[Testi.base]]

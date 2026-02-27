@@ -1,15 +1,15 @@
-{
-  "autoPullOnBoot": true,
-  "differentIntervalCommitAndPush": true,
-  "autoSaveInterval": 10,
-  "autoBackupAfterFileChange": true,
-  "autoPushInterval": 10,
-  "autoPullInterval": 0,
-  "pullBeforePush": true,
-  "disablePush": false,
-  "syncMethod": "merge",
-  "mergeStrategy": "none",
-  "setLastSaveToLastCommit": true,
-  "disablePopupsForNoChanges": true,
-  "showErrorNotices": true
+﻿{
+    "autoPullOnBoot":  true,
+    "differentIntervalCommitAndPush":  true,
+    "autoSaveInterval":  10,
+    "autoBackupAfterFileChange":  true,
+    "autoPushInterval":  10,
+    "autoPullInterval":  0,
+    "pullBeforePush":  true,
+    "disablePush":  false,
+    "syncMethod":  "merge",
+    "mergeStrategy":  "none",
+    "setLastSaveToLastCommit":  true,
+    "disablePopupsForNoChanges":  true,
+    "showErrorNotices":  true
 }

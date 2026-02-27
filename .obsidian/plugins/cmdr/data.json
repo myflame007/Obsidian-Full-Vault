@@ -14,6 +14,18 @@
       "icon": "lucide-search",
       "name": "Omnisearch: Vault search",
       "mode": "any"
+    },
+    {
+      "id": "copy-file-path:copy-absolute-path",
+      "icon": "lucide-clipboard-copy",
+      "name": "Copy File Path: Copy absolute file path",
+      "mode": "any"
+    },
+    {
+      "id": "workspace:copy-path",
+      "icon": "lucide-link",
+      "name": "Copy file path",
+      "mode": "any"
     }
   ],
   "macros": [],

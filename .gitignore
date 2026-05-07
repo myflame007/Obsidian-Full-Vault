@@ -24,3 +24,8 @@ Attachments/*
 .obsidian/graph.json
 .obsidian/community-plugins.json
 .vscode
+
+# === Plugin-Binaries (nicht synchronisieren) ===
+.obsidian/plugins/*/main.js
+.obsidian/plugins/*/manifest.json
+.obsidian/plugins/*/styles.css

@@ -72,6 +72,7 @@ Diese Liste basiert auf den aktuell installierten Plugins in meinem lokalen XrmT
 - [[XRM Plugin - FetchXml Tester|FetchXml Tester]]: Test your fetchXml queries
 - [[XRM Plugin - Metadata Browser|Metadata Browser]]: Browse metadata from your Microsoft Dataverse environment or Microsoft Dynamics CRM organization
 - [[XRM Plugin - Metadata Browser Companion|Metadata Browser Companion]]: Find the appropriate metadata right away from your Microsoft Dataverse environment or Microsoft Dynamics CRM organization
+- [[XRM Plugin - Metadata Document Generator|Metadata Document Generator]]: Exportiert Tabellen- und Spalten-Metadaten als Excel-Datei
 - [[XRM Plugin - Polymorphic Lookup Manager|Polymorphic Lookup Manager]]: Manage the shiny new polymorphic lookups columns without a line of code
 - [[XRM Plugin - SQL 4 CDS|SQL 4 CDS]]: Query and modify data in Dataverse / D365 using standard SQL syntax
 
